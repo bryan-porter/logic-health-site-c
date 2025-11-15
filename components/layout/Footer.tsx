@@ -58,8 +58,13 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-neutral-200 pt-8 text-center text-sm text-neutral-600">
-          <p>&copy; {new Date().getFullYear()} Logic Health Management. All rights reserved.</p>
+        <div className="mt-8 border-t border-neutral-200 pt-8">
+          <div className="mb-4 text-center text-xs text-neutral-500">
+            <p>HIPAA-compliant | SOC 2 Type II certified | Business Associate Agreement included</p>
+          </div>
+          <div className="text-center text-sm text-neutral-600">
+            <p>&copy; {new Date().getFullYear()} Logic Health Management. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

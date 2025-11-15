@@ -1,0 +1,56 @@
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+
+interface CTAProps {
+  headline: string;
+  description?: string;
+  buttonText: string;
+  buttonHref: string;
+  variant?: "primary" | "secondary";
+}
+
+export function CTA({
+  headline,
+  description,
+  buttonText,
+  buttonHref,
+  variant = "primary",
+}: CTAProps) {
+  const bgClass = variant === "primary"
+    ? "bg-primary-600"
+    : "bg-neutral-50";
+
+  const textClass = variant === "primary"
+    ? "text-white"
+    : "text-neutral-900";
+
+  const descClass = variant === "primary"
+    ? "text-primary-100"
+    : "text-neutral-700";
+
+  return (
+    <section className={`py-16 md:py-24 ${bgClass}`}>
+      <Container>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className={`text-3xl font-bold md:text-4xl ${textClass}`}>
+            {headline}
+          </h2>
+          {description && (
+            <p className={`mt-4 text-lg md:text-xl ${descClass}`}>
+              {description}
+            </p>
+          )}
+          <div className="mt-8">
+            <Button
+              href={buttonHref}
+              variant={variant === "primary" ? "secondary" : "primary"}
+              className="px-8 py-4 text-lg"
+            >
+              {buttonText}
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}

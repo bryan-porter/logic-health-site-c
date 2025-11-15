@@ -1,28 +1,42 @@
 import Link from "next/link";
-import { NAV_ITEMS } from "@/lib/constants";
 
 export function Header() {
+  const navLinks = [
+    { label: "Why Outsource", href: "/why-outsource" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Solutions", href: "/solutions/ccm" },
+    { label: "Results", href: "/results" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Resources", href: "/resources" },
+    { label: "About", href: "/about" },
+  ];
+
   return (
-    <header className="border-b border-neutral-200 bg-white">
+    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-primary-600">
+          {/* Logo */}
+          <Link href="/" className="text-xl font-bold text-primary-600 transition-colors hover:text-primary-700">
             LogicHM
           </Link>
-          <nav className="hidden md:flex md:gap-x-8">
-            {NAV_ITEMS.map((item) => (
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex lg:gap-x-6 xl:gap-x-8">
+            {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-neutral-700 hover:text-primary-600"
+                className="text-sm font-medium text-neutral-700 transition-colors hover:text-primary-600"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
+
+          {/* CTA Button */}
           <Link
             href="/contact"
-            className="rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white hover:bg-primary-700"
+            className="rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
           >
             Get Started
           </Link>
