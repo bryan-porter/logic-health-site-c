@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Stats } from "@/components/sections/Stats";
 import { CTA } from "@/components/sections/CTA";
 import Link from "next/link";
+import ChecklistCTA from "@/components/ChecklistCTA";
 import {
   Package,
   PlugZap,
@@ -167,6 +168,12 @@ export default function RPMPage() {
             <Button href="/contact" variant="primary">Talk to a specialist</Button>
             <Button href="/how-it-works" variant="secondary">See the workflow</Button>
           </div>
+        </Container>
+      </section>
+
+      <section className="bg-white py-8 md:py-12">
+        <Container>
+          <ChecklistCTA variant="inline" />
         </Container>
       </section>
 

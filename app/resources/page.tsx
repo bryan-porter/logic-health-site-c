@@ -2,6 +2,7 @@ import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceC
 import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
 import { getAllPosts } from "@/lib/blog";
 import { PostCard } from "@/components/blog/PostCard";
+import ChecklistCTA from "@/components/ChecklistCTA";
 
 export const metadata = {
   title: "Resources | Logic Health Management",
@@ -70,6 +71,10 @@ export default function ResourcesPage() {
           and audit‑ready.
         </p>
       </header>
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <ChecklistCTA variant="banner" />
+      </div>
 
       <ResourceGrid
         heading="Guides & Templates"
