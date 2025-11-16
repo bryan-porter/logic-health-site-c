@@ -1,287 +1,215 @@
-import * as React from "react";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { Hero } from "@/components/sections/Hero";
-import { Button } from "@/components/ui/Button";
-import {
-  ShieldCheck,
-  BarChart3,
-  Users,
-  Stethoscope,
-  Activity,
-  HeartPulse,
-} from "lucide-react";
+import { CTA } from "@/components/sections/CTA";
 
-type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
-
-type Tier = {
-  name: string;
-  headline: string;
-  price: string;
-  priceNote?: string;
-  billing: string;
-  description: string;
-  highlights: string[];
-  programs: string[];
-  cta: { text: string; href: string };
-  mostPopular?: boolean;
+export const metadata: Metadata = {
+  title: "Pricing & Commercial Models | Logic Health Management",
+  description:
+    "Simple commercial options for practices and small hospitals—full‑service, co‑managed, or build‑operate‑transfer—covering CCM, RPM, RTM, TCM, BHI, CHI/PIN, TEAMs, and AWV/wellness.",
 };
 
-const TIERS: Tier[] = [
-  {
-    name: "Practice Starter",
-    headline: "Launch CCM/RPM without hiring",
-    price: "Per enrolled pt / active month",
-    priceNote: "Volume pricing available",
-    billing: "Month‑to‑month • no setup fee",
-    description:
-      "Turnkey outreach, monitoring, documentation, and clean CPT capture for 1–3 clinics.",
-    highlights: [
-      "Navigator + RN/MA team",
-      "Consent, time & supervision artifacts in your EHR",
-      "Device logistics available for RPM",
-      "Quality & compliance controls built‑in",
-    ],
-    programs: ["CCM", "RPM", "PCM", "BHI"],
-    cta: { text: "Get a starter quote", href: "/contact" },
-    mostPopular: true,
-  },
-  {
-    name: "Group Growth",
-    headline: "Scale across multi‑site groups",
-    price: "Lower PEPM with tiered discounts",
-    priceNote: "Annual prepay discount available",
-    billing: "Monthly with true‑up • SOW by site",
-    description:
-      "Centralized operations with site‑level reporting and consistent supervision language by license.",
-    highlights: [
-      "Multi‑site playbooks & dashboards",
-      "Eligibility & claim‑ready signals in‑workflow",
-      "Co‑branded patient comms",
-      "Dedicated success & clinical QA",
-    ],
-    programs: ["AWV", "CCM", "RPM", "RTM", "PCM", "BHI"],
-    cta: { text: "Discuss multi‑site pricing", href: "/contact" },
-  },
-  {
-    name: "Hospital Partner",
-    headline: "Small & rural hospital operating model",
-    price: "Site base + PEPM",
-    priceNote: "Configurable to service lines",
-    billing: "SOW per service line • quarterly review",
-    description:
-      "Central monitoring hub with service‑line escalation from inpatient → outpatient; TCM and TEAMs support.",
-    highlights: [
-      "Hub‑and‑spoke coverage for discharges",
-      "Readmission risk routing & handoffs",
-      "Unit‑friendly documentation & audits",
-      "Joint QI & finance scorecards",
-    ],
-    programs: ["TCM", "TEAMs", "CCM", "RPM", "CHI/PIN"],
-    cta: { text: "Talk to hospital team", href: "/contact" },
-  },
-];
+// Minimal inline icons (no external deps)
+function LayersIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M12 2 3 7l9 5 9-5-9-5Z" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 12l9 5 9-5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 17l9 5 9-5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round"/>
+      <circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth={1.7}/>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round"/>
+    </svg>
+  );
+}
+function WrenchIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M14.7 6.3A4.5 4.5 0 0 0 7.3 9.7L3 14l7 7 4.3-4.3a4.5 4.5 0 0 0 3.4-7.4" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="15" cy="5" r="2" stroke="currentColor" strokeWidth={1.7}/>
+    </svg>
+  );
+}
+function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M12 22s8-3 8-10V6l-8-3-8 3v6c0 7 8 10 8 10Z" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function LinkIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 1 0 7.07 7.07L13 20" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function ChartIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M3 3v18h18" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M7 15v3M12 11v7M17 7v11" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 export default function PricingPage() {
+  const models = [
+    {
+      title: "Full‑service programs",
+      subtitle: "We operate end‑to‑end delivery",
+      Icon: LayersIcon,
+      bullets: [
+        "CCM, RPM, RTM, TCM, BHI, CHI/PIN, AWV/wellness, TEAMs (hospital).",
+        "RN/MA navigators, device logistics, alerts, outreach, documentation, and QA.",
+        "Time and supervision notes aligned to program criteria; production views each month.",
+      ],
+      idealFor: "Busy practices and small hospitals wanting turnkey delivery with clear governance.",
+    },
+    {
+      title: "Co‑managed (your staff + our operating model)",
+      subtitle: "You staff; we provide model, training, QA",
+      Icon: UsersIcon,
+      bullets: [
+        "Standardized protocols, routing matrices, templates, and reporting.",
+        "Training, supervision logic, coding/billing checks, and monthly quality review.",
+        "Flexible coverage: we can absorb after‑hours/overflow or specialty cohorts.",
+      ],
+      idealFor: "Groups with care teams in place who want structure, oversight, and scale.",
+    },
+    {
+      title: "Build‑Operate‑Transfer",
+      subtitle: "Stand‑up, stabilize, then hand off",
+      Icon: WrenchIcon,
+      bullets: [
+        "Blueprint → pilot → scale; we operate to steady state before transition.",
+        "Policy bundle, documentation library, reporting pack, and handover plan.",
+        "Option to keep LogicHM for QA, analytics, and escalation protocols.",
+      ],
+      idealFor: "Systems targeting long‑term internal ownership with a lower‑risk path to launch.",
+    },
+  ];
+
+  const includes = [
+    { label: "Compliance‑first design (HIPAA, SOC 2 practices, audit‑ready docs)", Icon: ShieldIcon },
+    { label: "EHR connection patterns and documentation templates", Icon: LinkIcon },
+    { label: "Monthly production & outcomes views (board‑ready)", Icon: ChartIcon },
+  ];
+
+  const segments = [
+    {
+      heading: "For practices",
+      points: [
+        "Primary care, cardiology, endocrinology, pulmonology, nephrology, and multi‑specialty.",
+        "Simple per‑enrolled‑patient commercial structures with volume tiering.",
+        "Programs commonly paired: CCM + RPM; AWV + wellness; BHI where indicated.",
+      ],
+    },
+    {
+      heading: "For small hospitals",
+      points: [
+        "Hospital‑based clinics and service lines (e.g., cardiometabolic, pulmonary, post‑discharge).",
+        "Central monitoring and navigator coverage with clear handoffs to inpatient/outpatient teams.",
+        "Governance model + QA + reporting pack suitable for leadership and compliance review.",
+      ],
+    },
+  ];
+
   return (
-    <main>
-      <Hero
-        headline="Transparent pricing that aligns with outcomes"
-        subheadline="Whether you're a single practice or a small hospital, we price to your program mix and scale—no hidden fees, no long contracts."
-        primaryCTA={{ text: "Get a tailored quote", href: "/contact" }}
-        secondaryCTA={{ text: "See how it works", href: "/how-it-works" }}
+    <div className="bg-white">
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-primary-50 to-white py-14 md:py-20">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
+              Pricing & Commercial Models
+            </h1>
+            <p className="mt-4 text-lg text-neutral-700">
+              Choose how you want to run your programs—full‑service, co‑managed, or build‑operate‑transfer.
+              We'll map your panel, payer mix, and goals to the right structure.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Models */}
+      <section className="bg-white py-12 md:py-16">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+            {models.map((m) => (
+              <article key={m.title} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+                <m.Icon className="h-6 w-6 text-primary-600" aria-hidden />
+                <h2 className="mt-3 text-lg font-semibold text-neutral-900">{m.title}</h2>
+                <p className="text-sm text-neutral-600">{m.subtitle}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-800">
+                  {m.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-xs text-neutral-500">{m.idealFor}</p>
+              </article>
+            ))}
+          </div>
+
+          {/* What's included */}
+          <div className="mx-auto mt-10 max-w-3xl text-center">
+            <h3 className="text-2xl font-semibold text-neutral-900 md:text-3xl">What's included</h3>
+            <p className="mt-3 text-sm text-neutral-700">
+              Regardless of model, programs are built to be compliant, measurable, and reviewable.
+            </p>
+          </div>
+          <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+            {includes.map((i) => (
+              <div key={i.label} className="rounded-xl border border-neutral-200 bg-white p-6">
+                <i.Icon className="h-6 w-6 text-primary-600" aria-hidden />
+                <p className="mt-2 text-sm text-neutral-800">{i.label}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Segments */}
+      <section className="bg-neutral-50 py-12 md:py-16">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
+            {segments.map((s) => (
+              <article key={s.heading} className="rounded-xl border border-neutral-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-neutral-900">{s.heading}</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-neutral-800">
+                  {s.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <CTA
+        headline="Want a tailored quote and ROI view?"
+        description="Share your panel size, payer mix, and program priorities. We'll map a commercial model and an outcomes/production view."
+        buttonText="Request pricing"
+        buttonHref="/contact?topic=pricing"
+        variant="primary"
       />
 
-      {/* Tiers */}
-      <Container className="py-10">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {TIERS.map((tier) => (
-            <section
-              key={tier.name}
-              className={`relative rounded-xl border border-neutral-200 bg-white p-6 shadow-sm ${
-                tier.mostPopular ? "ring-2 ring-primary-600" : ""
-              }`}
-            >
-              {tier.mostPopular && (
-                <div className="absolute -top-3 left-4 rounded-full bg-primary-600 px-3 py-1 text-xs font-medium text-white">
-                  Most popular
-                </div>
-              )}
-              <header>
-                <h2 className="text-xl font-semibold text-neutral-900">{tier.name}</h2>
-                <p className="mt-1 text-neutral-700">{tier.headline}</p>
-              </header>
-              <div className="mt-4">
-                <div className="text-lg font-semibold text-neutral-900">{tier.price}</div>
-                {tier.priceNote && (
-                  <div className="text-sm text-neutral-600">{tier.priceNote}</div>
-                )}
-                <div className="mt-1 text-xs text-neutral-500">{tier.billing}</div>
-              </div>
-              <p className="mt-4 text-neutral-700">{tier.description}</p>
-
-              <div className="mt-5 space-y-2">
-                {tier.highlights.map((h) => (
-                  <div key={h} className="flex items-start gap-2">
-                    <ShieldCheck className="mt-1 h-4 w-4 flex-none" aria-hidden />
-                    <span className="text-sm text-neutral-700">{h}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 rounded-lg bg-neutral-50 p-4">
-                <div className="text-xs font-medium uppercase tracking-wide text-neutral-600">
-                  Programs included
-                </div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {tier.programs.map((p) => (
-                    <span
-                      key={p}
-                      className="rounded-md border border-neutral-200 bg-white px-2 py-1 text-xs text-neutral-700"
-                    >
-                      {p}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <Button href={tier.cta.href} className="w-full">
-                  {tier.cta.text}
-                </Button>
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <p className="mt-4 text-xs text-neutral-500">
-          Pricing shown as example structures. Final SOW depends on program mix, volumes, payer
-          schedules, and device logistics (for RPM). Annual prepay discount available.
-        </p>
-      </Container>
-
-      {/* Revenue model explainer */}
-      <Container className="py-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
-            <BarChart3 className="h-6 w-6" aria-hidden />
-            <h3 className="mt-3 text-lg font-semibold text-neutral-900">
-              How revenue accrues
-            </h3>
-            <p className="mt-2 text-neutral-700">
-              Program‑eligible panels × engagement × compliant documentation → clean claims. We
-              surface eligibility, time, and supervision signals in‑workflow.
-            </p>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
-            <Users className="h-6 w-6" aria-hidden />
-            <h3 className="mt-3 text-lg font-semibold text-neutral-900">No new FTE required</h3>
-            <p className="mt-2 text-neutral-700">
-              Navigator + RN/MA model closes gaps and manages alerts so clinics and units don't
-              absorb extra workload.
-            </p>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
-            <ShieldCheck className="h-6 w-6" aria-hidden />
-            <h3 className="mt-3 text-lg font-semibold text-neutral-900">Audit‑ready by design</h3>
-            <p className="mt-2 text-neutral-700">
-              Consent, time, supervision artifacts, and standardized notes land in your EHR. Role‑
-              based access and quality rules reduce billing friction.
-            </p>
-          </div>
-        </div>
-      </Container>
-
-      {/* For small hospitals */}
-      <Container className="py-6">
-        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-            Small & rural hospital option
-          </h2>
-          <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-lg border border-neutral-200 bg-white p-5">
-              <Stethoscope className="h-5 w-5" aria-hidden />
-              <div className="mt-2 text-base font-semibold text-neutral-900">Service‑line fit</div>
-              <p className="mt-1 text-neutral-700">
-                Configure CCM/RPM/TCM to cardiology, pulmonary, medicine, and rehab without
-                bespoke rebuilds per unit.
-              </p>
-            </div>
-            <div className="rounded-lg border border-neutral-200 bg-white p-5">
-              <Activity className="h-5 w-5" aria-hidden />
-              <div className="mt-2 text-base font-semibold text-neutral-900">Readmission focus</div>
-              <p className="mt-1 text-neutral-700">
-                Hub‑and‑spoke monitoring with discharge playbooks and 7‑day follow‑up support.
-              </p>
-            </div>
-            <div className="rounded-lg border border-neutral-200 bg-white p-5">
-              <HeartPulse className="h-5 w-5" aria-hidden />
-              <div className="mt-2 text-base font-semibold text-neutral-900">Equity embedded</div>
-              <p className="mt-1 text-neutral-700">
-                PROMs and SDoH overlays guide outreach priorities and escalation thresholds.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Container>
-
-      {/* FAQ */}
-      <Container className="py-6">
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-          Pricing FAQ
-        </h2>
-        <div className="mt-4 divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
-          <details className="group p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              Are devices included for RPM?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              We support pass‑through device logistics (kit, ship, replace) or BYO devices. Device
-              costs are separate from service fees.
-            </p>
-          </details>
-          <details className="group p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              Do you work with FQHC/RHC?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              Yes. We configure documentation and billing flows to RHC/FQHC requirements and provide
-              roll‑ups for UDS/quality reporting.
-            </p>
-          </details>
-          <details className="group p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              Is there a minimum term?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              Starter tier is month‑to‑month. Growth and Hospital tiers typically include a 12‑month
-              SOW with quarterly checkpoints.
-            </p>
-          </details>
-          <details className="group p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              How do you charge for multiple programs?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              We price by program mix and engagement. Bundles (e.g., CCM + RPM + PCM) receive
-              tiered discounts and shared operations.
-            </p>
-          </details>
-        </div>
-      </Container>
-
-      {/* Final CTA */}
-      <Container className="py-10">
-        <div className="flex flex-wrap gap-3">
-          <Button href="/contact">Get a tailored quote</Button>
-          <Button href="/how-it-works" variant="secondary">
-            See the operating model
-          </Button>
-        </div>
-        <p className="mt-3 text-xs text-neutral-500">
-          Notes: Pricing depends on volumes, payer mix, and program selection. We provide complete
-          documentation artifacts and audit logs with every SOW.
-        </p>
-      </Container>
-    </main>
+      <section className="bg-white pb-10">
+        <Container>
+          <p className="text-xs text-neutral-500">
+            Notes: Pricing varies with volume, scope, payer mix, device needs, and EHR patterns. Commercial terms are subject to due diligence and agreement.
+            Nothing here is legal, coding, or reimbursement advice.
+          </p>
+        </Container>
+      </section>
+    </div>
   );
 }
