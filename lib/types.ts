@@ -37,3 +37,12 @@ export interface Testimonial {
   practice: string;
   image?: string;
 }
+
+// Programs / tiles used on How It Works
+export interface Program {
+  key: string;
+  title: string;
+  description: string;
+  href?: string;   // optional deep link
+  icon?: string;   // simple emoji for now; can be swapped for SVG later
+}
