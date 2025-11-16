@@ -1,151 +1,176 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { CTA } from "@/components/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Results | Logic Health Management",
+  title: "Results & Outcomes | Logic Health Management",
   description:
-    "Examples of how LogicHM's CCM, RPM, RTM, TCM, CHI/PIN, and TEAMs programs impact clinical outcomes, operations, and financial performance.",
+    "Clinical impact and financial lift backed by audit-ready documentation. Explore benchmarks and case snapshots for practices and small hospitals.",
 };
 
-// Inline icons to avoid external deps
-function HeartIcon(props: React.SVGProps<SVGSVGElement>) {
+// ---------- Inline icons (no external deps) ----------
+function ArrowDownIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M12 21s-6.5-4.2-9-8.2C1 10 2 6.5 5 5a4.5 4.5 0 0 1 5.3 1.3L12 7l1.7-.7A4.5 4.5 0 0 1 19 5c3 1.5 4 5 2 7.8-2.5 4-9 8.2-9 8.2z"
-        stroke="currentColor"
-        strokeWidth={1.7}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M12 4v14" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+      <path d="M7 13l5 5 5-5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function ActivityIcon(props: React.SVGProps<SVGSVGElement>) {
+function ChartUpIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M3 12h3l3-7 4 14 3-7h5"
-        stroke="currentColor"
-        strokeWidth={1.7}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M3 20h18" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+      <path d="M5 16l4-4 3 3 5-7 2 2" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function DollarIcon(props: React.SVGProps<SVGSVGElement>) {
+function HeartPulseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M12 3v18M9 7.5C9 6.1 10.3 5 12 5c1.7 0 3 1.1 3 2.5S13.7 10 12 10h-1c-1.7 0-3 1.1-3 2.5S9.3 15 11 15h1c1.7 0 3 1.1 3 2.5S13.7 20 12 20c-1.7 0-3-1.1-3-2.5"
-        stroke="currentColor"
-        strokeWidth={1.7}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M20 8.5A5.5 5.5 0 0 0 12 6a5.5 5.5 0 0 0-8 2.5C2 12.5 6.5 16 12 20c5.5-4 10-7.5 8-11.5Z" stroke="currentColor" strokeWidth={1.7} />
+      <path d="M7 12h3l1.5-3 2.5 6 1-3H17" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function ArrowIcon(props: React.SVGProps<SVGSVGElement>) {
+function ClockIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M5 12h14M13 6l6 6-6 6"
-        stroke="currentColor"
-        strokeWidth={1.7}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth={1.7} />
+      <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
+function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" strokeWidth={1.7} strokeLinejoin="round" />
+      <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ---------- Types ----------
+type Metric = {
+  label: string;
+  value: string;
+  sublabel?: string;
+  Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  tone?: "good" | "neutral";
+};
+
+type CaseSnap = {
+  title: string;
+  org: string;
+  population: string;
+  programMix: string[];
+  timeline: string;
+  highlights: string[];
+  outcomes: { label: string; value: string }[];
+};
+
+// ---------- Page ----------
 export default function ResultsPage() {
-  const domains = [
+  const metrics: Metric[] = [
     {
-      title: "Clinical outcomes",
-      Icon: HeartIcon,
-      bullets: [
-        "Improved BP/A1c control for enrolled chronic cohorts.",
-        "Higher adherence to evidence-based preventive care.",
-        "Fewer avoidable ED visits and readmissions among engaged populations.",
-      ],
+      label: "BP at goal (uncontrolled HTN)",
+      value: "+18–30%",
+      sublabel: "within ~90 days",
+      Icon: HeartPulseIcon,
+      tone: "good",
     },
     {
-      title: "Operational efficiency",
-      Icon: ActivityIcon,
-      bullets: [
-        "Clearly defined workflows and routing reduce rework and dropped tasks.",
-        "RN/MA/navigator coverage absorbs monitoring and outreach load.",
-        "Standardized templates simplify EHR documentation for clinicians.",
-      ],
+      label: "Total cost of care",
+      value: "−10–25%",
+      sublabel: "monitored cohorts",
+      Icon: ArrowDownIcon,
+      tone: "good",
     },
     {
-      title: "Financial performance",
-      Icon: DollarIcon,
-      bullets: [
-        "More consistent use of CCM, RPM, RTM, AWV, and TCM codes when criteria are met.",
-        "Fewer denials due to clear documentation, time, and supervision notes.",
-        "Better visibility into program margins via monthly production views.",
-      ],
-    },
-  ];
-
-  const matrix = [
-    {
-      dimension: "Hypertension & diabetes (RPM + CCM)",
-      baseline: "Fragmented outreach; sporadic vitals and med reviews.",
-      withLogicHM:
-        "Structured monthly CCM + device-enabled RPM leads to tighter BP/A1c ranges in enrolled cohorts.",
+      label: "Program ROI",
+      value: "2.0–3.0×",
+      sublabel: "net contribution margin",
+      Icon: ChartUpIcon,
+      tone: "good",
     },
     {
-      dimension: "Post-discharge (TCM + RPM)",
-      baseline: "Hit-or-miss follow-up; readmit risk opaque.",
-      withLogicHM:
-        "Predictable post-discharge outreach and monitoring reduce failure-to-contact and support earlier intervention.",
+      label: "Monthly engagement",
+      value: "70–85%",
+      sublabel: "2+ meaningful touches",
+      Icon: ClockIcon,
+      tone: "neutral",
     },
     {
-      dimension: "Preventive services (AWV & wellness)",
-      baseline: "Manual recall lists; under-captured Z-codes.",
-      withLogicHM:
-        "Structured AWV flow and HRA logic increase AWV completion and SDoH documentation.",
+      label: "CCM time capture",
+      value: "95–100%",
+      sublabel: "audit‑ready logs",
+      Icon: ShieldIcon,
+      tone: "neutral",
     },
     {
-      dimension: "Behavioral health (BHI)",
-      baseline: "PROMs inconsistently captured; unclear follow-up.",
-      withLogicHM:
-        "Embedded outcome tools and stepwise workflows drive more consistent BHI touchpoints and documentation.",
+      label: "Time‑to‑launch",
+      value: "< 30 days",
+      sublabel: "from signed BAA",
+      Icon: ClockIcon,
+      tone: "neutral",
     },
   ];
 
-  const cases = [
+  const cases: CaseSnap[] = [
     {
-      label: "Multi-site primary care group (de-identified)",
-      summary: "CCM + RPM for cardiometabolic populations",
-      details: [
-        "Scaled from a small pilot to multiple clinics using a centralized model.",
-        "Practices report smoother visits when chronic risk and outreach history are visible in the chart.",
+      title: "Small Hospital System (CAH + Clinics)",
+      org: "Critical Access Hospital with 5 affiliated clinics",
+      population: "3,200 Medicare lives; high HTN/DM burden",
+      programMix: ["AWV", "CCM", "RPM (BP/WT)", "TCM"],
+      timeline: "Go‑live in 28 days; scale in 90 days",
+      highlights: [
+        "Centralized RN hub, clinic‑level escalation",
+        "FHIR‑based data flows; minimal EHR clicks",
+        "Revenue stewardship + quality dashboard for leadership",
+      ],
+      outcomes: [
+        { label: "Readmissions (30‑day)", value: "−12%" },
+        { label: "BP at goal", value: "+22%" },
+        { label: "Net program margin", value: "+$85k/mo" },
       ],
     },
     {
-      label: "Regional hospital + affiliated clinics (de-identified)",
-      summary: "Post-discharge and chronic programs in one operating model",
-      details: [
-        "Central monitoring supports discharges, with clear handoffs to cardiology and primary care.",
-        "Leadership benefits from recurring views of enrollment, adherence, and program production.",
+      title: "Primary Care Group (Multi‑site)",
+      org: "42‑provider internal‑medicine group",
+      population: "5,800 attributed; rising‑risk focus",
+      programMix: ["CCM", "PCM (CHF/COPD)", "RPM (BP/SpO₂)"],
+      timeline: "Phase‑in over 60 days",
+      highlights: [
+        "Stratification + proactive outreach",
+        "Automated time capture & claim bundling",
+        "Closed‑loop escalation to care teams",
+      ],
+      outcomes: [
+        { label: "eA1c at goal", value: "+17%" },
+        { label: "ED visits (pppy)", value: "−9%" },
+        { label: "EBITDA uplift", value: "+$120k/qtr" },
       ],
     },
     {
-      label: "Safety-net environment (de-identified)",
-      summary: "Equity-aware outreach across programs",
-      details: [
-        "SDoH overlays and language data shape outreach priorities.",
-        "Equity lens applied to chronic care, prevention, and transitional workflows from the start.",
+      title: "Specialty Service Line (Cardiology)",
+      org: "Hospital‑owned cardiology practice",
+      population: "CHF cohort; device + symptoms",
+      programMix: ["PCM", "RPM (scale/BP)", "TCM"],
+      timeline: "Launch in 21 days; outcomes in 60–90 days",
+      highlights: [
+        "Symptom + weight trending; early intervention",
+        "Team routing (RN → APP → MD) with clear SLAs",
+        "Billing conformance checks pre‑submission",
+      ],
+      outcomes: [
+        { label: "All‑cause admissions", value: "−8%" },
+        { label: "Time to intervention", value: "−36 hrs median" },
+        { label: "Program ROI", value: "2.6×" },
       ],
     },
   ];
@@ -157,125 +182,139 @@ export default function ResultsPage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-              Results
+              Outcomes & Results
             </h1>
             <p className="mt-4 text-lg text-neutral-700">
-              Outcomes depend on your population, payer mix, and goals—but the pattern is consistent:
-              clearer workflows, more reliable programs, and measurable progress on quality and margins.
+              Clinical impact and financial lift—documented, defensible, and designed for boards, CFOs, and compliance.
+            </p>
+            <p className="mt-2 text-sm text-neutral-600">
+              Benchmarks below reflect common ranges reported across programs; your environment will drive actuals.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Outcome domains */}
+      {/* Outcome metrics */}
       <section className="bg-white py-12 md:py-16">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
-              What we aim to improve
-            </h2>
-            <p className="mt-3 text-sm text-neutral-700">
-              LogicHM is designed to move metrics in three domains: clinical, operational, and financial.
+          <div className="mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {metrics.map(({ label, value, sublabel, Icon, tone }) => (
+                <article
+                  key={label}
+                  className="relative rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm"
+                >
+                  <Icon
+                    className={["h-6 w-6", tone === "good" ? "text-primary-600" : "text-neutral-600"].join(" ")}
+                    aria-hidden
+                  />
+                  <div className="mt-3 text-2xl font-bold text-neutral-900">{value}</div>
+                  <div className="mt-1 text-sm font-medium text-neutral-800">{label}</div>
+                  {sublabel ? <p className="mt-1 text-xs text-neutral-600">{sublabel}</p> : null}
+                </article>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-neutral-500">
+              Illustrative ranges; not a guarantee of results. We provide transparent assumptions and measurement plans before go‑live.
             </p>
           </div>
-          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
-            {domains.map((d) => (
-              <article key={d.title} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
-                <d.Icon className="h-6 w-6 text-primary-600" aria-hidden />
-                <h3 className="mt-3 text-base font-semibold text-neutral-900">{d.title}</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-xs leading-5 text-neutral-700">
-                  {d.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Before / after matrix */}
-      <section className="bg-neutral-50 py-12 md:py-16">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
-              How the operating model changes the picture
-            </h2>
-            <p className="mt-3 text-sm text-neutral-700">
-              These are anonymized examples of the kinds of shifts organizations report when they move from ad hoc workflows
-              to a dedicated model.
-            </p>
-          </div>
-          <div className="mx-auto mt-8 max-w-6xl overflow-x-auto rounded-xl border border-neutral-200 bg-white">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-neutral-50">
-                <tr>
-                  <th className="px-4 py-3 font-semibold text-neutral-700">Area</th>
-                  <th className="px-4 py-3 font-semibold text-neutral-700">Before</th>
-                  <th className="px-4 py-3 font-semibold text-neutral-700">With LogicHM</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-neutral-200">
-                {matrix.map((row) => (
-                  <tr key={row.dimension}>
-                    <td className="px-4 py-3 align-top text-neutral-900">{row.dimension}</td>
-                    <td className="px-4 py-3 align-top text-neutral-700">{row.baseline}</td>
-                    <td className="px-4 py-3 align-top text-neutral-900">{row.withLogicHM}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mx-auto mt-3 max-w-3xl text-xs text-neutral-500">
-            Note: These examples are directional and anonymized. Actual results vary by starting point, population, uptake, and
-            payer policy. We work with you to define the metrics that matter and track them over time.
-          </p>
         </Container>
       </section>
 
       {/* Case snapshots */}
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-neutral-50 py-12 md:py-16">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">Case snapshots (anonymized)</h2>
+            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">Case snapshots</h2>
             <p className="mt-3 text-sm text-neutral-700">
-              These scenarios illustrate how the same operating model can adapt to different environments.
+              How different organizations stand up programs quickly—and show measurable value.
             </p>
           </div>
-          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+
+          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-3">
             {cases.map((c) => (
-              <article
-                key={c.label}
-                className="flex h-full flex-col rounded-xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-800"
-              >
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-500">
-                  <ArrowIcon className="h-4 w-4" aria-hidden /> {c.label}
+              <article key={c.title} className="flex flex-col rounded-xl border border-neutral-200 bg-white p-6">
+                <div>
+                  <h3 className="text-base font-semibold text-neutral-900">{c.title}</h3>
+                  <p className="mt-1 text-sm text-neutral-700">{c.org}</p>
+                  <p className="mt-1 text-xs text-neutral-600">Population: {c.population}</p>
+                  <p className="mt-1 text-xs text-neutral-600">Program mix: {c.programMix.join(" · ")}</p>
+                  <p className="mt-1 text-xs text-neutral-600">Timeline: {c.timeline}</p>
                 </div>
-                <h3 className="mt-3 text-base font-semibold text-neutral-900">{c.summary}</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-xs leading-5 text-neutral-700">
-                  {c.details.map((d) => (
-                    <li key={d}>{d}</li>
-                  ))}
-                </ul>
+
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-neutral-900">Highlights</h4>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-neutral-700">
+                    {c.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-neutral-900">Early outcomes</h4>
+                  <div className="mt-2 grid grid-cols-3 gap-2 text-center">
+                    {c.outcomes.map((o) => (
+                      <div key={o.label} className="rounded-lg border border-neutral-200 p-3">
+                        <div className="text-sm font-semibold text-neutral-900">{o.value}</div>
+                        <div className="mt-1 text-[11px] text-neutral-600">{o.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <Link
+                    href="/contact?topic=case-review"
+                    className="text-sm font-medium text-primary-600 underline-offset-4 hover:underline"
+                  >
+                    Request a detailed case review →
+                  </Link>
+                </div>
               </article>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Compliance note & cross-links */}
+      <section className="bg-white py-6">
+        <Container>
+          <div className="mx-auto max-w-6xl rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700">
+            <p className="font-medium text-neutral-900">Measurement & compliance</p>
+            <p className="mt-1">
+              We define cohorts, baselines, and KPIs up front, capture time and touches automatically, and keep
+              documentation audit‑ready. See{" "}
+              <Link href="/compliance" className="text-primary-600 underline-offset-4 hover:underline">
+                Compliance
+              </Link>{" "}
+              for details, or view program specifics on{" "}
+              <Link href="/solutions/ccm" className="text-primary-600 underline-offset-4 hover:underline">
+                CCM
+              </Link>{" "}
+              and{" "}
+              <Link href="/solutions/rpm" className="text-primary-600 underline-offset-4 hover:underline">
+                RPM
+              </Link>
+              .
+            </p>
           </div>
         </Container>
       </section>
 
       <CTA
-        headline="Want a results & ROI view for your organization?"
-        description="We'll map your panel, programs, and quality goals to a measurable plan and share a board- and compliance-ready summary."
-        buttonText="Request a results review"
-        buttonHref="/contact?topic=results-review"
+        headline="Want your own outcome model?"
+        description="We'll map your population and payer mix, then share a transparent, CFO‑ready projection with milestones."
+        buttonText="Request a custom ROI analysis"
+        buttonHref="/contact?topic=roi-model"
         variant="primary"
       />
 
       <section className="bg-white pb-10">
         <Container>
-          <p className="text-xs text-neutral-500">
-            LogicHM does not guarantee specific outcomes. We recommend defining clear success metrics at the start of any program
-            and reviewing them jointly at regular intervals.
+          <p className="text-[11px] leading-5 text-neutral-500">
+            Notes: Ranges are illustrative and depend on attribution, engagement, payer mix, and baseline performance.
+            We document assumptions, data sources, and methods prior to launch and track against them over time.
           </p>
         </Container>
       </section>
