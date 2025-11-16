@@ -1,24 +1,29 @@
+// components/blog/PostCard.tsx
 import Link from "next/link";
-import { BlogPost } from "@/lib/types";
+import type { BlogPostMeta } from "@/lib/blog";
 
 interface PostCardProps {
-  post: BlogPost;
+  post: BlogPostMeta;
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const date = new Date(post.publishedAt).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <article className="flex flex-col rounded-lg border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md">
-      <Link href={`/blog/${post.slug}`}>
-        <div className="p-6">
-          <div className="mb-2 text-sm text-neutral-500">{post.publishedAt}</div>
-          <h3 className="mb-2 text-xl font-semibold text-neutral-900">
-            {post.title}
-          </h3>
-          <p className="text-neutral-600">{post.description}</p>
-          <div className="mt-4 text-sm font-medium text-primary-600">
-            Read more →
-          </div>
+      <Link href={`/blog/${post.slug}`} className="p-6">
+        <div className="text-sm text-neutral-500">
+          {date} • {post.readingTime}
         </div>
+        <h3 className="mt-2 text-xl font-semibold text-neutral-900">{post.title}</h3>
+        {post.description ? (
+          <p className="mt-2 line-clamp-3 text-neutral-600">{post.description}</p>
+        ) : null}
+        <div className="mt-4 text-sm font-medium text-primary-600">Read more →</div>
       </Link>
     </article>
   );
