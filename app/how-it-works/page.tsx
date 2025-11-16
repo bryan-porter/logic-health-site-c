@@ -1,4 +1,5 @@
 import { ProgramTiles } from "@/components/sections/ProgramTiles";
+import { HowItWorksTiles } from "@/components/sections/HowItWorksTiles";
 
 export default function HowItWorksPage() {
   return (
@@ -9,13 +10,14 @@ export default function HowItWorksPage() {
             How it works
           </h1>
           <p className="mt-4 text-neutral-700">
-            Logic‑driven routing matrices, equity‑embedded workflows, and audit‑ready documentation—
-            deployed as managed services across your patient panels and sites of care.
+            We design and operate CMS‑recognized programs end‑to‑end—integrated with your EHR,
+            aligned to supervision rules, and measured against outcomes and ROI.
           </p>
         </div>
       </section>
 
       <ProgramTiles />
+      <HowItWorksTiles />
     </div>
   );
 }
