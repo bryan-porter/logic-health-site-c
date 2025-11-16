@@ -1,0 +1,155 @@
+---
+title: "Logic Health Management — Remote Patient Monitoring (RPM) Implementation Plan (2026–2027)"
+description: "A source-backed plan to stand up and scale RPM across practices, small hospitals, and RHCs/FQHCs—covering policy signals, reimbursement, clinical model, timeline, KPIs, and risks."
+date: "2025-11-16"
+author: "Logic Health Management (LHM)"
+slug: "lhm-rpm-implementation-plan"
+category: "Programs"
+tags:
+  - "RPM"
+  - "Chronic Care"
+  - "Medicare"
+  - "Billing & Compliance"
+  - "Small Hospitals"
+  - "RHC"
+  - "FQHC"
+---
+
+# Logic Health Management – Remote Patient Monitoring (RPM) Implementation Plan
+
+Logic Health Management (LHM) will deploy a Remote Patient Monitoring (RPM) program to enhance chronic‑care management, reduce avoidable utilization, and align with value‑based reimbursement trends. This plan distills the regulatory backdrop, market signals, clinical design, and execution roadmap for **physician practices, small hospitals (including CAHs), and RHCs/FQHCs**.
+
+---
+
+## Strategic Rationale
+
+- **Policy momentum.** The 2026 Medicare Physician Fee Schedule (MPFS) *proposed* rule adds new CPT placeholders (e.g., **99XX4**, **98XX5**, **98XX6**) to pay for **2–15 day** device supply and refines time‑tiered treatment‑management, expanding billable scenarios for RPM and RTM. \[1\]
+- **Demonstrated uptake.** CY 2024 home‑health claims already show **679,102 RPM service days** for skilled‑nursing patients across **20,786 beneficiaries** and **455 providers**. \[2\]
+- **Industry advocacy.** The Consumer Technology Association supports new supply codes and urges CMS to ensure pricing reflects shorter monitoring periods—an active stakeholder push to sustain viable economics. \[3\]
+- **Clinical value.** Franciscan Alliance linked RPM to lower 30‑day readmissions and ED visits across chronic‑care populations after launching system‑wide in 2021. \[4\]
+- **Market growth.** Redeye projects **70.6M U.S. RPM users by 2025 (~26% of population)**, up from 29.1M (11%) in 2020. \[5\]
+- **Headwinds to plan for.** Medicare Advantage dynamics may pressure growth and rates through 2025. \[6\]
+
+> **Note on placeholders:** "99XX4/98XX5/98XX6" are AMA/CMS placeholder descriptors pending final CPT numbers. LHM will update charge‑capture rules upon finalization.
+
+---
+
+## Reimbursement Landscape (CC 2025 → CY 2026 transition)
+
+| CPT / HCPCS | Status (2025–26) | Core Service Elements | Notes | Citations |
+|---|---|---|---|:--:|
+| **99453** | Current | One‑time device set‑up & patient education | PE‑only; bill once per episode | \[7\] |
+| **99454** | Current | Device supply & transmission **≥16 days** in 30‑day period | PE‑only; monthly | \[1\] |
+| **99457** | Current | First **20 min** treatment management / interactive communication | Live, two‑way communication required | \[1\] |
+| **99458** | Current | **Each additional 20 min** treatment management | Add‑on to 99457 | \[1\] |
+| **99XX4** | **Proposed 2026** | RPM device supply **2–15 days** | Broadens eligibility window | \[3\]\[1\] |
+| **98XX5 / 98XX6** | **Proposed 2026 (RTM)** | RTM device supply **2–15 days** (respiratory / musculoskeletal) | CMS weighing OPPS‑based PE valuation | \[1\] |
+
+**Operational policy:** LHM will update encounter types, day‑count logic, and time‑tracking once codes are finalized; all staff will be trained on documentation thresholds and modifiers.
+
+---
+
+## Target Populations
+
+- **Complex chronic disease.** HTN, HF, COPD, diabetes; **≥2 hospitalizations** in the past 12 months—mirrors Franciscan Alliance criteria. \[8\]
+- **Post‑acute surveillance.** Patients discharged after cardiac/pulmonary admissions—CTA notes RPM aids acute‑episode recovery. \[9\]
+- **High‑risk seniors.** Dual‑eligible or frail patients flagged for fall risk or medication adherence—aligns with VNA Health Care's 2025 plans across post‑acute settings. \[10\]
+
+---
+
+## Clinical & Operational Model
+
+1. **Enrollment & Consent** — Care manager confirms eligibility, secures e‑consent; triggers **99453**. \[7\]
+2. **Device Provisioning** — Ship **pre‑paired, FDA‑cleared** BP cuff, weight scale, pulse‑ox; **cellular first** to avoid Wi‑Fi friction (LHM vendor selection — internal assumption). \[11\]\[12\]
+3. **Data Flow & Triage** — Readings stream to LHM's platform via third‑party **EHR connectors**, minimizing core‑system re‑coding hurdles noted in PAVmed's EHR experience. \[13\]
+4. **Intelligent Alerting** — AI scoring highlights clinically meaningful deviations to mitigate alert fatigue and enable proactive outreach. \[14\]
+5. **Clinical Intervention** — RNs/APPs perform outreach via phone/video; **time logs** accrue to **99457/99458** under policy requirements. \[1\]\[7\]
+6. **Continuous Improvement** — Monthly **interdisciplinary reviews** assess adherence, outcomes, and protocol refinement (internal process design).
+
+---
+
+## Implementation Timeline
+
+| Phase | Timing | Key Milestones | Citations |
+|---|---|---|---|
+| **Pilot** | **Q1–Q2 2026** | Onboard **250 chronic‑care** patients; validate EHR interfaces; finalize billing workflows and QA | \[15\]\[9\]\[13\] |
+| **Scale‑Up** | **Q3 2026–Q2 2027** | Expand to **2,000** patients; add post‑acute cohort; initiate Medicare Advantage contracting | \[16\]\[17\] |
+| **Optimization** | **H2 2027** | Deploy advanced AI triage; publish outcomes; evaluate payer shared‑savings opportunities | \[18\]\[19\]\[17\] |
+
+**Gate criteria between phases:** ≥80% device‑day compliance (or 2–15‑day capture once final), ≥90% documentation completeness, and <5% denial rate on RPM claims over trailing 60 days.
+
+---
+
+## Financial Framework *(LHM internal estimates)*
+
+- **Average gross revenue** per fully compliant patient (device + management): **≈ $120/month**.
+- **Direct costs:** device amortization & connectivity **$35/month**; RN labor (20 minutes) **$25/month**.
+- **Implied contribution margin:** **~50%**.
+- Sensitivities will incorporate CMS's final **PE RVU** decisions for new codes and any conversion‑factor changes.
+
+---
+
+## Success Metrics & Reporting
+
+**Operational**
+- Eligible → enrolled attach rate (target **≥35%** by Day 90)
+- Device‑day compliance: **≥80%** at 16‑day rule; track **2–15‑day** cohorts post‑finalization
+- Time capture mix: % accounts with **99457 only** vs **99457+99458**
+- Claim **first‑pass acceptance ≥95%**; denial rate <5%
+
+**Clinical**
+- 30‑day **readmission rate** (RPM cohort vs baseline) \[4\]
+- ED visits per 100 pt‑months
+- Abnormal‑vital response within **24h ≥90%**
+- Condition‑specific markers (e.g., mean SBP change, weight trends in HF)
+
+**Patient Experience**
+- Quarterly satisfaction **≥85%**
+- 30‑day device retention/adherence **≥80%**
+
+**Staffing & Cost**
+- RN minutes per pt‑month (target 20–30)
+- Cost per monitored patient per month
+
+> Reporting cadence: **Monthly operational dashboard**; **quarterly outcomes brief** for execs and payer partners (internal KPI framework).
+
+---
+
+## Governance & Compliance
+
+- Complete and document **HIPAA Security Risk Analysis** inclusive of RPM vendors and data flows; execute **BAAs**.
+- Maintain **audit‑ready logs** (separate time for CCM vs RPM; call/chat records; device‑day tallies).
+- Enforce **single‑practitioner rule** reconciliation across primary care, specialty clinics, and hospital‑based practices to avoid duplicate billing.
+- For **RHCs/FQHCs**, align RPM claims flow with current G‑codes when applicable; migrate to CPT framework as CMS finalizes timelines.
+- Annual policy training; quarterly spot audits (internal policy).
+
+---
+
+## Risk Management
+
+- **Regulatory volatility.** Track MPFS/OPPS updates; comment on proposed rules to advocate for adequate **PE valuation**. \[20\]\[21\]
+- **Operational burden.** Use AI‑driven triage to prevent clinician overload; calibrate thresholds to preserve specificity. \[14\]
+- **Engagement & equity.** Provide multilingual education, 24/7 tech support, and cellular devices to bridge the digital divide, especially for community health/end‑of‑life populations. \[22\]
+
+---
+
+## External Program Messaging (Patient‑Facing)
+
+> "**Logic Health Management's Remote Patient Monitoring program** delivers hospital‑grade oversight—right at home. Our connected devices stream vital signs to licensed nurses in real time, while advanced analytics flag concerns early. That means fewer hospital trips, faster interventions, and greater peace of mind. For most Medicare and Medicare Advantage members, out‑of‑pocket costs are minimal thanks to expanded federal coverage of RPM services."
+
+By aligning evidence‑based clinical protocols with emerging reimbursement opportunities and robust technology infrastructure, LHM is positioned to improve outcomes, enhance patient satisfaction, and reinforce its commitment to value‑focused care.
+
+---
+
+## Citations
+
+\[1\]  \[7\]  \[12\]  \[21\] IRPRESS • Pershing Yoakley & Associates • 16 Jul 25 • "2026 Medicare Physician Fee Schedule Proposed Rule"
+\[2\] IRPRESS • Premier Inc • 02 Jul 25 • "Payment System Hh Pps Rate Update 2025"
+\[3\]  \[9\]  \[20\] IRPRESS • Consumer Technology Association • 10 Sep 25 • "September 10, 2025"
+\[4\]  \[8\]  \[18\] CIRC • Franciscan Alliance • 08 Jul 25 • "2023-2024 VALUE REPORT"
+\[5\]  \[11\]  \[15\] RedEye • 04 Apr 23 • "Coala Life: Refilled growth capital and implemented transformation"
+\[6\] Stephens Inc • 13 Jan 25 • "2025 Healthcare Services Industry Outlook & Chart-Book"
+\[10\]  \[16\]  \[22\] Expert Call • CoPilot-AI • 22 May 24 • "Vice President at VNA Health Care Sees Remote Patient Monitoring as Key to Cost Reduction and Improved Outcomes"
+\[13\] Transcript - Earnings Calls • PAVmed Inc • 14 Aug 25 • "PAVmed Inc., Q2 2025 Earnings Call, Aug 14, 2025"
+\[14\]  \[19\] Press Release • 17 Jul 25 • "Future of Healthcare: The Strategic Role of AI in Remote Patient Monitoring"
+\[17\] 10K • ModivCare Inc • 26 Feb 24 • "Annual Report FY 2023"
