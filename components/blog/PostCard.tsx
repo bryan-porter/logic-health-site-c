@@ -1,9 +1,9 @@
 // components/blog/PostCard.tsx
 import Link from "next/link";
-import type { BlogPostMeta } from "@/lib/blog";
+import type { BlogPost } from "@/lib/types";
 
 interface PostCardProps {
-  post: BlogPostMeta;
+  post: BlogPost;
 }
 
 export function PostCard({ post }: PostCardProps) {

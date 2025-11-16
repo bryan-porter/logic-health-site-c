@@ -1,41 +1,32 @@
 // components/blog/PostHeader.tsx
-import { cn } from "@/lib/utils";
+import { BlogPost } from "@/lib/types";
+import { CategoryBadge } from "./CategoryBadge";
 
-interface PostHeaderProps {
-  title: string;
-  description?: string;
-  publishedAt: string; // ISO
-  author?: string;
-  readingTime?: string;
-  className?: string;
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  return isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export function PostHeader({
-  title,
-  description,
-  publishedAt,
-  author = "LogicHM Editorial",
-  readingTime,
-  className,
-}: PostHeaderProps) {
-  const date = new Date(publishedAt).toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
+export function PostHeader({ post }: { post: BlogPost }) {
   return (
-    <header className={cn("mx-auto max-w-3xl", className)}>
-      <p className="text-sm text-neutral-500">
-        {date} • {author}
-        {readingTime ? ` • ${readingTime}` : null}
-      </p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-        {title}
+    <header className="text-left">
+      <div className="flex items-center gap-3">
+        <CategoryBadge category={post.category} />
+        {post.readingTime && (
+          <span className="text-xs text-neutral-600">{post.readingTime}</span>
+        )}
+      </div>
+      <h1 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
+        {post.title}
       </h1>
-      {description ? (
-        <p className="mt-3 text-lg text-neutral-700">{description}</p>
-      ) : null}
+      <p className="mt-3 text-neutral-700">{post.description}</p>
+      <div className="mt-4 text-sm text-neutral-600">
+        {post.author && <span className="font-medium">{post.author}</span>}
+        <span className="mx-2">•</span>
+        <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+      </div>
     </header>
   );
 }
