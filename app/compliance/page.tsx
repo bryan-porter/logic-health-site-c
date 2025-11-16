@@ -1,138 +1,136 @@
+import * as React from "react";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { CTA } from "@/components/sections/CTA";
-import type { Metadata } from "next";
-
-// Simple inline icons (no external deps)
-function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M12 3 5 6v7c0 4.5 3 6.8 7 8 4-1.2 7-3.5 7-8V6l-7-3z"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M9 12.5 11 14l4-4" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LockIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <rect
-        x={4}
-        y={10}
-        width={16}
-        height={10}
-        rx={2}
-        stroke="currentColor"
-        strokeWidth={1.8}
-      />
-      <path
-        d="M8 10V8a4 4 0 0 1 8 0v2"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-      />
-      <path
-        d="M12 13.5v3"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ListIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M9 7h11M9 12h11M9 17h11M4 7h.01M4 12h.01M4 17h.01"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 3c3.5 3 3.5 15 0 18M12 3C8.5 6 8.5 18 12 21M3 12h18"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function FileIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M7 4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 1.4.6l3.4 3.4A2 2 0 0 1 19 7.4V20a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V4z"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M13 3v4h4" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export const metadata: Metadata = {
   title: "Compliance & Security | Logic Health Management",
   description:
-    "HIPAA, SOC 2-aligned controls, and audit-ready documentation underpin every LogicHM program. Built for practices and small hospitals under a BAA.",
+    "How LogicHM protects PHI and supports audit‑ready operations: HIPAA‑aligned controls, BAAs, access & encryption, logging, and hospital‑grade review packets.",
 };
 
+// Inline icons (no external deps)
+type IconProps = React.SVGProps<SVGSVGElement>;
+const ShieldIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <path d="M12 3l8 3v6c0 5-3.6 7.7-8 9-4.4-1.3-8-4-8-9V6l8-3z" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const LockIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" strokeWidth={1.7} />
+    <path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+  </svg>
+);
+const FileCheckIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <path d="M9 3h6l4 4v12a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="currentColor" strokeWidth={1.7} />
+    <path d="M13 3v5h5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+    <path d="M9 15l2.2 2.2L15 13.5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const AlertIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <path d="M10.3 3.6L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3l-8.6-14.4a2 2 0 00-3.4 0z" stroke="currentColor" strokeWidth={1.7} />
+    <path d="M12 9v5M12 17.5v.5" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+  </svg>
+);
+const ServerIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <rect x="3" y="4" width="18" height="6" rx="2" stroke="currentColor" strokeWidth={1.7} />
+    <rect x="3" y="14" width="18" height="6" rx="2" stroke="currentColor" strokeWidth={1.7} />
+    <circle cx="8" cy="7" r="1" fill="currentColor" />
+    <circle cx="8" cy="17" r="1" fill="currentColor" />
+  </svg>
+);
+const GlobeIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth={1.7} />
+    <path d="M3 12h18M12 3c3 3.3 3 14.7 0 18M12 3c-3 3.3-3 14.7 0 18" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+  </svg>
+);
+
 export default function CompliancePage() {
-  const pillars = [
+  const assurances = [
     {
-      title: "HIPAA program with BAA",
-      text: "HIPAA policies, training, and risk assessments underpin every workflow. A Business Associate Agreement (BAA) is standard for all clients.",
-      Icon: ShieldIcon,
+      icon: <ShieldIcon className="h-6 w-6 text-primary-600" />,
+      title: "HIPAA‑aligned safeguards",
+      text: "Administrative, technical, and physical controls; BAAs available for covered entities and business associates.",
     },
     {
-      title: "SOC 2-aligned controls",
-      text: "Logical access, change management, backup/restore, and monitoring practices aligned to SOC 2 expectations.",
-      Icon: LockIcon,
+      icon: <FileCheckIcon className="h-6 w-6 text-primary-600" />,
+      title: "SOC 2–aligned practices",
+      text: "Policies, logging, change management, and vendor risk workflows aligned to SOC 2 principles.*",
     },
     {
-      title: "Audit-ready documentation",
-      text: "Time logs, supervision notes, care plans, and encounter summaries are structured to support internal and external reviews.",
-      Icon: ListIcon,
+      icon: <ServerIcon className="h-6 w-6 text-primary-600" />,
+      title: "EHR & FHIR integration",
+      text: "Standards‑based pathways (FHIR/HL7) with role‑scoped access and audit trails to keep charts in sync.",
+    },
+    {
+      icon: <GlobeIcon className="h-6 w-6 text-primary-600" />,
+      title: "Data residency & retention",
+      text: "US‑hosted by default; retention policies and deletion workflows configurable in the SOW.",
     },
   ];
 
-  const dataFlows = [
-    "Data minimization: we only receive and retain data necessary for operations and reporting.",
-    "Encryption in transit and at rest for PHI and sensitive configuration.",
-    "Segregated environments for development, staging, and production.",
-    "Standardized data-retention policies with options based on your legal and contractual requirements.",
+  const controls = [
+    {
+      name: "Encryption",
+      bullets: ["TLS 1.2+ in transit", "AES‑256 at rest", "Key rotation & restricted access"],
+    },
+    {
+      name: "Access controls",
+      bullets: ["SSO/OIDC & MFA", "Least privilege roles", "Scoped environment access"],
+    },
+    {
+      name: "Audit logging",
+      bullets: ["Immutable PHI access trails", "Admin & config change logs", "Export on request"],
+    },
+    {
+      name: "Change management",
+      bullets: ["Version control & review", "Pre‑prod testing", "Safe deploys with rollback"],
+    },
+    {
+      name: "Vulnerability mgmt",
+      bullets: ["Regular scans", "3rd‑party testing (annual)*", "Patch SLAs & remediation tracking"],
+    },
+    {
+      name: "BC/DR",
+      bullets: ["Daily backups", "Documented recovery runbooks", "RPO/RTO targets in SOW"],
+    },
+    {
+      name: "Vendor risk",
+      bullets: ["DPA/BAA with subprocessors", "Security due diligence", "Subprocessor list maintained"],
+    },
+    {
+      name: "Retention & deletion",
+      bullets: ["Configurable retention windows", "Soft/hard delete flows", "Patient data requests handling"],
+    },
+    {
+      name: "Incident response",
+      bullets: ["24/7 on‑call with playbooks", "Regulatory notification workflows", "Root‑cause analysis & CAPA"],
+    },
   ];
 
-  const artifacts = [
-    "Sample BAA language (or your health system's template).",
-    "Network and data-flow diagrams for LogicHM-hosted components.",
-    "Role-based access matrix and privilege grants.",
-    "Operational runbooks for CCM, RPM, RTM, TCM, CHI/PIN, TEAMs, and more.",
-    "Sample audit packet: time reconciliation, encounters, supervision, and charges.",
+  const programMatrix = [
+    { program: "AWV", checkpoint: "Consent, HRA, prevention plan; capture relevant Z‑codes when applicable." },
+    { program: "CCM", checkpoint: "≥20 min clinical staff time/month; consent; comprehensive care plan in chart." },
+    { program: "RPM", checkpoint: "Device readings; interactive minutes (99457/99458) with documented engagement." },
+    { program: "PCM", checkpoint: "Single‑condition plan with documented coordination time thresholds." },
+    { program: "TCM", checkpoint: "Interactive contact ≤2 business days post‑discharge; 7/14‑day visit and complexity." },
+    { program: "BHI", checkpoint: "PROMs and care team collaboration; time‑based eligibility with documentation." },
+    { program: "RTM", checkpoint: "Non‑physiologic data + therapy adherence; remote interactions documented." },
+    { program: "CHI & PIN", checkpoint: "SDoH documentation; navigation encounters mapped to appropriate codes." },
   ];
 
-  const hospitalFit = [
-    "Support for IRB/Compliance review when programs intersect research or pilots.",
-    "Alignment with hospital incident-response and escalation procedures.",
-    "Credentialing-ready documentation for clinicians participating in LogicHM workflows.",
+  const hospitalAddOns = [
+    "Security questionnaire & evidence packet via your vendor portal",
+    "Pen‑test summary / vulnerability scan results*",
+    "HIPAA risk analysis summary* and policy excerpts",
+    "Named security POC & escalation pathway",
+    "Data‑flow diagrams, data mapping, and subprocessor list",
+    "Custom DPIA/DTIA support as needed",
   ];
 
   return (
@@ -141,137 +139,126 @@ export default function CompliancePage() {
       <section className="bg-gradient-to-b from-primary-50 to-white py-14 md:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-              Compliance &amp; Security
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">Compliance & Security</h1>
             <p className="mt-4 text-lg text-neutral-700">
-              LogicHM is built for HIPAA-regulated, audit-conscious environments. We operate under a BAA, align controls
-              to SOC 2 expectations, and produce the artifacts your compliance and InfoSec teams need.
+              PHI protection and audit‑ready workflows for clinics and small hospitals—without slowing down care.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Pillars */}
-      <section className="bg-white py-12 md:py-16">
+      {/* Assurances row */}
+      <section className="bg-white py-10 md:py-12">
         <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
-              Foundation pillars
-            </h2>
-            <p className="mt-3 text-neutral-700">
-              Every CCM, RPM, RTM, BHI, PCM, TCM, CHI/PIN, and TEAMs workflow runs on a compliance-first foundation.
-            </p>
-          </div>
-          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
-            {pillars.map((p) => (
-              <article
-                key={p.title}
-                className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm"
-              >
-                <p.Icon className="h-6 w-6 text-primary-600" aria-hidden />
-                <h3 className="mt-3 text-base font-semibold text-neutral-900">{p.title}</h3>
-                <p className="mt-2 text-sm text-neutral-700">{p.text}</p>
-              </article>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {assurances.map((a) => (
+              <div key={a.title} className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
+                <div className="flex items-center gap-2">
+                  {a.icon}
+                  <h3 className="text-sm font-semibold text-neutral-900">{a.title}</h3>
+                </div>
+                <p className="mt-2 text-sm text-neutral-700">{a.text}</p>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Data protection & governance */}
+      {/* Controls grid */}
       <section className="bg-neutral-50 py-12 md:py-16">
         <Container>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <article className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <LockIcon className="h-5 w-5 text-primary-600" aria-hidden />
-                <h2 className="text-base font-semibold text-neutral-900">
-                  Data protection &amp; environment separation
-                </h2>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">Controls we operate</h2>
+            <p className="mt-3 text-sm text-neutral-700">
+              Practical safeguards mapped to HIPAA requirements and SOC 2–aligned practices to keep PHI secure and workflows compliant.
+            </p>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {controls.map((c) => (
+              <div key={c.name} className="rounded-xl border border-neutral-200 bg-white p-5">
+                <div className="mb-2 flex items-center gap-2">
+                  <LockIcon className="h-5 w-5 text-primary-600" />
+                  <h3 className="text-sm font-semibold text-neutral-900">{c.name}</h3>
+                </div>
+                <ul className="space-y-2 text-sm text-neutral-800">
+                  {c.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2">
+                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary-600" aria-hidden />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-neutral-700">
-                {dataFlows.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-3">
-                <GlobeIcon className="h-5 w-5 text-primary-600" aria-hidden />
-                <h2 className="text-base font-semibold text-neutral-900">
-                  Access, identity, and workforce training
-                </h2>
-              </div>
-              <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-neutral-700">
-                <li>Role-based access controls for care teams, support, and engineering.</li>
-                <li>Least-privilege provisioning with periodic entitlement reviews.</li>
-                <li>Mandatory workforce training on HIPAA and security best practices.</li>
-                <li>Onboarding/offboarding checklists for all LogicHM personnel.</li>
-              </ul>
-            </article>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Artifacts & InfoSec packet */}
+      {/* Program compliance checkpoints */}
       <section className="bg-white py-12 md:py-16">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
-              What your compliance &amp; InfoSec partners receive
-            </h2>
-            <p className="mt-3 text-neutral-700">
-              We provide a structured packet with the information your reviewers expect—no scavenger hunt required.
+            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">Program compliance checkpoints</h2>
+            <p className="mt-3 text-sm text-neutral-700">
+              Our routing, supervision, and documentation logic aligns to the key checkpoints payers and auditors expect to see.
             </p>
           </div>
-          <div className="mx-auto mt-8 max-w-5xl rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-            <div className="flex items-center gap-3">
-              <FileIcon className="h-5 w-5 text-primary-600" aria-hidden />
-              <h3 className="text-base font-semibold text-neutral-900">Security &amp; compliance packet</h3>
-            </div>
-            <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-neutral-700">
-              {artifacts.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
+          <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
+            {programMatrix.map((row) => (
+              <div key={row.program} className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+                <div className="text-sm font-semibold text-neutral-900">{row.program}</div>
+                <div className="mt-1 text-sm text-neutral-700">{row.checkpoint}</div>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Small hospital fit */}
+      {/* For hospitals & health systems */}
       <section className="bg-neutral-50 py-12 md:py-16">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
-              Specifically for small &amp; rural hospitals
-            </h2>
-            <p className="mt-3 text-neutral-700">
-              LogicHM's operating model is designed to slot into your existing governance, not bypass it.
+            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">For hospitals & health systems</h2>
+            <p className="mt-3 text-sm text-neutral-700">
+              We support vendor security reviews and operational onboarding so your teams can launch quickly with confidence.
             </p>
           </div>
-          <div className="mx-auto mt-8 max-w-5xl rounded-xl border border-neutral-200 bg-white p-6">
-            <ul className="list-disc space-y-2 pl-6 text-sm text-neutral-700">
-              {hospitalFit.map((line) => (
-                <li key={line}>{line}</li>
+          <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-neutral-200 bg-white p-5">
+            <div className="mb-2 flex items-center gap-2">
+              <FileCheckIcon className="h-5 w-5 text-primary-600" />
+              <h3 className="text-sm font-semibold text-neutral-900">Security review packet</h3>
+            </div>
+            <ul className="grid grid-cols-1 gap-2 text-sm text-neutral-800 sm:grid-cols-2">
+              {hospitalAddOns.map((x) => (
+                <li key={x} className="flex items-start gap-2">
+                  <AlertIcon className="mt-0.5 h-4 w-4 text-primary-600" />
+                  <span>{x}</span>
+                </li>
               ))}
             </ul>
+            <p className="mt-3 text-xs text-neutral-500">
+              * If applicable. We can coordinate secure evidence transfer (e.g., via your vendor portal).
+            </p>
           </div>
         </Container>
       </section>
 
+      {/* CTA */}
       <CTA
-        headline="Need a security &amp; compliance packet for review?"
-        description="We'll share BAAs, data flows, and program documentation tailored to your environment so compliance and InfoSec can move quickly."
-        buttonText="Request security packet"
-        buttonHref="/contact?topic=security-packet"
-        variant="secondary"
+        headline="Request our security & compliance packet"
+        description="Receive our security overview, BAA template, subprocessor list, and evidence options tailored to your review process."
+        buttonText="Request the packet"
+        buttonHref="/contact?topic=compliance"
+        variant="primary"
       />
 
+      {/* Notes */}
       <section className="bg-white pb-10">
         <Container>
           <p className="text-xs text-neutral-500">
-            Note: References to HIPAA and SOC 2 indicate the structure of our program and controls; specific attestations, reports, and legal terms are available under NDA and BAA.
+            This page summarizes controls and operating practices to support compliant programs. It is not legal advice and does not
+            substitute for your organization's own billing and compliance policies. Certifications and reports are provided where
+            applicable and subject to mutual confidentiality.
           </p>
         </Container>
       </section>
