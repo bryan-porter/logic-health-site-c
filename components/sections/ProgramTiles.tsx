@@ -85,17 +85,24 @@ const PROGRAMS: Program[] = [
   },
 ];
 
-export function ProgramTiles() {
+interface ProgramTilesProps {
+  title?: string;
+  caption?: string;
+}
+
+export function ProgramTiles({
+  title = "Programs we stand up and operate",
+  caption = "We integrate clinical logic, regulatory nuance, and team‑based workflows across CMS‑recognized models—built to be audit‑ready and scalable.",
+}: ProgramTilesProps = {}) {
   return (
     <section className="bg-white py-16 md:py-24">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-            Programs we stand up and operate
+            {title}
           </h2>
           <p className="mt-4 text-neutral-600">
-            We integrate clinical logic, regulatory nuance, and team‑based workflows across
-            CMS‑recognized models—built to be audit‑ready and scalable.
+            {caption}
           </p>
         </div>
 
