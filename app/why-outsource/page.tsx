@@ -1,183 +1,217 @@
+import * as React from "react";
 import { Container } from "@/components/ui/Container";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { CTA } from "@/components/sections/CTA";
+import { Hero } from "@/components/sections/Hero";
+import { Button } from "@/components/ui/Button";
+import {
+  Activity,
+  Stethoscope,
+  ShieldCheck,
+  Users,
+  Link as LinkIcon,
+  Settings,
+  BarChart3,
+  HeartPulse,
+} from "lucide-react";
+
+type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 export default function WhyOutsourcePage() {
+  const reasons: { title: string; body: string; icon: IconType }[] = [
+    {
+      title: "Speed to value",
+      body:
+        "Launch in ~30 days with proven playbooks for AWV, CCM, RPM, BHI, PCM, RTM, TCM, CHI/PIN, and TEAMs—no new FTEs required.",
+      icon: Settings,
+    },
+    {
+      title: "Staffing reality",
+      body:
+        "RN/APP/MA coverage and care navigators without the hiring cycle. Clear supervision language aligned to license.",
+      icon: Users,
+    },
+    {
+      title: "Compliance, first",
+      body:
+        "HIPAA/SOC 2 foundation, consent capture, role‑based access, and complete audit trails across encounters.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Native EHR fit",
+      body:
+        "FHIR‑enabled flows, standardized note types, and documentation that actually lives in your chart.",
+      icon: LinkIcon,
+    },
+    {
+      title: "Revenue capture",
+      body:
+        "Time tracking, eligibility signals, and claim‑ready documentation to support clean billing and predictable cash flow.",
+      icon: BarChart3,
+    },
+    {
+      title: "Small‑hospital ready",
+      body:
+        "Central monitoring, inpatient‑to‑outpatient handoffs, service‑line escalations, and credentialing alignment.",
+      icon: Stethoscope,
+    },
+  ];
+
+  type Row = { label: string; build: string; partner: string };
+  const comparison: Row[] = [
+    {
+      label: "Time to go‑live",
+      build: "4–9 months: staffing, protocols, templates, training",
+      partner: "~30 days with proven workflows and QA",
+    },
+    {
+      label: "FTE cost & coverage",
+      build: "RN/MA hiring + backfills; night/weekend gaps",
+      partner: "Elastic RN/MA + navigators; coverage you can dial",
+    },
+    {
+      label: "EHR integration",
+      build: "Custom build per program; scattered templates",
+      partner: "FHIR flows + standardized notes and supervision language",
+    },
+    {
+      label: "Compliance & audit",
+      build: "Manual tracking; variable document quality",
+      partner: "Audit‑ready artifacts, consent, and role‑based access",
+    },
+    {
+      label: "Billing & cash flow",
+      build: "Chasing codes; inconsistent eligibility capture",
+      partner: "Time, eligibility, and claim signals surfaced in‑workflow",
+    },
+    {
+      label: "Program breadth",
+      build: "Adds months per new program",
+      partner: "AWV, CCM, RPM, BHI, PCM, RTM, TCM, CHI/PIN, TEAMs on one model",
+    },
+    {
+      label: "Scale to clinics/hospitals",
+      build: "Re‑invent per site; fragile handoffs",
+      partner: "Standardized operating model across sites and service lines",
+    },
+  ];
+
+  const impact = [
+    { icon: HeartPulse, label: "Clinical lift", body: "BP/A1c trends and adherence nudges reduce avoidable utilization." },
+    { icon: Activity, label: "Operational throughput", body: "Defined routing matrices reduce rework and close care gaps." },
+    { icon: BarChart3, label: "Financial predictability", body: "Monthly dashboards tie encounter volume to revenue signals." },
+  ];
+
   return (
-    <>
-      <PageHeader
-        title="Why Outsource"
-        description="Because your team is already stretched. CCM/RPM succeed when they're run like a service line — consistent outreach, daily monitoring, meticulous documentation, and clean billing — not an afterthought between visits."
+    <main>
+      <Hero
+        headline="Why outsource care management & remote monitoring?"
+        subheadline="Skip the hiring cycle and months of build. We design, run, and continuously improve audit‑ready programs across your EHR."
+        primaryCTA={{ text: "Talk to a program architect", href: "/contact" }}
+        secondaryCTA={{ text: "See the operating model", href: "/how-it-works" }}
       />
 
-      {/* In-House Challenges */}
-      <section className="bg-white py-16 md:py-24">
-        <Container>
-          <h2 className="text-3xl font-bold text-neutral-900 md:text-4xl">
-            In-House Challenges
-          </h2>
-          <ul className="mt-8 space-y-4 text-lg text-neutral-700">
-            <li className="flex gap-3">
-              <span className="text-primary-600">•</span>
-              <div>
-                <strong>Hiring & training:</strong> Recruiting RNs/MAs for outreach/triage adds fixed cost and turnover risk.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-primary-600">•</span>
-              <div>
-                <strong>Operational complexity:</strong> Panel identification, consent, device logistics, time tracking, and QA require SOPs and tooling.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-primary-600">•</span>
-              <div>
-                <strong>EHR friction:</strong> Manual notes and duplicate data entry lead to gaps and denials.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-primary-600">•</span>
-              <div>
-                <strong>Compliance risk:</strong> Minutes must be counted correctly; CCM and RPM time cannot overlap.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-primary-600">•</span>
-              <div>
-                <strong>Device wastage (RPM):</strong> "Dark devices" erode ROI if adherence isn't actively managed.
-              </div>
-            </li>
-          </ul>
-        </Container>
-      </section>
-
-      {/* What Outsourcing Delivers */}
-      <section className="bg-neutral-50 py-16 md:py-24">
-        <Container>
-          <h2 className="text-3xl font-bold text-neutral-900 md:text-4xl">
-            What Outsourcing to LogicHM Delivers
-          </h2>
-          <ul className="mt-8 space-y-4 text-lg text-neutral-700">
-            <li className="flex gap-3">
-              <span className="text-accent-600">•</span>
-              <div>
-                <strong>Speed to value:</strong> Launch in weeks, not quarters; we bring the playbooks and staff.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent-600">•</span>
-              <div>
-                <strong>Variable cost structure:</strong> Scale up or down without adding FTEs.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent-600">•</span>
-              <div>
-                <strong>Documentation discipline:</strong> Audit-ready notes, minutes, and monthly summaries.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent-600">•</span>
-              <div>
-                <strong>Denial prevention:</strong> One-provider-per-month safeguards; clear payer-specific rules.
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent-600">•</span>
-              <div>
-                <strong>Patient adherence:</strong> Proactive follow-up to keep RPM transmissions and CCM minutes on track.
-              </div>
-            </li>
-          </ul>
-        </Container>
-      </section>
-
-      {/* Cost of Ownership */}
-      <section className="bg-white py-16 md:py-24">
-        <Container>
-          <h2 className="mb-8 text-3xl font-bold text-neutral-900 md:text-4xl">
-            Cost-of-Ownership Snapshot
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left">
-              <thead>
-                <tr className="border-b-2 border-neutral-300">
-                  <th className="pb-4 pr-4 font-semibold text-neutral-900">Item</th>
-                  <th className="pb-4 pr-4 font-semibold text-neutral-900">In-House (Typical)</th>
-                  <th className="pb-4 font-semibold text-neutral-900">LogicHM (Typical)</th>
-                </tr>
-              </thead>
-              <tbody className="text-neutral-700">
-                <tr className="border-b border-neutral-200">
-                  <td className="py-4 pr-4">Clinical labor (RN/MA)</td>
-                  <td className="py-4 pr-4">Fixed FTEs + benefits</td>
-                  <td className="py-4">Included in service</td>
-                </tr>
-                <tr className="border-b border-neutral-200">
-                  <td className="py-4 pr-4">Training & SOPs</td>
-                  <td className="py-4 pr-4">Build and maintain internally</td>
-                  <td className="py-4">Included (proven playbooks)</td>
-                </tr>
-                <tr className="border-b border-neutral-200">
-                  <td className="py-4 pr-4">Device logistics (RPM)</td>
-                  <td className="py-4 pr-4">Source, ship, replace</td>
-                  <td className="py-4">Included (cellular kits)</td>
-                </tr>
-                <tr className="border-b border-neutral-200">
-                  <td className="py-4 pr-4">Minutes tracking & QA</td>
-                  <td className="py-4 pr-4">Build tooling manually</td>
-                  <td className="py-4">Included (audit-ready)</td>
-                </tr>
-                <tr className="border-b border-neutral-200">
-                  <td className="py-4 pr-4">EHR templates/integration</td>
-                  <td className="py-4 pr-4">Customize, maintain</td>
-                  <td className="py-4">Provided & maintained</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-6 text-sm italic text-neutral-600">
-            *Exact pricing varies by scope and volume.
-          </p>
-        </Container>
-      </section>
-
-      {/* What You Keep vs What We Do */}
-      <section className="bg-neutral-50 py-16 md:py-24">
-        <Container>
-          <h2 className="mb-8 text-3xl font-bold text-neutral-900 md:text-4xl">
-            What You Keep vs What We Do
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-lg bg-white p-8 shadow-sm">
-              <h3 className="mb-4 text-xl font-semibold text-neutral-900">You</h3>
-              <p className="text-neutral-700">
-                Provider review/signature, ultimate clinical decisions, billing submission.
-              </p>
+      {/* Reasons grid */}
+      <Container className="py-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {reasons.map(({ title, body, icon: Icon }) => (
+            <div key={title} className="rounded-lg border border-neutral-200 bg-white p-6">
+              <Icon aria-hidden className="h-6 w-6" />
+              <h3 className="mt-4 text-lg font-semibold text-neutral-900">{title}</h3>
+              <p className="mt-2 text-neutral-600">{body}</p>
             </div>
-            <div className="rounded-lg bg-white p-8 shadow-sm">
-              <h3 className="mb-4 text-xl font-semibold text-neutral-900">LogicHM</h3>
-              <p className="text-neutral-700">
-                Outreach/triage, documentation, device logistics, minutes tracking, program QA, monthly summaries.
-              </p>
-            </div>
-          </div>
+          ))}
+        </div>
+      </Container>
 
-          <div className="mt-8 rounded-lg border-l-4 border-primary-600 bg-primary-50 p-6">
-            <p className="text-sm text-neutral-700">
-              <strong>Compliance Note:</strong> We align to payer rules and CMS policies, but reimbursement decisions are payer-specific. Verify locally.
+      {/* Build vs Partner table */}
+      <Container className="py-4">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">Build vs. Partner</h2>
+        <p className="mt-2 max-w-3xl text-neutral-600">
+          Outsourcing isn't just about bandwidth—it's about running a consistent, auditable model that scales from practices to small hospitals.
+        </p>
+        <div className="mt-6 overflow-x-auto rounded-lg border border-neutral-200">
+          <table className="min-w-full divide-y divide-neutral-200 bg-white text-sm">
+            <thead className="bg-neutral-50">
+              <tr>
+                <th className="px-4 py-3 text-left font-semibold text-neutral-700">Dimension</th>
+                <th className="px-4 py-3 text-left font-semibold text-neutral-700">Build In‑House</th>
+                <th className="px-4 py-3 text-left font-semibold text-neutral-700">Partner with LogicHM</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-neutral-200">
+              {comparison.map((row) => (
+                <tr key={row.label}>
+                  <td className="px-4 py-3 font-medium text-neutral-900">{row.label}</td>
+                  <td className="px-4 py-3 text-neutral-700">{row.build}</td>
+                  <td className="px-4 py-3 text-neutral-900">{row.partner}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Container>
+
+      {/* Small hospital note */}
+      <Container className="py-4">
+        <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+          <h3 className="flex items-center gap-2 text-lg font-semibold text-neutral-900">
+            <Stethoscope className="h-5 w-5" aria-hidden /> Specifically for small & rural hospitals
+          </h3>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-neutral-700">
+            <li>Central monitoring hub with service‑line escalation (cardiology, primary care, endocrinology, etc.).</li>
+            <li>Standardized note types, credentialing alignment, and inpatient‑to‑outpatient transitions.</li>
+            <li>Operating model that spans clinics and ED discharge follow‑ups without re‑inventing per site.</li>
+          </ul>
+        </div>
+      </Container>
+
+      {/* Impact snapshot */}
+      <Container className="py-4">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">What you gain</h2>
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {impact.map(({ icon: Icon, label, body }) => (
+            <div key={label} className="rounded-lg border border-neutral-200 bg-white p-6">
+              <Icon aria-hidden className="h-6 w-6" />
+              <div className="mt-3 text-lg font-semibold text-neutral-900">{label}</div>
+              <p className="mt-2 text-neutral-600">{body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button href="/how-it-works">See how it runs</Button>
+          <Button href="/pricing" variant="secondary">Estimate revenue</Button>
+        </div>
+      </Container>
+
+      {/* FAQ (no extra components; native <details>) */}
+      <Container className="py-10">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">FAQs</h2>
+        <div className="mt-4 space-y-3">
+          <details className="rounded-lg border border-neutral-200 bg-white p-5">
+            <summary className="cursor-pointer text-base font-medium text-neutral-900">
+              Do we lose control if we outsource?
+            </summary>
+            <p className="mt-2 text-neutral-700">
+              No—governance stays with your medical leadership. We execute your protocols, surface exceptions, and document in your EHR.
             </p>
-          </div>
-        </Container>
-      </section>
-
-      <CTA
-        headline="Schedule a 15-Minute Strategy Call"
-        description="Let's review your panel, payer mix, and goals — and tell you if CCM/RPM will actually pencil out."
-        buttonText="Schedule Your Call"
-        buttonHref="/contact"
-        variant="primary"
-      />
-    </>
+          </details>
+          <details className="rounded-lg border border-neutral-200 bg-white p-5">
+            <summary className="cursor-pointer text-base font-medium text-neutral-900">
+              Can we start small?
+            </summary>
+            <p className="mt-2 text-neutral-700">
+              Yes. Many groups begin with CCM or RPM, then add AWV, BHI, or TCM once the cadence is established.
+            </p>
+          </details>
+          <details className="rounded-lg border border-neutral-200 bg-white p-5">
+            <summary className="cursor-pointer text-base font-medium text-neutral-900">
+              How do you handle audits?
+            </summary>
+            <p className="mt-2 text-neutral-700">
+              We maintain consent, license alignment, time tracking, and encounter artifacts—making audit response fast and consistent.
+            </p>
+          </details>
+        </div>
+      </Container>
+    </main>
   );
 }
