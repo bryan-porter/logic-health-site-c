@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { CTA } from "@/components/sections/CTA";
+import FeatureTiles from "@/components/sections/FeatureTiles";
 import { Container } from "@/components/ui/Container";
 import Link from "next/link";
 
@@ -28,6 +29,12 @@ export default function Home() {
       />
 
       <Stats stats={stats} />
+
+      {/* Why It Matters */}
+      <FeatureTiles
+        title="Why It Matters"
+        caption="We redesign care so it's compliant, equitable, and financially durable—without adding burden to your clinicians."
+      />
 
       {/* Why Practices Choose LogicHM */}
       <section className="bg-neutral-50 py-16 md:py-24">
