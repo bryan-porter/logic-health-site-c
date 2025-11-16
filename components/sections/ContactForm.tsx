@@ -1,181 +1,284 @@
 "use client";
 
-import { useState } from "react";
+import * as React from "react";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Program =
+  | "AWV"
+  | "CCM"
+  | "RPM"
+  | "BHI"
+  | "PCM"
+  | "RTM"
+  | "TCM"
+  | "CHI & PIN"
+  | "TEAMs";
 
-export function ContactForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [errorMsg, setErrorMsg] = useState<string>("");
+const ALL_PROGRAMS: Program[] = [
+  "AWV",
+  "CCM",
+  "RPM",
+  "BHI",
+  "PCM",
+  "RTM",
+  "TCM",
+  "CHI & PIN",
+  "TEAMs",
+];
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+// TODO: Replace with your real email before going live.
+const MAILTO_TO = "hello@logichm.com";
+
+export default function ContactForm() {
+  const [programs, setPrograms] = React.useState<Program[]>([]);
+  const [downloading, setDownloading] = React.useState(false);
+
+  function toggleProgram(p: Program) {
+    setPrograms((prev) =>
+      prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p]
+    );
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("submitting");
-    setErrorMsg("");
-
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: data, // send as form-data to keep it simple
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        throw new Error(json?.error || "Submission failed");
-      }
-      setStatus("success");
-      form.reset();
-    } catch (err: any) {
-      setStatus("error");
-      setErrorMsg(err?.message || "Something went wrong");
-    }
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const org = String(data.get("organization") || "");
+    const role = String(data.get("role") || "");
+    const orgType = String(data.get("orgType") || "");
+    const ehr = String(data.get("ehr") || "");
+    const message = String(data.get("message") || "");
+    const consent = data.get("consent") === "on";
+
+    const subject = `New inquiry — ${name} (${org})`;
+    const bodyLines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Organization: ${org}`,
+      `Role: ${role}`,
+      `Organization Type: ${orgType}`,
+      `EHR: ${ehr || "N/A"}`,
+      `Programs of interest: ${programs.length ? programs.join(", ") : "N/A"}`,
+      `Consent to contact: ${consent ? "Yes" : "No"}`,
+      "",
+      "Message:",
+      message || "(no message)",
+    ];
+
+    const mailto = `mailto:${encodeURIComponent(
+      MAILTO_TO
+    )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      bodyLines.join("\n")
+    )}`;
+
+    // Try to open the user's email client
+    window.location.href = mailto;
+  }
+
+  function handleDownloadSummary(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setDownloading(true);
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+
+    const data = new FormData(form);
+    const payload = {
+      name: data.get("name"),
+      email: data.get("email"),
+      organization: data.get("organization"),
+      role: data.get("role"),
+      orgType: data.get("orgType"),
+      ehr: data.get("ehr"),
+      programs,
+      message: data.get("message"),
+      consent: data.get("consent") === "on",
+      generatedAt: new Date().toISOString(),
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.download = "logic-hm-inquiry.json";
+    a.href = url;
+    a.click();
+    URL.revokeObjectURL(url);
+    setDownloading(false);
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <form
+      id="contact-form"
+      onSubmit={handleSubmit}
+      className="space-y-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm"
+      aria-labelledby="contact-title"
+    >
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-neutral-800">
-            Full name<span className="text-primary-700"> *</span>
+          <label htmlFor="name" className="text-sm font-medium text-neutral-900">
+            Full name *
           </label>
           <input
             id="name"
             name="name"
             required
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            placeholder="Jane Doe"
+            type="text"
+            placeholder="Dr. Jane Smith"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-neutral-800">
-            Work email<span className="text-primary-700"> *</span>
+          <label htmlFor="email" className="text-sm font-medium text-neutral-900">
+            Work email *
           </label>
           <input
             id="email"
             name="email"
-            type="email"
             required
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            placeholder="jane@practice.com"
+            type="email"
+            placeholder="jane.smith@hospital.org"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label htmlFor="organization" className="block text-sm font-medium text-neutral-800">
-            Organization / Practice<span className="text-primary-700"> *</span>
+          <label htmlFor="organization" className="text-sm font-medium text-neutral-900">
+            Organization *
           </label>
           <input
             id="organization"
             name="organization"
             required
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            placeholder="Acme Primary Care"
+            type="text"
+            placeholder="River Valley Community Hospital"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
         <div>
-          <label htmlFor="role" className="block text-sm font-medium text-neutral-800">
-            Role / Title
+          <label htmlFor="role" className="text-sm font-medium text-neutral-900">
+            Role
           </label>
-          <input
+          <select
             id="role"
             name="role"
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            placeholder="Practice admin, CMIO, Hospital ops, etc."
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div>
-          <label htmlFor="topic" className="block text-sm font-medium text-neutral-800">
-            Topic<span className="text-primary-700"> *</span>
-          </label>
-          <select
-            id="topic"
-            name="topic"
-            required
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            defaultValue="Strategy Call"
-          >
-            <option>Strategy Call</option>
-            <option>Implementation</option>
-            <option>Pricing</option>
-            <option>General</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-neutral-800">
-            Phone (optional)
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-            placeholder="(555) 555-5555"
-          />
-        </div>
-        <div>
-          <label htmlFor="panelSize" className="block text-sm font-medium text-neutral-800">
-            Panel size (approx)
-          </label>
-          <select
-            id="panelSize"
-            name="panelSize"
-            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
+            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
             defaultValue=""
           >
             <option value="" disabled>
-              Select…
+              Select role
             </option>
-            <option>{"< 1,000"}</option>
-            <option>1,000–5,000</option>
-            <option>5,000–20,000</option>
-            <option>{"> 20,000"}</option>
+            <option>Physician</option>
+            <option>Administrator</option>
+            <option>CIO / IT</option>
+            <option>Care Manager</option>
+            <option>Other</option>
           </select>
+        </div>
+        <div>
+          <label htmlFor="orgType" className="text-sm font-medium text-neutral-900">
+            Organization type
+          </label>
+          <select
+            id="orgType"
+            name="orgType"
+            className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select type
+            </option>
+            <option>Outpatient practice</option>
+            <option>FQHC / RHC</option>
+            <option>Small hospital</option>
+            <option>Health system</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="ehr" className="text-sm font-medium text-neutral-900">
+            EHR (optional)
+          </label>
+          <input
+            id="ehr"
+            name="ehr"
+            type="text"
+            placeholder="Epic, eCW, Veradigm…"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
+          />
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-neutral-800">
-          How can we help?<span className="text-primary-700"> *</span>
+        <p className="text-sm font-medium text-neutral-900">Programs of interest</p>
+        <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {ALL_PROGRAMS.map((p) => (
+            <label key={p} className="inline-flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={programs.includes(p)}
+                onChange={() => toggleProgram(p)}
+                className="h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+              />
+              <span className="text-sm text-neutral-800">{p}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="message" className="text-sm font-medium text-neutral-900">
+          Message (optional)
         </label>
         <textarea
           id="message"
           name="message"
-          required
           rows={5}
-          className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 shadow-sm outline-none ring-primary-600 focus:ring-2"
-          placeholder="Tell us about your goals, population, payers, and timeline."
+          placeholder="Share specialty lines, target cohorts, or timelines…"
+          className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
-      <div className="flex items-center gap-3">
+      <label className="inline-flex items-start gap-2">
+        <input
+          type="checkbox"
+          name="consent"
+          className="mt-1 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+        />
+        <span className="text-sm text-neutral-700">
+          I agree to be contacted about LogicHM services. We don't sell personal information.
+        </span>
+      </label>
+
+      <div className="flex flex-col items-start gap-3 sm:flex-row">
+        <Button variant="primary" className="gap-2" onClick={() => {}}>
+          Submit via email
+        </Button>
         <button
-          type="submit"
-          disabled={status === "submitting"}
-          className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
+          type="button"
+          onClick={handleDownloadSummary}
+          className={cn(
+            "inline-flex items-center justify-center rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-50"
+          )}
+          disabled={downloading}
         >
-          {status === "submitting" ? "Sending…" : "Send message"}
+          {downloading ? "Preparing…" : "Download inquiry (JSON)"}
         </button>
-        <p className="text-xs text-neutral-600">
-          HIPAA &amp; SOC 2 | BAA available | EHR‑friendly (Epic, eCW, DrChrono, Veradigm)
-        </p>
+        <a
+          href="#schedule"
+          className="text-sm font-medium text-primary-700 underline underline-offset-4"
+        >
+          Prefer to schedule a 15‑minute call?
+        </a>
       </div>
 
-      {status === "success" && (
-        <div className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-800">
-          Thanks—your request is in. We'll reply within one business day.
-        </div>
-      )}
-      {status === "error" && (
-        <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
-          Something went wrong. {errorMsg || "Please try again."}
-        </div>
-      )}
+      <p className="text-xs text-neutral-500">
+        Your submission opens your default email client with a prefilled draft to {MAILTO_TO}. If your
+        environment blocks this, use "Download inquiry" and email it to us.
+      </p>
     </form>
   );
 }
