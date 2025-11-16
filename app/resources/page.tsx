@@ -1,126 +1,130 @@
-import { Container } from "@/components/ui/Container";
-import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceGrid";
-import { CTA } from "@/components/sections/CTA";
+import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceCard";
+import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
+import { getAllPosts } from "@/lib/blog";
+import { PostCard } from "@/components/blog/PostCard";
+
+export const metadata = {
+  title: "Resources | Logic Health Management",
+  description:
+    "Guides, calculators, and templates for CCM, RPM, and team-based care—equity-embedded and audit-ready.",
+};
 
 export default function ResourcesPage() {
-  // Pairs with the sample MDX you already have under /content/blog
-  const calculators: ResourceItem[] = [
-    {
-      label: "Calculator",
-      title: "RPM ROI Calculator",
-      description:
-        "Estimate monthly recurring revenue and payer-mix impact for RPM/APCM vs. CCM-only models.",
-      href: "/blog/rpm-roi-calculator",
-    },
-    {
-      label: "Calculator",
-      title: "CCM Revenue Model (Request)",
-      description:
-        "Forecast billable minutes, staffing, and expected reimbursement for CCM. We'll tailor it to your panel.",
-      href: "/contact?topic=ccm-revenue-model",
-    },
-  ];
+  // Pull latest blog posts (if any) from MDX content
+  const posts = getAllPosts()
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, 3);
 
   const guides: ResourceItem[] = [
     {
-      label: "Guide",
-      title: "Understanding CCM Billing Codes: 99490, 99439, 99491",
-      description:
-        "Practical explanations and documentation tips—written for clinicians and billers, not lawyers.",
+      key: "ccm-codes",
+      kind: "Guide",
+      title: "CCM Billing Codes: 99490, 99439, 99491",
+      blurb: "Physician guide to compliant time tracking, attestations, and supervision.",
       href: "/blog/understanding-ccm-codes",
+      points: ["Time thresholds", "Add-on codes", "Documentation tips"],
     },
     {
-      label: "Guide",
-      title: "CMS Billing & Compliance Updates (2024)",
-      description:
-        "What changed, what stayed the same, and where practices still miss revenue opportunities.",
+      key: "rpm-implementation",
+      kind: "Checklist",
+      title: "RPM Implementation Checklist",
+      blurb: "From device logistics to alert routing—everything to launch cleanly.",
+      href: "/blog/rpm-roi-in-small-hospitals",
+      points: ["Device fleet", "Consent & enrollment", "Escalation logic"],
+    },
+    {
+      key: "cms-updates",
+      kind: "Brief",
+      title: "CMS Billing Updates (2024+)",
+      blurb: "What changed and how to adapt workflows without rework.",
       href: "/blog/cms-billing-updates-2024",
+      points: ["Policy changes", "Coding impacts", "Audit implications"],
     },
     {
-      label: "Playbook",
-      title: "Launch CCM & RPM in 30 Days",
-      description:
-        "A step-by-step implementation plan—panel stratification, staffing patterns, escalation logic, and close.",
-      href: "/contact?topic=launch-ccm-rpm-playbook",
-    },
-  ];
-
-  const templates: ResourceItem[] = [
-    {
-      label: "Template",
-      title: "CCM Time Tracking Log",
-      description:
-        "Simple, auditable format for clinical time capture and supervision notes. Spreadsheet or EHR-native.",
-      href: "/contact?topic=ccm-time-log-template",
+      key: "equity-framework",
+      kind: "Template",
+      title: "Equity Framework: SDoH overlays",
+      blurb: "Embed SDoH, PROMs, and stratification in CCM/RPM pathways.",
+      href: "/contact",
+      points: ["Z-codes mapping", "PROMs starter set", "Referral loops"],
     },
     {
-      label: "Checklist",
-      title: "Audit-Ready Documentation Checklist",
-      description:
-        "One-page checklist to keep notes, time, and charge logic defensible for CCM, RPM, TCM, and more.",
-      href: "/contact?topic=audit-checklist",
-    },
-  ];
-
-  const security: ResourceItem[] = [
-    {
-      label: "Packet",
-      title: "Security & Compliance Packet",
-      description:
-        "HIPAA + SOC 2 details, BAA template, data flow diagrams, and operational controls—ready for InfoSec review.",
-      href: "/contact?topic=security-packet",
+      key: "audit-timekeeping",
+      kind: "Brief",
+      title: "Audit-Ready Timekeeping",
+      blurb: "What payers look for and how to pass cleanly.",
+      href: "/contact",
+      points: ["Attribution", "Attestations", "Evidence artifacts"],
     },
   ];
 
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-primary-50 to-white py-14 md:py-20">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-              Resources
-            </h1>
-            <p className="mt-4 text-lg text-neutral-700">
-              Practical, audit‑ready tools for clinical, financial, and compliance leaders—built for practices and small hospitals.
-            </p>
-          </div>
-        </Container>
-      </section>
+    <div className="bg-white">
+      <header className="mx-auto max-w-7xl px-6 pb-6 pt-12 lg:px-8">
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary-600">Resources</p>
+        <h1 className="mt-2 text-3xl font-bold text-neutral-900 md:text-4xl">
+          Guides, calculators, and evidence you can use today
+        </h1>
+        <p className="mt-3 max-w-3xl text-neutral-600">
+          Built from real implementations across clinics and small hospitals—logic‑driven, equity‑embedded,
+          and audit‑ready.
+        </p>
+      </header>
 
       <ResourceGrid
-        heading="Featured calculators"
-        subheading="Quantify revenue and staffing impact before you launch or expand."
-        items={calculators}
-        columns={2}
-      />
-
-      <ResourceGrid
-        heading="Guides & playbooks"
-        subheading="Clear, action‑oriented explainers your teams will actually use."
+        heading="Guides & Templates"
+        subheading="Tight, actionable references for CCM, RPM, and team‑based care"
         items={guides}
       />
 
-      <ResourceGrid
-        heading="Templates & checklists"
-        subheading="Keep documentation defensible and workflows consistent."
-        items={templates}
-      />
+      <section className="bg-neutral-50 py-10 md:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">Calculators & Tools</h2>
+            <p className="mt-2 text-neutral-600">
+              Quick estimators for planning volume, staffing, and financial impact.
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <CcmRevenueCalculator />
+            <RpmRoiCalculator />
+          </div>
+        </div>
+      </section>
 
-      <ResourceGrid
-        heading="Security & compliance"
-        subheading="Everything your privacy and InfoSec teams need to review."
-        items={security}
-        columns={2}
-      />
+      {posts.length ? (
+        <section className="bg-white py-10 md:py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">Latest from the blog</h2>
+              <p className="mt-2 text-neutral-600">Fresh takes on coding, policy, and operations.</p>
+            </div>
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
-      <CTA
-        headline="Want a custom resource pack for your EHR and payer mix?"
-        description="We'll bundle the right guides, templates, and calculators for your specialty, and include a small‑hospital deployment checklist if relevant."
-        buttonText="Request my pack"
-        buttonHref="/contact?topic=custom-resource-pack"
-        variant="secondary"
-      />
-    </>
+      <div className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+          <h2 className="text-lg font-semibold text-neutral-900">Want a tailored pack?</h2>
+          <p className="mt-2 text-sm text-neutral-700">
+            We'll assemble a specialty‑specific starter bundle (guides, templates, and calculators) for your clinic or
+            small hospital.
+          </p>
+          <div className="mt-4">
+            <a
+              href="/contact"
+              className="inline-flex items-center rounded-md bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-700"
+            >
+              Request a custom bundle
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
