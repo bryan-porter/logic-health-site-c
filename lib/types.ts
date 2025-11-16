@@ -46,3 +46,22 @@ export interface Program {
   href?: string;   // optional deep link
   icon?: string;   // simple emoji for now; can be swapped for SVG later
 }
+
+// --- Compliance & security shared types ---
+export type ControlStatus =
+  | "Certified"
+  | "Aligned"
+  | "In-Progress"
+  | "Available"
+  | "Not Applicable";
+
+export interface ControlItem {
+  label: string;
+  status: ControlStatus;
+  description?: string;
+  docHref?: string;
+}
+
+export interface ChecklistItem {
+  text: string;
+}
