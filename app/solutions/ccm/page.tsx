@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { CTA } from "@/components/sections/CTA";
 import ChecklistCTA from "@/components/ChecklistCTA";
+import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
 
 export default function CCMPage() {
   return (
@@ -171,6 +172,7 @@ export default function CCMPage() {
               <strong>Disclaimer:</strong> Coding and coverage vary by payer and change over time. Confirm current requirements; nothing here is legal advice.
             </p>
           </div>
+          <ReimbursementDisclaimer />
         </Container>
       </section>
 

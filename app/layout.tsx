@@ -10,8 +10,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LogicHM - Turnkey CCM & RPM for Physician Practices",
-  description: "Scale proactive chronic care without hiring. LogicHM delivers CCM & RPM end-to-end — enrollment, devices, monitoring, documentation, and billing — fully integrated with your EHR and built for compliance.",
+  title: {
+    default: 'Logic Health Management',
+    template: '%s · Logic Health Management',
+  },
+  description:
+    'CCM & RPM programs for physician practices and small hospitals—compliant, integrated, and outcomes‑focused.',
+  openGraph: {
+    type: 'website',
+    title: 'Logic Health Management',
+    url: 'https://logichm.com',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Logic Health Management',
+  },
 };
 
 export default function RootLayout({
@@ -19,8 +32,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Logic Health Management',
+    url: 'https://logichm.com',
+    logo: 'https://logichm.com/logo.png',
+    mainEntityOfPage: {
+      '@type': 'WebSite',
+      url: 'https://logichm.com',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://logichm.com/search?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         <Header />
         <main>{children}</main>

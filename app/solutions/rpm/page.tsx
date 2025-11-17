@@ -5,6 +5,7 @@ import { Stats } from "@/components/sections/Stats";
 import { CTA } from "@/components/sections/CTA";
 import Link from "next/link";
 import ChecklistCTA from "@/components/ChecklistCTA";
+import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
 import {
   Package,
   PlugZap,
@@ -292,6 +293,13 @@ export default function RPMPage() {
               );
             })}
           </div>
+        </Container>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="bg-white py-8">
+        <Container>
+          <ReimbursementDisclaimer />
         </Container>
       </section>
 
