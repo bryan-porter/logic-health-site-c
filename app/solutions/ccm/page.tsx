@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Chronic Care Management (CCM)',
   description:
     'Proactive, monthly management for patients with multiple chronic conditions. Improve continuity of care while generating predictable revenue for physician practices, small hospitals, and RHCs/FQHCs.',
+  alternates: {
+    canonical: '/solutions/ccm',
+  },
 };
 
 export default function CCMPage() {

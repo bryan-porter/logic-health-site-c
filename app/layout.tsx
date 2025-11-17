@@ -6,12 +6,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import OrganizationSchema from "@/components/OrganizationSchema";
 
-// Fallback to system font stack when Google Fonts unavailable
-const inter = {
-  variable: "--font-inter",
-};
-
 export const metadata: Metadata = {
+  metadataBase: new URL('https://logichm.com'),
   title: {
     default: 'Logic Health Management',
     template: '%s · Logic Health Management',
@@ -22,16 +18,26 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Logic Health Management',
     url: 'https://logichm.com',
+    siteName: 'Logic Health Management',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Logic Health Management',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#2563eb',
+  colorScheme: 'light',
 };
 
 export default function RootLayout({
@@ -41,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className="font-sans antialiased">
         <OrganizationSchema />
         <Header />
         <main id="main">{children}</main>

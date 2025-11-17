@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://logichm.com';
 
   // Static routes
@@ -30,10 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Blog posts
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${base}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));

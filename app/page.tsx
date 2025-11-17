@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Logic Health Management',
   description:
     'Turnkey Chronic Care Management (CCM) and Remote Patient Monitoring (RPM) for physician practices and small hospitals. Enrollment, devices, monitoring, documentation, and billing prep—integrated with your EHR.',
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function Home() {

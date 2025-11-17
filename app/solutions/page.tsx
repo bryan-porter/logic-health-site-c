@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Solutions',
   description:
     'Comprehensive CCM and RPM solutions for physician practices and small hospitals. Explore our programs designed to improve patient outcomes and generate predictable revenue.',
+  alternates: {
+    canonical: '/solutions',
+  },
 };
 
 export default function SolutionsIndexPage() {

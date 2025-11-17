@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   title: 'Remote Patient Monitoring (RPM)',
   description:
     'Connected devices and nurse-led monitoring to catch risk early, keep patients at goal, and generate predictable monthly revenue. Built for physician practices, small hospitals, and rural facilities.',
+  alternates: {
+    canonical: '/solutions/rpm',
+  },
 };
 
 export default function RPMPage() {

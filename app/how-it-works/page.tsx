@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'How It Works',
   description:
     'Learn how LogicHM delivers end-to-end CMS-recognized CCM and RPM programs integrated with your EHR, aligned to supervision rules, and measured against outcomes and ROI.',
+  alternates: {
+    canonical: '/how-it-works',
+  },
 };
 
 export default function HowItWorksPage() {

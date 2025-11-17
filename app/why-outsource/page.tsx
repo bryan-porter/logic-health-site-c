@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Why Outsource CCM/RPM',
   description:
     'Discover why physician practices and small hospitals outsource Chronic Care Management and Remote Patient Monitoring to focus on patient care while maintaining compliance and maximizing revenue.',
+  alternates: {
+    canonical: '/why-outsource',
+  },
 };
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
