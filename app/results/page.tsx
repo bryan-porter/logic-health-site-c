@@ -60,7 +60,7 @@ type Metric = {
   label: string;
   value: string;
   sublabel?: string;
-  Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
   tone?: "good" | "neutral";
 };
 

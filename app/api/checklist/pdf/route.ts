@@ -117,7 +117,7 @@ export async function GET() {
   // Serialize the PDF
   const pdfBytes = await pdfDoc.save();
 
-  return new NextResponse(pdfBytes, {
+  return new NextResponse(Buffer.from(pdfBytes), {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename="CCM-RPM-Readiness-Checklist.pdf"',

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// NOTE: Google Fonts blocked in build environment (403) - using system fonts
+// import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const inter = Inter({
-  subsets: ["latin"],
+// Fallback to system font stack when Google Fonts unavailable
+const inter = {
   variable: "--font-inter",
-});
+};
 
 export const metadata: Metadata = {
   title: {
