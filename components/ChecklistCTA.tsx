@@ -12,7 +12,7 @@ interface ChecklistCTAProps {
 
 export default function ChecklistCTA({
   variant = "banner",
-  href = "/downloads/CCM-RPM-Readiness-Checklist-LHM.pdf",
+  href = "/api/checklist/pdf",
   utm = "?utm_source=site&utm_medium=cta&utm_campaign=ccm-rpm-readiness-checklist",
   className,
 }: ChecklistCTAProps) {
