@@ -8,6 +8,7 @@ export function Header() {
     { label: "Results", href: "/results" },
     { label: "Pricing", href: "/pricing" },
     { label: "Resources", href: "/resources" },
+    { label: "Checklist (PDF)", href: "/api/checklist/pdf?utm_source=nav&utm_medium=link&utm_campaign=ccm_rpm_checklist" },
     { label: "About", href: "/about" },
   ];
 

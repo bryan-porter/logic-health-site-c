@@ -23,7 +23,7 @@ export default function RPMPage() {
   const intro = {
     title: "Remote Patient Monitoring (RPM)",
     subtitle:
-      "Connected devices + nurse-led monitoring to catch risk early, keep patients at goal, and generate predictable monthly revenue. Built for provider groups and small hospitals that need centralized monitoring without adding headcount.",
+      "Connected devices + nurse-led monitoring to catch risk early, keep patients at goal, and generate predictable monthly revenue. Built for physician practices, small hospitals, and rural facilities (RHCs/FQHCs) that need centralized monitoring without adding headcount.",
   };
 
   // Proof points keep to operational facts
@@ -173,7 +173,7 @@ export default function RPMPage() {
 
       <section className="bg-white py-8 md:py-12">
         <Container>
-          <ChecklistCTA variant="inline" />
+          <ChecklistCTA variant="banner" utm="solutions" />
         </Container>
       </section>
 

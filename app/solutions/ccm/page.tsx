@@ -8,12 +8,12 @@ export default function CCMPage() {
     <>
       <PageHeader
         title="Chronic Care Management (CCM)"
-        description="Proactive, monthly management for patients with multiple chronic conditions — improving continuity of care while generating predictable revenue."
+        description="Proactive, monthly management for patients with multiple chronic conditions — improving continuity of care while generating predictable revenue for physician practices, small hospitals, and RHCs/FQHCs."
       />
 
       <section className="bg-white py-8 md:py-12">
         <Container>
-          <ChecklistCTA variant="inline" />
+          <ChecklistCTA variant="banner" utm="solutions" />
         </Container>
       </section>
 

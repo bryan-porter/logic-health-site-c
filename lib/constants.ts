@@ -55,6 +55,7 @@ export const FOOTER_LINKS = {
     { label: "Blog", href: "/blog" },
     { label: "How It Works", href: "/how-it-works" },
     { label: "Compliance", href: "/compliance" },
+    { label: "CCM/RPM Readiness Checklist (PDF)", href: "/api/checklist/pdf?utm_source=footer&utm_medium=link&utm_campaign=ccm_rpm_checklist" },
   ],
 };
 
