@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/sections/Hero";
 import { Button } from "@/components/ui/Button";
@@ -12,6 +13,12 @@ import {
   BarChart3,
   HeartPulse,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: 'Why Outsource CCM/RPM',
+  description:
+    'Discover why physician practices and small hospitals outsource Chronic Care Management and Remote Patient Monitoring to focus on patient care while maintaining compliance and maximizing revenue.',
+};
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 

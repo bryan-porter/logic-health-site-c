@@ -1,4 +1,5 @@
 // app/solutions/rpm/page.tsx
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Stats } from "@/components/sections/Stats";
@@ -19,6 +20,12 @@ import {
   Smartphone,
   LogOut,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: 'Remote Patient Monitoring (RPM)',
+  description:
+    'Connected devices and nurse-led monitoring to catch risk early, keep patients at goal, and generate predictable monthly revenue. Built for physician practices, small hospitals, and rural facilities.',
+};
 
 export default function RPMPage() {
   const intro = {

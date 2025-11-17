@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { ProgramTiles } from "@/components/sections/ProgramTiles";
 import { HowItWorksTiles } from "@/components/sections/HowItWorksTiles";
+
+export const metadata: Metadata = {
+  title: 'How It Works',
+  description:
+    'Learn how LogicHM delivers end-to-end CMS-recognized CCM and RPM programs integrated with your EHR, aligned to supervision rules, and measured against outcomes and ROI.',
+};
 
 export default function HowItWorksPage() {
   return (

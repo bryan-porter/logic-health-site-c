@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { CTA } from "@/components/sections/CTA";
 import ChecklistCTA from "@/components/ChecklistCTA";
 import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
+
+export const metadata: Metadata = {
+  title: 'Chronic Care Management (CCM)',
+  description:
+    'Proactive, monthly management for patients with multiple chronic conditions. Improve continuity of care while generating predictable revenue for physician practices, small hospitals, and RHCs/FQHCs.',
+};
 
 export default function CCMPage() {
   return (

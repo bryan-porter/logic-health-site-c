@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 // NOTE: Google Fonts blocked in build environment (403) - using system fonts
 // import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 // Fallback to system font stack when Google Fonts unavailable
 const inter = {
@@ -28,39 +29,22 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Logic Health Management',
-    url: 'https://logichm.com',
-    logo: 'https://logichm.com/logo.png',
-    mainEntityOfPage: {
-      '@type': 'WebSite',
-      url: 'https://logichm.com',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://logichm.com/search?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
-      },
-    },
-  };
-
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-      </head>
       <body className={`${inter.variable} antialiased`}>
+        <OrganizationSchema />
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

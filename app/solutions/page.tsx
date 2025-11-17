@@ -1,8 +1,15 @@
 // app/solutions/page.tsx
+import type { Metadata } from "next";
 import SolutionsHero from "@/components/sections/SolutionsHero";
 import KPIStrip from "@/components/sections/KPIStrip";
 import ProgramsGrid from "@/components/sections/ProgramsGrid";
 import { CTA } from "@/components/sections/CTA";
+
+export const metadata: Metadata = {
+  title: 'Solutions',
+  description:
+    'Comprehensive CCM and RPM solutions for physician practices and small hospitals. Explore our programs designed to improve patient outcomes and generate predictable revenue.',
+};
 
 export default function SolutionsIndexPage() {
   return (

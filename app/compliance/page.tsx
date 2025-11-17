@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { AssuranceCard } from "@/components/sections/AssuranceCard";
 import { ControlCard, type ControlItem } from "@/components/sections/ControlCard";
@@ -17,6 +18,12 @@ import {
   AlertTriangle,
   Check,
 } from "@/components/icons";
+
+export const metadata: Metadata = {
+  title: 'Compliance & Security',
+  description:
+    'HIPAA-safe by design with SOC 2 Type II alignment, encryption everywhere, and audit-ready documentation. Learn about our security controls and compliance framework.',
+};
 
 export default function CompliancePage() {
   // --- Assurances: high-level trust statements ---
