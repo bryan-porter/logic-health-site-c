@@ -30,7 +30,7 @@ function blockToHtml(block: string): string {
   // Lists
   if (/^(\-|\*|\d+\.)\s/m.test(b)) {
     const lines = b.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-    const isOrdered = /^\d+\.\s/.test(lines[0]);
+    const isOrdered = lines.length > 0 && /^\d+\.\s/.test(lines[0]);
     const items = lines.map((l) => {
       const item = l.replace(/^(\-|\*|\d+\.)\s+/, "");
       return `<li class="leading-7 text-neutral-800">${inlineMd(escapeHtml(item))}</li>`;
