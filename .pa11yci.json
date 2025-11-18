@@ -1,0 +1,24 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "timeout": 30000,
+    "wait": 2000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
+  "urls": [
+    "http://localhost:3000",
+    "http://localhost:3000/why-outsource",
+    "http://localhost:3000/how-it-works",
+    "http://localhost:3000/solutions",
+    "http://localhost:3000/solutions/ccm",
+    "http://localhost:3000/solutions/rpm",
+    "http://localhost:3000/pricing",
+    "http://localhost:3000/results",
+    "http://localhost:3000/resources",
+    "http://localhost:3000/blog",
+    "http://localhost:3000/contact"
+  ]
+}

@@ -32,6 +32,7 @@ export default function ContactForm() {
   const [downloading, setDownloading] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [success, setSuccess] = React.useState(false);
 
   function toggleProgram(p: Program) {
     setPrograms((prev) =>
@@ -62,6 +63,8 @@ export default function ContactForm() {
 
       const payload = await res.json();
       if (payload?.ok) {
+        setSuccess(true);
+        (document.getElementById("contact-title") as HTMLElement | null)?.focus();
         window.location.href = "/contact/thank-you";
       } else {
         setError("Something went wrong. Please try again.");
@@ -136,6 +139,7 @@ export default function ContactForm() {
             name="email"
             required
             type="email"
+            autoComplete="email"
             placeholder="jane.smith@hospital.org"
             className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
@@ -273,6 +277,7 @@ export default function ContactForm() {
       <p className="text-xs text-neutral-500">
         We will review your inquiry and respond soon. If you experience issues, use "Download inquiry" and email it to us.
       </p>
+      <p role="status" aria-live="polite" className="sr-only">{error ? `Error: ${error}` : success ? "Submitted" : ""}</p>
       {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );

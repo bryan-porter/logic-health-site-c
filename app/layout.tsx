@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Logic Health Management',
     url: 'https://logichm.com',
     siteName: 'Logic Health Management',
-    images: [{ url: '/og.png' }],
+    images: [{ url: 'https://logichm.com/og.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
     other: [
-      { rel: 'mask-icon', url: '/favicon-32x32.png', color: '#2563eb' },
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#2563eb' },
     ],
   },
   alternates: {
@@ -59,6 +59,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[1000] rounded bg-white px-3 py-2 text-sm shadow">
+          Skip to content
+        </a>
         <OrganizationSchema />
         <Header />
         <main id="main">{children}</main>

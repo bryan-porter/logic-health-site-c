@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = 'https://logichm.com';
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com';
 
   // Static routes
   const staticPages = [

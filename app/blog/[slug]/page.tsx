@@ -1,6 +1,7 @@
 // app/blog/[slug]/page.tsx
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { PostHeader } from "@/components/blog/PostHeader";
@@ -11,8 +12,9 @@ export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return { title: "Post not found | Blog | LogicHM" };
   return {
     title: `${post.title} | Blog | LogicHM`,
@@ -21,14 +23,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) return notFound();
 
-  const related = getRelatedPosts(params.slug, 3);
+  const related = getRelatedPosts(slug, 3);
 
   return (
     <div className="bg-white">
+      <ArticleJsonLd
+        url={`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'}/blog/${post.slug}`}
+        title={post.title}
+        description={post.description}
+        image={post.image}
+        datePublished={post.publishedAt}
+        authorName={post.author}
+      />
       <Container className="py-12 md:py-16 lg:py-20">
         <Link href="/blog" className="text-sm font-medium text-primary-700 hover:underline">
           ← Back to blog

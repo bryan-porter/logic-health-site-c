@@ -7,12 +7,18 @@ import { Container } from "@/components/ui/Container";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'),
   title: 'Logic Health Management',
-  description:
-    'Turnkey Chronic Care Management (CCM) and Remote Patient Monitoring (RPM) for physician practices and small hospitals. Enrollment, devices, monitoring, documentation, and billing prep—integrated with your EHR.',
-  alternates: {
-    canonical: '/',
+  description: 'Compliant CCM & RPM programs… integrated with your EHR.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'Logic Health Management',
+    siteName: 'Logic Health Management',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Logic Health Management' }],
   },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function Home() {
