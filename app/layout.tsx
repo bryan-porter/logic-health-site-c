@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Logic Health Management',
     url: 'https://logichm.com',
     siteName: 'Logic Health Management',
-    images: ['/og.png'],
+    images: [{ url: '/og.png' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
+    other: [
+      { rel: 'mask-icon', url: '/favicon-32x32.png', color: '#2563eb' },
+    ],
   },
   alternates: {
     canonical: '/',
