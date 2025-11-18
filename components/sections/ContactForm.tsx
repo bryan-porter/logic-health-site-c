@@ -27,12 +27,11 @@ const ALL_PROGRAMS: Program[] = [
   "TEAMs",
 ];
 
-// TODO: Replace with your real email before going live.
-const MAILTO_TO = "hello@logichm.com";
-
 export default function ContactForm() {
   const [programs, setPrograms] = React.useState<Program[]>([]);
   const [downloading, setDownloading] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   function toggleProgram(p: Program) {
     setPrograms((prev) =>
@@ -42,41 +41,36 @@ export default function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
     const form = e.currentTarget;
     const data = new FormData(form);
+    data.set("programs", programs.join(", "));
 
-    const name = String(data.get("name") || "");
-    const email = String(data.get("email") || "");
-    const org = String(data.get("organization") || "");
-    const role = String(data.get("role") || "");
-    const orgType = String(data.get("orgType") || "");
-    const ehr = String(data.get("ehr") || "");
-    const message = String(data.get("message") || "");
-    const consent = data.get("consent") === "on";
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: data,
+      });
 
-    const subject = `New inquiry — ${name} (${org})`;
-    const bodyLines = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Organization: ${org}`,
-      `Role: ${role}`,
-      `Organization Type: ${orgType}`,
-      `EHR: ${ehr || "N/A"}`,
-      `Programs of interest: ${programs.length ? programs.join(", ") : "N/A"}`,
-      `Consent to contact: ${consent ? "Yes" : "No"}`,
-      "",
-      "Message:",
-      message || "(no message)",
-    ];
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        const message = payload?.error || "Something went wrong. Please try again.";
+        setError(message);
+        return;
+      }
 
-    const mailto = `mailto:${encodeURIComponent(
-      MAILTO_TO
-    )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      bodyLines.join("\n")
-    )}`;
-
-    // Try to open the user's email client
-    window.location.href = mailto;
+      const payload = await res.json();
+      if (payload?.ok) {
+        window.location.href = "/contact/thank-you";
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleDownloadSummary(e: React.MouseEvent<HTMLButtonElement>) {
@@ -119,6 +113,7 @@ export default function ContactForm() {
       aria-labelledby="contact-title"
     >
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
         <div>
           <label htmlFor="name" className="text-sm font-medium text-neutral-900">
             Full name *
@@ -254,8 +249,8 @@ export default function ContactForm() {
       </label>
 
       <div className="flex flex-col items-start gap-3 sm:flex-row">
-        <Button variant="primary" className="gap-2" onClick={() => {}}>
-          Submit via email
+        <Button variant="primary" className="gap-2" type="submit" disabled={submitting}>
+          {submitting ? "Submitting…" : "Submit"}
         </Button>
         <button
           type="button"
@@ -276,9 +271,9 @@ export default function ContactForm() {
       </div>
 
       <p className="text-xs text-neutral-500">
-        Your submission opens your default email client with a prefilled draft to {MAILTO_TO}. If your
-        environment blocks this, use "Download inquiry" and email it to us.
+        We will review your inquiry and respond soon. If you experience issues, use "Download inquiry" and email it to us.
       </p>
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
   );
 }

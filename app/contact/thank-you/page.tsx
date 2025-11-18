@@ -14,7 +14,7 @@ export default function ContactThankYouPage() {
             Thanks — we'll be in touch
           </h1>
           <p className="mt-4 text-lg text-neutral-700">
-            Our team will review your message and reach out with next steps. If it's urgent, reply to the confirmation email.
+            Our team received your message and typically responds within one business day. If it's urgent, reply to the confirmation email.
           </p>
         </div>
       </Container>

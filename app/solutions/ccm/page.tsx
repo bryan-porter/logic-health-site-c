@@ -14,6 +14,28 @@ export const metadata: Metadata = {
   },
 };
 
+function ServiceJsonLd() {
+  const payload = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Chronic Care Management (CCM)',
+    url: 'https://logichm.com/solutions/ccm',
+    provider: {
+      '@type': 'Organization',
+      name: 'Logic Health Management',
+      url: 'https://logichm.com',
+    },
+    areaServed: 'United States',
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }}
+    />
+  );
+}
+
 export default function CCMPage() {
   return (
     <>
@@ -193,6 +215,7 @@ export default function CCMPage() {
         buttonHref="/contact"
         variant="primary"
       />
+      <ServiceJsonLd />
     </>
   );
 }

@@ -3,9 +3,15 @@ export default function OrganizationSchema() {
   const organization = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://logichm.com/#organization',
     name: 'Logic Health Management',
     url: 'https://logichm.com',
-    logo: 'https://logichm.com/logo.png',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://logichm.com/logo.png',
+      width: 512,
+      height: 512,
+    },
     sameAs: [
       'https://www.linkedin.com/company/logic-health-management/',
     ],
@@ -22,6 +28,7 @@ export default function OrganizationSchema() {
   const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': 'https://logichm.com/#website',
     url: 'https://logichm.com',
     name: 'Logic Health Management',
   };

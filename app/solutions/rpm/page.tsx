@@ -30,6 +30,28 @@ export const metadata: Metadata = {
   },
 };
 
+function ServiceJsonLd() {
+  const payload = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Remote Patient Monitoring (RPM)',
+    url: 'https://logichm.com/solutions/rpm',
+    provider: {
+      '@type': 'Organization',
+      name: 'Logic Health Management',
+      url: 'https://logichm.com',
+    },
+    areaServed: 'United States',
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }}
+    />
+  );
+}
+
 export default function RPMPage() {
   const intro = {
     title: "Remote Patient Monitoring (RPM)",
@@ -321,6 +343,7 @@ export default function RPMPage() {
         buttonHref="/contact"
         variant="primary"
       />
+      <ServiceJsonLd />
     </div>
   );
 }

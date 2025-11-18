@@ -17,7 +17,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Invalid payload" }, { status: 400 });
   }
 
-  const required = ["name", "email", "organization", "topic", "message"];
+  if (form.website && String(form.website).trim() !== "") {
+    return NextResponse.json({ ok: true });
+  }
+
+  const required = ["name", "email"];
   const missing = required.filter((k) => !form[k] || String(form[k]).trim() === "");
   if (missing.length) {
     return NextResponse.json(
@@ -25,19 +29,6 @@ export async function POST(req: Request) {
       { status: 400 }
     );
   }
-
-  // Basic server‑side logging (replace with email/Slack/CRM integration later)
-  console.log("[Contact] New submission", {
-    name: form.name,
-    email: form.email,
-    organization: form.organization,
-    role: form.role,
-    topic: form.topic,
-    phone: form.phone,
-    panelSize: form.panelSize,
-    message: form.message,
-    ts: new Date().toISOString(),
-  });
 
   return NextResponse.json({ ok: true });
 }
