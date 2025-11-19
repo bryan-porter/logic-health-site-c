@@ -2,19 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NAV_ITEMS } from "@/lib/constants";
 
 export function Header() {
   const pathname = usePathname();
-  const navLinks = [
-    { label: "Why Outsource", href: "/why-outsource" },
-    { label: "How It Works", href: "/how-it-works" },
-    { label: "Solutions", href: "/solutions" },
-    { label: "Results", href: "/results" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Resources", href: "/resources" },
-    { label: "Checklist (PDF)", href: "/api/checklist/pdf?utm_source=nav&utm_medium=link&utm_campaign=ccm_rpm_checklist" },
-    { label: "About", href: "/about" },
-  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white shadow-sm">
@@ -27,7 +18,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex lg:gap-x-6 xl:gap-x-8">
-            {navLinks.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
