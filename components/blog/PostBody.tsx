@@ -30,7 +30,7 @@ function blockToHtml(block: string): string {
   // Lists
   if (/^(\-|\*|\d+\.)\s/m.test(b)) {
     const lines = b.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-    const isOrdered = /^\d+\.\s/.test(lines[0]);
+    const isOrdered = lines[0] ? /^\d+\.\s/.test(lines[0]) : false;
     const items = lines.map((l) => {
       const item = l.replace(/^(\-|\*|\d+\.)\s+/, "");
       return `<li class="leading-7 text-neutral-800">${inlineMd(escapeHtml(item))}</li>`;
@@ -42,7 +42,7 @@ function blockToHtml(block: string): string {
 
   // Headings
   const m = b.match(/^(#{1,6})\s+(.*)$/);
-  if (m) {
+  if (m && m[1] && m[2] !== undefined) {
     const level = Math.min(3, m[1].length); // clamp to h1..h3 for style
     const txt = inlineMd(escapeHtml(m[2]));
     const size = level === 1 ? "text-3xl" : level === 2 ? "text-2xl" : "text-xl";
@@ -58,7 +58,7 @@ function renderMarkdownLite(md: string): string {
   return blocks.map(blockToHtml).join("\n");
 }
 
-export function PostBody({ content }: { content: string }) {
+export function PostBody({ content }: { content?: string }) {
   const html = renderMarkdownLite(content || "");
   return (
     <section className="mt-8">
@@ -67,7 +67,7 @@ export function PostBody({ content }: { content: string }) {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {/* Note for MDX components */}
-      {/<[A-Za-z]/.test(content) && (
+      {content && /<[A-Za-z]/.test(content) && (
         <p className="mt-6 text-sm text-neutral-500">
           Note: Inline MDX components are omitted in this preview. They will render once full MDX is enabled.
         </p>
