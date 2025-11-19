@@ -33,10 +33,21 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async headers() {
+    const isProduction = process.env.NEXT_PUBLIC_SITE_URL === "https://logichm.com";
+
+    // Add noindex header for non-production environments
+    const allHeaders = [...securityHeaders];
+    if (!isProduction) {
+      allHeaders.push({
+        key: "X-Robots-Tag",
+        value: "noindex, nofollow",
+      });
+    }
+
     return [
       {
         source: "/(.*)",
-        headers: securityHeaders,
+        headers: allHeaders,
       },
       {
         source: "/_next/static/:path*",
