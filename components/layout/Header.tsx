@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Header() {
+  const pathname = usePathname();
   const navLinks = [
     { label: "Why Outsource", href: "/why-outsource" },
     { label: "How It Works", href: "/how-it-works" },
-    { label: "Solutions", href: "/solutions/ccm" },
+    { label: "Solutions", href: "/solutions" },
     { label: "Results", href: "/results" },
     { label: "Pricing", href: "/pricing" },
     { label: "Resources", href: "/resources" },
@@ -23,15 +27,19 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex lg:gap-x-6 xl:gap-x-8">
-            {navLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-neutral-700 transition-colors hover:text-primary-600"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className="text-sm font-medium text-neutral-700 transition-colors hover:text-primary-600"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA Button */}
