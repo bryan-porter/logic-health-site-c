@@ -4,7 +4,7 @@ export function ArticleJsonLd(props: {
 }) {
   const payload = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     mainEntityOfPage: props.url,
     headline: props.title,
     description: props.description,
