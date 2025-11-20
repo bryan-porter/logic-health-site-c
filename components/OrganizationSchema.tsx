@@ -8,9 +8,9 @@ export default function OrganizationSchema() {
     url: 'https://logichm.com',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://logichm.com/logo.png',
-      width: 512,
-      height: 512,
+      url: 'https://logichm.com/apple-touch-icon.png',
+      width: 180,
+      height: 180,
     },
     sameAs: [
       'https://www.linkedin.com/company/logic-health-management/',

@@ -58,7 +58,7 @@ function renderMarkdownLite(md: string): string {
   return blocks.map(blockToHtml).join("\n");
 }
 
-export function PostBody({ content }: { content: string }) {
+export function PostBody({ content }: { content?: string }) {
   const html = renderMarkdownLite(content || "");
   return (
     <section className="mt-8">
@@ -67,7 +67,7 @@ export function PostBody({ content }: { content: string }) {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {/* Note for MDX components */}
-      {/<[A-Za-z]/.test(content) && (
+      {content && /<[A-Za-z]/.test(content) && (
         <p className="mt-6 text-sm text-neutral-500">
           Note: Inline MDX components are omitted in this preview. They will render once full MDX is enabled.
         </p>

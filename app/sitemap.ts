@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/results',
     '/resources',
     '/resources/ccm-rpm-readiness-checklist',
+    '/quick-answers',
     '/blog',
     '/contact',
     '/contact/thank-you',

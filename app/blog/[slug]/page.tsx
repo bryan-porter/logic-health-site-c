@@ -16,10 +16,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post not found | Blog | LogicHM" };
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com';
+
   return {
     title: `${post.title} | Blog | LogicHM`,
     description: post.description || undefined,
-    openGraph: post.image ? { images: [post.image] } : undefined,
+    alternates: {
+      canonical: `${baseUrl}/blog/${slug}`,
+    },
+    openGraph: {
+      images: [post.image || '/og.png'],
+    },
   };
 }
 
