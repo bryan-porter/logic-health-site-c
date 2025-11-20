@@ -18,7 +18,7 @@ export function Button({
   className,
   onClick,
   type = "button",
-  disabled,
+  disabled = false,
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center rounded-md font-medium transition-colors";
   const sizeStyles = "px-6 py-3 text-base";
