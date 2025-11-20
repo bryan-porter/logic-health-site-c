@@ -22,18 +22,25 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const stats = [
-    { value: "20%", label: "Fewer 30-day readmissions among enrolled high-risk patients" },
-    { value: "$40-150", label: "Net monthly revenue per patient from CCM/RPM" },
-    { value: "<2 hrs/wk", label: "Provider time to review and sign notes" },
-    { value: "1 Partner", label: "One workflow for CCM, RPM, docs, & billing" },
+  // CFO Metrics Band
+  const cfoMetrics = [
+    { value: "$40–$150", label: "Illustrative net monthly revenue per enrolled patient (varies by payer mix & engagement)." },
+    { value: "< 2 hours/week", label: "Approximate provider time for review and sign-off per program." },
+    { value: "1 workflow", label: "Shared operating model across all participating sites." },
   ];
 
   return (
     <>
+      {/* UPDATED: Hero with new copy targeting MSOs, IPAs, small hospitals, and rural providers */}
       <Hero
-        headline="Scale chronic care without hiring."
-        subheadline="Logic Health Management (LogicHM) delivers turnkey Chronic Care Management (CCM) and Remote Patient Monitoring (RPM) for physician practices. We handle enrollment, devices, monitoring, documentation, and billing prep — integrated with your EHR and built for compliance."
+        headline="Scale care-management to improve outcomes without hiring."
+        subheadline="LOGIC designs and runs Chronic Care Management (CCM), Remote Patient Monitoring (RPM), and related programs inside your EHR with audit-ready workflows—built for MSOs, IPAs, small hospitals, and rural providers (including RHCs/FQHCs using G0511)."
+        bullets={[
+          "Turnkey CCM/RPM and related programs that generate recurring, defensible revenue per enrolled patient.",
+          "One standardized operating model across sites—consistent workflows, documentation, and QA.",
+          "Value-based care ready: care-gap closure, measurable outcomes, and executive-level reporting.",
+          "Compliance built in: HIPAA, SOC 2-aligned controls, and CPOM-sensitive role design.",
+        ]}
         primaryCTA={{
           text: "Schedule a 15-Minute Strategy Call",
           href: "/contact",
@@ -44,7 +51,51 @@ export default function Home() {
         }}
       />
 
-      <Stats stats={stats} />
+      {/* UPDATED: CFO Metrics Band */}
+      <Stats stats={cfoMetrics} />
+
+      {/* NEW: CFO Metrics Disclaimer */}
+      <section className="bg-white py-4">
+        <Container>
+          <p className="text-center text-sm text-neutral-500 max-w-4xl mx-auto">
+            These ranges are illustrative and not a guarantee of reimbursement or financial performance. Always validate assumptions and coverage with your billing team and payers.
+          </p>
+        </Container>
+      </section>
+
+      {/* NEW: Who We Serve Section */}
+      <section className="bg-neutral-50 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-3xl font-bold text-neutral-900 md:text-4xl">
+              Who we serve
+            </h2>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="rounded-lg bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">MSOs & IPAs</h3>
+              <p className="text-neutral-700">
+                Standardized CCM/RPM and care-management across affiliated practices—one shared playbook, consistent documentation, and roll-up reporting for executives.
+              </p>
+            </div>
+
+            <div className="rounded-lg bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">RHCs, FQHCs & rural providers</h3>
+              <p className="text-neutral-700">
+                G0511-aligned workflows, shared staffing, and outreach that accounts for access barriers, broadband limitations, and social drivers of health.
+              </p>
+            </div>
+
+            <div className="rounded-lg bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">Small hospitals & health systems</h3>
+              <p className="text-neutral-700">
+                ED and inpatient follow-up, transitions of care, and longitudinal outreach that keeps patients connected to ambulatory care and reduces avoidable utilization.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Why It Matters */}
       <FeatureTiles

@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 interface HeroProps {
   headline: string;
   subheadline: string;
+  bullets?: string[];
   primaryCTA: {
     text: string;
     href: string;
@@ -14,7 +15,7 @@ interface HeroProps {
   };
 }
 
-export function Hero({ headline, subheadline, primaryCTA, secondaryCTA }: HeroProps) {
+export function Hero({ headline, subheadline, bullets, primaryCTA, secondaryCTA }: HeroProps) {
   return (
     <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24 lg:py-32">
       <Container>
@@ -25,6 +26,18 @@ export function Hero({ headline, subheadline, primaryCTA, secondaryCTA }: HeroPr
           <p className="mt-6 text-lg text-neutral-700 md:text-xl lg:text-2xl">
             {subheadline}
           </p>
+          {bullets && bullets.length > 0 && (
+            <ul className="mt-8 mx-auto max-w-3xl space-y-3 text-left text-base text-neutral-700 md:text-lg">
+              {bullets.map((bullet, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button href={primaryCTA.href} variant="primary" className="px-8 py-4 text-lg">
               {primaryCTA.text}
