@@ -33,6 +33,9 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async headers() {
+    // IMPORTANT: NEXT_PUBLIC_SITE_URL must be set to "https://logichm.com" in production
+    // to avoid accidentally sending X-Robots-Tag: noindex, nofollow on the live site.
+    // For dev/preview environments, leave unset or use preview URL to prevent indexing.
     const isProduction = process.env.NEXT_PUBLIC_SITE_URL === "https://logichm.com";
 
     // Add noindex header for non-production environments

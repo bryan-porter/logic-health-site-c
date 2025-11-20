@@ -95,6 +95,39 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
+## Environment Variables
+
+### NEXT_PUBLIC_SITE_URL
+
+**CRITICAL**: This variable controls SEO behavior and canonical URLs.
+
+**Production**:
+```bash
+NEXT_PUBLIC_SITE_URL=https://logichm.com
+```
+
+**Must be set to exactly `https://logichm.com` in production** to ensure:
+- No `X-Robots-Tag: noindex, nofollow` header is sent (allowing search engine indexing)
+- Canonical URLs in blog posts point to the correct production domain
+
+**Development/Preview**:
+```bash
+# Can be unset, or set to preview URL
+NEXT_PUBLIC_SITE_URL=https://preview-url.vercel.app
+# or leave unset (defaults to https://logichm.com for canonical URLs)
+```
+
+**How it's used**:
+1. **`next.config.ts`**: Determines whether to add `X-Robots-Tag: noindex, nofollow` header
+   - If `NEXT_PUBLIC_SITE_URL !== "https://logichm.com"` → adds noindex header (prevents search indexing)
+   - If `NEXT_PUBLIC_SITE_URL === "https://logichm.com"` → no noindex header (allows search indexing)
+
+2. **`app/blog/[slug]/page.tsx`**: Builds canonical URLs for blog posts
+   - Uses `NEXT_PUBLIC_SITE_URL` if set
+   - Falls back to `https://logichm.com` if unset
+
+**⚠️ WARNING**: If `NEXT_PUBLIC_SITE_URL` is not set correctly in production, the site will be blocked from search engines!
+
 ## Sitemap
 
 - `/` — Home

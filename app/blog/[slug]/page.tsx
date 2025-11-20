@@ -17,6 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post not found | Blog | LogicHM" };
 
+  // Use NEXT_PUBLIC_SITE_URL for canonical URLs if set, otherwise default to production domain.
+  // In dev/preview: may be unset or point to preview URL; canonical still defaults to prod.
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com';
 
   return {
@@ -40,6 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="bg-white">
+      {/* ArticleJsonLd uses NEXT_PUBLIC_SITE_URL for structured data URL */}
       <ArticleJsonLd
         url={`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'}/blog/${post.slug}`}
         title={post.title}
