@@ -6,7 +6,7 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
   title: "Results & Outcomes | Logic Health Management",
   description:
-    "Clinical impact and financial lift backed by audit-ready documentation. Explore benchmarks and case snapshots for practices and small hospitals.",
+    "Clinical, financial, and operational outcomes from CCM, RPM, and related programs—CFO- and board-ready benchmarks plus case snapshots for MSOs, multi-site groups, small hospitals, and rural RHCs/FQHCs.",
 };
 
 // ---------- Inline icons (no external deps) ----------
@@ -78,44 +78,51 @@ type CaseSnap = {
 export default function ResultsPage() {
   const metrics: Metric[] = [
     {
-      label: "BP at goal (uncontrolled HTN)",
-      value: "+18–30%",
-      sublabel: "within ~90 days",
-      Icon: HeartPulseIcon,
+      label: "Net new program revenue (1,000 enrolled patients)",
+      value: "$80k–$200k/mo",
+      sublabel: "≈$40–$150 per enrolled patient; payer mix and engagement drive actuals",
+      Icon: ChartUpIcon,
       tone: "good",
     },
     {
-      label: "Total cost of care",
+      label: "Avoidable ED visits & admissions",
       value: "−10–25%",
-      sublabel: "monitored cohorts",
+      sublabel: "monitored CCM/RPM cohorts vs baseline",
       Icon: ArrowDownIcon,
       tone: "good",
     },
     {
-      label: "Program ROI",
-      value: "2.0–3.0×",
-      sublabel: "net contribution margin",
+      label: "BP/A1c at goal (uncontrolled cohorts)",
+      value: "+15–30%",
+      sublabel: "within ~3–6 months of program start",
+      Icon: HeartPulseIcon,
+      tone: "good",
+    },
+    {
+      label: "Care gaps closed",
+      value: "+15–35%",
+      sublabel: "AWVs, key preventive measures, and adherence",
       Icon: ChartUpIcon,
       tone: "good",
     },
     {
       label: "Monthly engagement",
       value: "70–85%",
-      sublabel: "2+ meaningful touches",
+      sublabel: "2+ meaningful touches per month for enrolled patients",
       Icon: ClockIcon,
       tone: "neutral",
     },
     {
-      label: "CCM time capture",
+      label: "CCM/RPM time capture",
       value: "95–100%",
-      sublabel: "audit‑ready logs",
+      sublabel: "audit-ready logs and one-provider-per-month checks",
       Icon: ShieldIcon,
       tone: "neutral",
     },
     {
-      label: "Time‑to‑launch",
+      label: "Time-to-launch",
       value: "< 30 days",
-      sublabel: "from signed BAA",
+      sublabel: "from signed BAA to first live patients",
       Icon: ClockIcon,
       tone: "neutral",
     },
@@ -123,53 +130,53 @@ export default function ResultsPage() {
 
   const cases: CaseSnap[] = [
     {
-      title: "Small Hospital System (CAH + Clinics)",
-      org: "Critical Access Hospital with 5 affiliated clinics",
-      population: "3,200 Medicare lives; high HTN/DM burden",
-      programMix: ["AWV", "CCM", "RPM (BP/WT)", "TCM"],
-      timeline: "Go‑live in 28 days; scale in 90 days",
+      title: "Small Hospital System (CAH + Rural Clinics)",
+      org: "Critical Access Hospital + 5 affiliated rural clinics",
+      population: "~3,200 Medicare attributed; HTN, DM, CHF prevalence",
+      programMix: ["AWV", "CCM", "G0511 (rural)", "RPM (BP/WT)", "TCM"],
+      timeline: "Go-live 28 days; scale over 90 days",
       highlights: [
-        "Centralized RN hub, clinic‑level escalation",
-        "FHIR‑based data flows; minimal EHR clicks",
-        "Revenue stewardship + quality dashboard for leadership",
+        "Centralized RN hub with clinic-level escalation paths",
+        "FHIR data flows + minimal EHR clicks for onsite staff",
+        "Dashboard for CFO + QI: revenue, readmits, BP at goal",
       ],
       outcomes: [
-        { label: "Readmissions (30‑day)", value: "−12%" },
+        { label: "30-day readmit", value: "−12%" },
         { label: "BP at goal", value: "+22%" },
-        { label: "Net program margin", value: "+$85k/mo" },
+        { label: "Net margin", value: "+$85k/mo" },
       ],
     },
     {
-      title: "Primary Care Group (Multi‑site)",
-      org: "42‑provider internal‑medicine group",
-      population: "5,800 attributed; rising‑risk focus",
-      programMix: ["CCM", "PCM (CHF/COPD)", "RPM (BP/SpO₂)"],
-      timeline: "Phase‑in over 60 days",
+      title: "MSO / Multi-site Primary Care Group",
+      org: "42-provider IM group across 8 sites",
+      population: "~5,800 attributed lives; rising-risk cohorts",
+      programMix: ["CCM", "PCM (CHF/COPD)", "RPM (BP/SpO₂)", "AWV"],
+      timeline: "Phase-in over 60 days; site-by-site rollout",
       highlights: [
-        "Stratification + proactive outreach",
-        "Automated time capture & claim bundling",
-        "Closed‑loop escalation to care teams",
+        "Risk stratification + proactive enrollment by site",
+        "Automated time capture & claim bundling per payer",
+        "Closed-loop escalation routed back to site care teams",
       ],
       outcomes: [
-        { label: "eA1c at goal", value: "+17%" },
-        { label: "ED visits (pppy)", value: "−9%" },
-        { label: "EBITDA uplift", value: "+$120k/qtr" },
+        { label: "A1c at goal", value: "+17%" },
+        { label: "ED visits", value: "−9%" },
+        { label: "EBITDA lift", value: "+$120k/qtr" },
       ],
     },
     {
-      title: "Specialty Service Line (Cardiology)",
-      org: "Hospital‑owned cardiology practice",
-      population: "CHF cohort; device + symptoms",
-      programMix: ["PCM", "RPM (scale/BP)", "TCM"],
-      timeline: "Launch in 21 days; outcomes in 60–90 days",
+      title: "Specialty Service Line (Cardiology & CHF)",
+      org: "Hospital-owned cardiology practice, CHF clinic focus",
+      population: "~450 CHF patients; device + symptom monitoring",
+      programMix: ["PCM (CHF)", "RPM (scale/BP/SpO₂)", "TCM"],
+      timeline: "Launch 21 days; early outcomes 60–90 days",
       highlights: [
-        "Symptom + weight trending; early intervention",
-        "Team routing (RN → APP → MD) with clear SLAs",
-        "Billing conformance checks pre‑submission",
+        "Daily weight + symptom trends; early intervention SOP",
+        "Tiered routing: RN → APP → MD with documented SLAs",
+        "Billing conformance checks pre-claim submission",
       ],
       outcomes: [
-        { label: "All‑cause admissions", value: "−8%" },
-        { label: "Time to intervention", value: "−36 hrs median" },
+        { label: "Admissions", value: "−8%" },
+        { label: "Time-to-action", value: "−36 hrs" },
         { label: "Program ROI", value: "2.6×" },
       ],
     },
@@ -185,10 +192,12 @@ export default function ResultsPage() {
               Outcomes & Results
             </h1>
             <p className="mt-4 text-lg text-neutral-700">
-              Clinical impact and financial lift—documented, defensible, and designed for boards, CFOs, and compliance.
+              Clinical, financial, and operational outcomes—documented, defensible, and built for boards, CFOs, and
+              compliance.
             </p>
             <p className="mt-2 text-sm text-neutral-600">
-              Benchmarks below reflect common ranges reported across programs; your environment will drive actuals.
+              Ranges below reflect what we typically see across CCM, RPM, and related programs for MSOs, multi-site
+              groups, small hospitals, and rural RHCs/FQHCs; your baseline, payer mix, and engagement will drive actuals.
             </p>
           </div>
         </Container>
@@ -281,14 +290,15 @@ export default function ResultsPage() {
       <section className="bg-white py-6">
         <Container>
           <div className="mx-auto max-w-6xl rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700">
-            <p className="font-medium text-neutral-900">Measurement & compliance</p>
+            <p className="font-medium text-neutral-900">Measurement rigor & audit readiness</p>
             <p className="mt-1">
-              We define cohorts, baselines, and KPIs up front, capture time and touches automatically, and keep
-              documentation audit‑ready. See{" "}
+              Before go-live we define cohorts, baselines, and KPIs with your finance and clinical leaders, then track time,
+              touches, and outcomes automatically so you have audit-ready logs, CFO-ready dashboards, and documentation you can
+              hand to payers or your board without scrambling. See{" "}
               <Link href="/compliance" className="text-primary-600 underline-offset-4 hover:underline">
-                Compliance
+                Compliance & Security
               </Link>{" "}
-              for details, or view program specifics on{" "}
+              for our CPOM-sensitive controls and documentation approach, or view program details on{" "}
               <Link href="/solutions/ccm" className="text-primary-600 underline-offset-4 hover:underline">
                 CCM
               </Link>{" "}
@@ -313,8 +323,12 @@ export default function ResultsPage() {
       <section className="bg-white pb-10">
         <Container>
           <p className="text-[11px] leading-5 text-neutral-500">
-            Notes: Ranges are illustrative and depend on attribution, engagement, payer mix, and baseline performance.
-            We document assumptions, data sources, and methods prior to launch and track against them over time.
+            Disclaimer: The ranges and case outcomes on this page are illustrative and depend on your attribution model,
+            patient engagement, payer mix, baseline utilization, and existing workflows. LogicHM documents assumptions,
+            data sources, and measurement methods with your finance and clinical teams before go‑live, tracks outcomes
+            transparently over time, and provides defensible evidence for internal and external reviews. Nothing on this
+            page is a guarantee of specific results, and customers remain responsible for their own billing, compliance,
+            and regulatory decisions in consultation with their advisors.
           </p>
         </Container>
       </section>
