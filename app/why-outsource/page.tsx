@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: 'Why Outsource CCM/RPM',
   description:
-    'Discover why physician practices and small hospitals outsource Chronic Care Management and Remote Patient Monitoring to focus on patient care while maintaining compliance and maximizing revenue.',
+    'Why independent groups, MSOs, small hospitals, and rural RHCs/FQHCs outsource CCM and RPM to LogicHM: a centralized care-management team operating inside your EHR that adds recurring revenue, supports value-based contracts, and reduces operational and compliance burden without adding headcount.',
   alternates: {
     canonical: '/why-outsource',
   },
@@ -30,37 +30,37 @@ export default function WhyOutsourcePage() {
     {
       title: "Speed to value",
       body:
-        "Launch in ~30 days with proven playbooks for AWV, CCM, RPM, BHI, PCM, RTM, TCM, CHI/PIN, and TEAMs—no new FTEs required.",
+        "Go live in about 30 days with battle-tested playbooks for CCM, RPM, AWV, and related programs instead of spending 6–9 months recruiting staff, designing protocols, and wiring up your EHR.",
       icon: Settings,
     },
     {
       title: "Staffing reality",
       body:
-        "RN/APP/MA coverage and care navigators without the hiring cycle. Clear supervision language aligned to license.",
+        "Tap into U.S.-based RNs, MAs, and care navigators without the hiring cycle, backfills, or burnout risk—while physicians keep clinical control through clear supervision language tied to license.",
       icon: Users,
     },
     {
       title: "Compliance, first",
       body:
-        "HIPAA/SOC 2 foundation, consent capture, role‑based access, and complete audit trails across encounters.",
+        "Programs are designed around CCM, RPM, and G0511 rules with CPOM-sensitive role design, HIPAA- and SOC 2-aligned controls, and audit-ready documentation across sites.",
       icon: ShieldCheck,
     },
     {
       title: "Native EHR fit",
       body:
-        "FHIR‑enabled flows, standardized note types, and documentation that actually lives in your chart.",
+        "LogicHM works inside your existing EHR: standardized note types, tasks, and time-tracking that actually live in the chart instead of yet another portal clinicians have to remember.",
       icon: LinkIcon,
     },
     {
       title: "Revenue capture",
       body:
-        "Time tracking, eligibility signals, and claim‑ready documentation to support clean billing and predictable cash flow.",
+        "Systematically surface eligible patients, track time by program, and hand your billing team clean, claim-ready information to generate recurring, defensible revenue per enrolled patient.",
       icon: BarChart3,
     },
     {
-      title: "Small‑hospital ready",
+      title: "Small-hospital & rural ready",
       body:
-        "Central monitoring, inpatient‑to‑outpatient handoffs, service‑line escalations, and credentialing alignment.",
+        "Central monitoring and outreach for small hospitals and rural clinics, closing the loop on ED discharges and high-risk patients without standing up a new internal care-management department.",
       icon: Stethoscope,
     },
   ];
@@ -68,53 +68,68 @@ export default function WhyOutsourcePage() {
   type Row = { label: string; build: string; partner: string };
   const comparison: Row[] = [
     {
-      label: "Time to go‑live",
-      build: "4–9 months: staffing, protocols, templates, training",
-      partner: "~30 days with proven workflows and QA",
+      label: "Time to go-live",
+      build: "4–9 months: hiring, protocols, templates, change management",
+      partner: "~30 days using a pre-built CCM/RPM operating model and QA cadence.",
     },
     {
       label: "FTE cost & coverage",
-      build: "RN/MA hiring + backfills; night/weekend gaps",
-      partner: "Elastic RN/MA + navigators; coverage you can dial",
+      build: "RN/MA recruiting, onboarding, and backfills; gaps on nights/weekends",
+      partner: "Centralized RN/MA and navigator team whose capacity you can dial up or down.",
     },
     {
       label: "EHR integration",
-      build: "Custom build per program; scattered templates",
-      partner: "FHIR flows + standardized notes and supervision language",
+      build: "One-off templates and workflows per program and site",
+      partner: "Repeatable FHIR-enabled flows and standardized notes that work across your network.",
     },
     {
       label: "Compliance & audit",
-      build: "Manual tracking; variable document quality",
-      partner: "Audit‑ready artifacts, consent, and role‑based access",
+      build: "Scattered documentation and spreadsheets; high effort to answer payers",
+      partner: "Centralized logs, consent, supervision status, and time tracking you can hand to compliance and auditors.",
     },
     {
       label: "Billing & cash flow",
-      build: "Chasing codes; inconsistent eligibility capture",
-      partner: "Time, eligibility, and claim signals surfaced in‑workflow",
+      build: "Inconsistent eligibility capture, manual time tracking, and revenue leakage",
+      partner: "Eligibility and minutes surfaced in-workflow with claim-ready outputs for your billing team.",
     },
     {
       label: "Program breadth",
-      build: "Adds months per new program",
-      partner: "AWV, CCM, RPM, BHI, PCM, RTM, TCM, CHI/PIN, TEAMs on one model",
+      build: "Each new program (CCM, RPM, BHI, etc.) feels like a separate project",
+      partner: "CCM, RPM, BHI, PCM, RTM, TCM, and more on a single care-management playbook.",
     },
     {
       label: "Scale to clinics/hospitals",
-      build: "Re‑invent per site; fragile handoffs",
-      partner: "Standardized operating model across sites and service lines",
+      build: "Re-invented per site, variable quality, and fragile handoffs",
+      partner: "Standardized care-management across independent practices, MSO networks, and small hospitals.",
     },
   ];
 
   const impact = [
-    { icon: HeartPulse, label: "Clinical lift", body: "BP/A1c trends and adherence nudges reduce avoidable utilization." },
-    { icon: Activity, label: "Operational throughput", body: "Defined routing matrices reduce rework and close care gaps." },
-    { icon: BarChart3, label: "Financial predictability", body: "Monthly dashboards tie encounter volume to revenue signals." },
+    {
+      icon: HeartPulse,
+      label: "Better outcomes and experience",
+      body:
+        "Structured outreach, monitoring, and follow-up improve control of chronic conditions and reduce avoidable ED visits and readmissions.",
+    },
+    {
+      icon: Activity,
+      label: "Operational relief for your teams",
+      body:
+        "Centralized care-management, clear routing, and standardized templates reduce rework, inbox noise, and burnout for onsite staff.",
+    },
+    {
+      icon: BarChart3,
+      label: "Durable, measurable financial lift",
+      body:
+        "Recurring CCM/RPM revenue with dashboards that tie enrollment, engagement, and time logs to net revenue signals by site and payer.",
+    },
   ];
 
   return (
     <main>
       <Hero
         headline="Why outsource care management & remote monitoring?"
-        subheadline="Skip the hiring cycle and months of build. We design, run, and continuously improve audit‑ready programs across your EHR."
+        subheadline="Independent groups, MSOs, small hospitals, and rural RHCs/FQHCs are already stretched. LogicHM gives you a centralized care-management team that runs CCM, RPM, and related programs inside your EHR—growing recurring revenue, supporting value-based contracts, and easing the load on clinicians without adding headcount."
         primaryCTA={{ text: "Talk to a program architect", href: "/contact" }}
         secondaryCTA={{ text: "See the operating model", href: "/how-it-works" }}
       />
@@ -136,7 +151,7 @@ export default function WhyOutsourcePage() {
       <Container className="py-4">
         <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">Build vs. Partner</h2>
         <p className="mt-2 max-w-3xl text-neutral-600">
-          Outsourcing isn't just about bandwidth—it's about running a consistent, auditable model that scales from practices to small hospitals.
+          Building CCM and RPM in-house means recruiting a team, wiring up your EHR, and owning every process change when policies shift. Partnering with LogicHM gives you a consistent, auditable operating model that follows CPOM rules, lives in your EHR, and scales from a single practice to an MSO network or small hospital.
         </p>
         <div className="mt-6 overflow-x-auto rounded-lg border border-neutral-200">
           <table className="min-w-full divide-y divide-neutral-200 bg-white text-sm">
@@ -201,7 +216,7 @@ export default function WhyOutsourcePage() {
               Do we lose control if we outsource?
             </summary>
             <p className="mt-2 text-neutral-700">
-              No—governance stays with your medical leadership. We execute your protocols, surface exceptions, and document in your EHR.
+              No—governance stays with your medical leadership. LogicHM operates under your supervision policies and management agreements: physicians retain clinical decision-making and sign-off, while our team executes defined tasks, documents in your EHR, and surfaces exceptions back to your providers.
             </p>
           </details>
           <details className="rounded-lg border border-neutral-200 bg-white p-5">
@@ -209,7 +224,7 @@ export default function WhyOutsourcePage() {
               Can we start small?
             </summary>
             <p className="mt-2 text-neutral-700">
-              Yes. Many groups begin with CCM or RPM, then add AWV, BHI, or TCM once the cadence is established.
+              Yes. Many organizations start with a single program—often CCM or RPM—or a subset of sites, then expand to AWV, BHI, TCM, and additional clinics once the cadence is established and the ROI is clear.
             </p>
           </details>
           <details className="rounded-lg border border-neutral-200 bg-white p-5">
@@ -217,7 +232,7 @@ export default function WhyOutsourcePage() {
               How do you handle audits?
             </summary>
             <p className="mt-2 text-neutral-700">
-              We maintain consent, license alignment, time tracking, and encounter artifacts—making audit response fast and consistent.
+              We maintain consent records, license alignment, supervision status, and detailed time and encounter artifacts by program. That gives your compliance and billing teams a single evidence pack they can use for internal reviews, payer audits, or counsel—without having to reconstruct what happened from scattered notes and spreadsheets.
             </p>
           </details>
         </div>
