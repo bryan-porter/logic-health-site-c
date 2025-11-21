@@ -33,7 +33,12 @@ export default function Home() {
     <>
       {/* UPDATED: Hero with new copy targeting MSOs, IPAs, small hospitals, and rural providers */}
       <Hero
-        headline="Scale care-management to improve outcomes without hiring."
+        headline={
+          <>
+            <span className="block text-center">Scale care-management</span>
+            <span className="block text-center">Improve outcomes without hiring</span>
+          </>
+        }
         subheadline="LOGIC designs and runs Chronic Care Management (CCM), Remote Patient Monitoring (RPM), and related programs inside your EHR with audit-ready workflows—built for MSOs, IPAs, small hospitals, and rural providers (including RHCs/FQHCs using G0511)."
         bullets={[
           "Turnkey CCM/RPM and related programs that generate recurring, defensible revenue per enrolled patient.",
@@ -57,7 +62,7 @@ export default function Home() {
       {/* NEW: CFO Metrics Disclaimer */}
       <section className="bg-white py-4">
         <Container>
-          <p className="text-center text-sm text-neutral-500 max-w-4xl mx-auto">
+          <p className="text-center text-xs text-neutral-500 max-w-4xl mx-auto">
             These ranges are illustrative and not a guarantee of reimbursement or financial performance. Always validate assumptions and coverage with your billing team and payers.
           </p>
         </Container>

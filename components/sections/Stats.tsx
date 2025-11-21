@@ -9,15 +9,15 @@ export function Stats({ stats }: StatsProps) {
   return (
     <section className="bg-white py-16 md:py-24">
       <Container>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl font-bold text-primary-600 md:text-5xl">
+            <div key={index} className="flex flex-col items-center text-center">
+              <div className="text-3xl font-semibold text-primary-600 md:text-4xl">
                 {stat.value}
               </div>
-              <div className="mt-2 text-base text-neutral-700 md:text-lg">
+              <p className="mt-3 text-sm text-neutral-600">
                 {stat.label}
-              </div>
+              </p>
             </div>
           ))}
         </div>
