@@ -84,52 +84,54 @@ export default function CCMPage() {
         </Container>
       </section>
 
-      {/* Outcomes We Target */}
+      {/* Outcomes & Operations */}
       <section className="bg-white py-16 md:py-24">
         <Container>
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
-              Outcomes We Target
-            </h2>
-            <ul className="space-y-3 text-neutral-700">
-              <li className="flex gap-2">
-                <span className="text-accent-600">•</span>
-                <span>Better adherence and self-management</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-accent-600">•</span>
-                <span>Fewer avoidable ED visits and readmissions</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-accent-600">•</span>
-                <span>Higher patient satisfaction with proactive touchpoints</span>
-              </li>
-            </ul>
+          <div className="grid gap-12 md:grid-cols-2">
+            <div>
+              <h2 className="mb-6 text-2xl font-bold text-neutral-900">
+                Outcomes We Target
+              </h2>
+              <ul className="space-y-3 text-neutral-700">
+                <li className="flex gap-2">
+                  <span className="text-accent-600">•</span>
+                  <span>Better adherence and self-management</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent-600">•</span>
+                  <span>Fewer avoidable ED visits and readmissions</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent-600">•</span>
+                  <span>Higher patient satisfaction with proactive touchpoints</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="mb-6 text-2xl font-bold text-neutral-900">
+                What to Expect Operationally
+              </h2>
+              <ul className="space-y-3 text-neutral-700">
+                <li className="flex gap-2">
+                  <span className="text-primary-600">•</span>
+                  <span>Minimal impact on provider schedules</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary-600">•</span>
+                  <span>Standardized templates and summaries</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-primary-600">•</span>
+                  <span>Monthly program reporting with KPIs</span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </Container>
-      </section>
 
-      {/* What to Expect Operationally */}
-      <section className="bg-neutral-50 py-16 md:py-24">
-        <Container>
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
-              What to Expect Operationally
-            </h2>
-            <ul className="space-y-3 text-neutral-700">
-              <li className="flex gap-2">
-                <span className="text-primary-600">•</span>
-                <span>Minimal impact on provider schedules</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-primary-600">•</span>
-                <span>Standardized templates and summaries</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-primary-600">•</span>
-                <span>Monthly program reporting with KPIs</span>
-              </li>
-            </ul>
+          <div className="mt-8 rounded-lg border-l-4 border-primary-600 bg-primary-50 p-6">
+            <p className="text-sm text-neutral-700">
+              Medicare policy and payment rates vary by locality and change over time. Examples on this site are illustrative only and do not guarantee coverage or payment. Confirm payer rules and clinical eligibility before billing.
+            </p>
           </div>
         </Container>
       </section>
