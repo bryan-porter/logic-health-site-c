@@ -50,6 +50,114 @@ export default function CCMPage() {
         </Container>
       </section>
 
+      {/* NEW: Pays and stands up to audit */}
+      <section className="bg-neutral-50 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
+              Chronic Care Management that pays—and stands up to audit.
+            </h2>
+            <p className="mb-8 text-lg text-neutral-700">
+              Eligibility, consent, care plan, time, and attestation—captured cleanly and signed in your EHR, so CCM is both billable and defensible.
+            </p>
+            <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>CCM programs designed around CPT 99490, 99439, 99491, and 99437 with clear documentation and supervision rules.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>One-provider-per-month safeguards and workflows that prevent double billing and confusion across sites.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Support for FQHCs and RHCs, including G0511 structures, staffing models, and aligned note types.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Measurement plans that track readmissions, ED use, and care-gap closure for value-based care programs.</span>
+              </li>
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      {/* NEW: MSO/IPA Subsection */}
+      <section className="bg-white py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
+              For MSOs and IPAs: one CCM model across every practice
+            </h2>
+            <p className="mb-8 text-lg text-neutral-700">
+              LOGIC gives MSOs and IPAs a single CCM operating model that works across all affiliated practices. We standardize eligibility lists, care-plan templates, note types, and time tracking so every site documents CCM the same way. That means cleaner billing files, fewer denials, and roll-up reporting that lets executives see performance by practice, region, or payer.
+            </p>
+            <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Standardized templates and workflows across all locations.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Centralized training, QA, and audit sampling from a shared playbook.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Roll-up CCM performance views by practice, group, and payer.</span>
+              </li>
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      {/* NEW: RHC/FQHC & Rural Subsection */}
+      <section className="bg-neutral-50 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
+              For RHCs, FQHCs, and rural providers: CCM built around G0511
+            </h2>
+            <p className="mb-8 text-lg text-neutral-700">
+              Rural providers, RHCs, and FQHCs need CCM to work under G0511, with limited staff and patients who may face access barriers. LOGIC designs CCM workflows that match your volumes and constraints—shared care teams, phone-first outreach, and documentation that supports G0511 billing without overloading your clinicians.
+            </p>
+            <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>G0511-aligned scheduling, documentation, and staffing patterns.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Phone-first outreach and follow-up tailored to rural connectivity and access.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-accent-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Shared CCM resources that support multiple sites without adding local FTEs.</span>
+              </li>
+            </ul>
+          </div>
+        </Container>
+      </section>
+
       {/* Eligibility */}
       <section className="bg-white py-16 md:py-24">
         <Container>
@@ -112,8 +220,24 @@ export default function CCMPage() {
         </Container>
       </section>
 
-      {/* How LogicHM Runs CCM */}
+      {/* NEW: Billing Integrity and Audit Readiness Callout */}
       <section className="bg-white py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-lg border-2 border-primary-200 bg-primary-50 p-8">
+              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
+                Billing integrity and audit readiness
+              </h3>
+              <p className="text-base text-neutral-700 leading-relaxed">
+                CCM work is tracked with clear timestamps, responsible staff, and program type, so CCM time is cleanly separated from RPM and other services. We surface one-provider-per-month checks, consent status, and attestation prompts inside your EHR, and we can export logs that support internal audits, payer reviews, and compliance inquiries.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* How LogicHM Runs CCM */}
+      <section className="bg-neutral-50 py-16 md:py-24">
         <Container>
           <h2 className="mb-8 text-3xl font-bold text-neutral-900 md:text-4xl">
             How LogicHM Runs CCM
@@ -156,7 +280,7 @@ export default function CCMPage() {
       </section>
 
       {/* Outcomes & Operations */}
-      <section className="bg-neutral-50 py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24">
         <Container>
           <div className="grid gap-12 md:grid-cols-2">
             <div>
