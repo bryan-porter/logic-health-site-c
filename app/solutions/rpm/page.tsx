@@ -190,25 +190,65 @@ export default function RPMPage() {
             <h1 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
               Remote Patient Monitoring (RPM)
             </h1>
-            <p className="mb-8 text-lg text-neutral-700">
+            <p className="text-lg text-neutral-700">
               Connected devices + nurse-led monitoring to catch risk early, keep patients at goal, and generate predictable monthly revenue.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="/contact" variant="primary">Talk to a specialist</Button>
-              <Button href="/how-it-works" variant="secondary">See the workflow</Button>
-            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-white py-8 md:py-12">
+      {/* Remote Patient Monitoring that surfaces risk early */}
+      <section className="bg-white py-16 md:py-24">
         <Container>
-          <ChecklistCTA variant="banner" utm="solutions" />
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
+              Remote Patient Monitoring that surfaces risk early—and documents every minute.
+            </h2>
+            <p className="mb-8 text-lg text-neutral-700">
+              LOGIC runs RPM as a centralized extension of your clinics—enrolling patients, triaging daily data, escalating in your EHR, and keeping RPM time cleanly separated from CCM so it is billable and defensible for MSOs, IPAs, small hospitals, and rural providers.
+            </p>
+            <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>99453, 99454, 99457, and 99458 workflows implemented with clear documentation and supervision rules, with payer policy variability explicitly acknowledged.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Centralized clinical staff review vitals, symptoms, and alerts daily—prioritizing what matters and escalating inside your EHR to the supervising provider.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Device strategies tuned to your footprint: in-clinic pickup, mail-to-home, and community pickup options that minimize front-desk and nursing burden.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Built for value-based care: risk-stratified RPM cohorts (e.g., hypertension, diabetes, COPD, heart failure) that tie directly into CCM for longitudinal support and quality metrics.</span>
+              </li>
+            </ul>
+          </div>
         </Container>
       </section>
 
       {/* Proof metrics */}
       <Stats stats={stats} />
+
+      {/* CTA buttons */}
+      <section className="bg-white py-8">
+        <Container>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button href="/contact" variant="primary">Talk to a specialist</Button>
+            <Button href="/how-it-works" variant="secondary">See the workflow</Button>
+          </div>
+        </Container>
+      </section>
 
       {/* How RPM works (existing tiles) */}
       <section className="bg-neutral-50 py-16 md:py-24">
@@ -352,43 +392,9 @@ export default function RPMPage() {
         </Container>
       </section>
 
-      {/* Remote Patient Monitoring that surfaces risk early */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="bg-white py-8 md:py-12">
         <Container>
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
-              Remote Patient Monitoring that surfaces risk early—and documents every minute.
-            </h2>
-            <p className="mb-8 text-lg text-neutral-700">
-              LOGIC runs RPM as a centralized extension of your clinics—enrolling patients, triaging daily data, escalating in your EHR, and keeping RPM time cleanly separated from CCM so it is billable and defensible for MSOs, IPAs, small hospitals, and rural providers.
-            </p>
-            <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
-              <li className="flex items-start gap-3">
-                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>99453, 99454, 99457, and 99458 workflows implemented with clear documentation and supervision rules, with payer policy variability explicitly acknowledged.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Centralized clinical staff review vitals, symptoms, and alerts daily—prioritizing what matters and escalating inside your EHR to the supervising provider.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Device strategies tuned to your footprint: in-clinic pickup, mail-to-home, and community pickup options that minimize front-desk and nursing burden.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Built for value-based care: risk-stratified RPM cohorts (e.g., hypertension, diabetes, COPD, heart failure) that tie directly into CCM for longitudinal support and quality metrics.</span>
-              </li>
-            </ul>
-          </div>
+          <ChecklistCTA variant="banner" utm="solutions" />
         </Container>
       </section>
 
