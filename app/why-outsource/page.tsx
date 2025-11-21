@@ -208,35 +208,127 @@ export default function WhyOutsourcePage() {
       </Container>
 
       {/* FAQ (no extra components; native <details>) */}
-      <Container className="py-10">
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">FAQs</h2>
-        <div className="mt-4 space-y-3">
-          <details className="rounded-lg border border-neutral-200 bg-white p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              Do we lose control if we outsource?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              No—governance stays with your medical leadership. LogicHM operates under your supervision policies and management agreements: physicians retain clinical decision-making and sign-off, while our team executes defined tasks, documents in your EHR, and surfaces exceptions back to your providers.
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12 md:py-16">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+              Questions we hear from COOs, CFOs, and clinical leaders
+            </h2>
+            <p className="mt-2 text-sm text-neutral-700">
+              Outsourcing CCM/RPM is a strategic move. These are the questions we expect and welcome from MSOs, independent
+              groups, small hospitals, and rural RHCs/FQHCs.
             </p>
-          </details>
-          <details className="rounded-lg border border-neutral-200 bg-white p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              Can we start small?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              Yes. Many organizations start with a single program—often CCM or RPM—or a subset of sites, then expand to AWV, BHI, TCM, and additional clinics once the cadence is established and the ROI is clear.
-            </p>
-          </details>
-          <details className="rounded-lg border border-neutral-200 bg-white p-5">
-            <summary className="cursor-pointer text-base font-medium text-neutral-900">
-              How do you handle audits?
-            </summary>
-            <p className="mt-2 text-neutral-700">
-              We maintain consent records, license alignment, supervision status, and detailed time and encounter artifacts by program. That gives your compliance and billing teams a single evidence pack they can use for internal reviews, payer audits, or counsel—without having to reconstruct what happened from scattered notes and spreadsheets.
-            </p>
-          </details>
-        </div>
-      </Container>
+
+            <div className="mt-8 space-y-4">
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  Do we lose control if we outsource CCM and RPM?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  No. Governance stays with your medical and executive leadership. LogicHM operates under your CPOM framework and
+                  supervision policies: physicians and APPs retain clinical decision-making and sign-off, while our care-management
+                  teams execute defined workflows, document directly in your EHR, and surface exceptions and summaries back to your
+                  providers.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  How fast can we go live across multiple sites?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Most organizations can stand up an initial wave of CCM/RPM in about 30 days from signed BAA and implementation
+                  greenlight, then scale to additional sites over the next 60–90 days. We reuse one operating model—templates, time
+                  capture, escalation rules—across locations, so you are not re-inventing CCM/RPM for each practice.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  How do you keep CCM/RPM billing defensible with payers?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  We design workflows around current CCM/RPM (and G0511 where applicable) documentation expectations—time logs,
+                  consent, care plans, and supervision—and keep those elements inside your EHR. We track minutes by program, surface
+                  one-provider-per-month checks, and maintain exportable logs so your billing and compliance teams have a single
+                  evidence pack they can use for internal reviews and payer audits. Final coding and billing decisions remain with
+                  your organization.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  What if we already have some internal care-management staff?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Many groups use LogicHM as an overlay rather than a replacement. We can take on the heavy, repeatable CCM/RPM work
+                  across sites while your existing nurses and navigators focus on in-clinic workflows, high-acuity cases, or
+                  value-based initiatives. The key is a shared operating model so internal and external teams are not working at
+                  cross-purposes.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  How do you integrate with our EHR and existing RCM processes?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  We work inside your existing EHR instance(s) using standardized templates, tasks, and time-tracking fields, rather
+                  than forcing clinicians into a separate portal. For billing, we align with your RCM team on file formats, coding
+                  policies, and submission workflows so CCM/RPM activity flows cleanly into your existing revenue cycle processes.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  Can we start small before rolling out across the whole network?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Yes. Many organizations start with a focused cohort (for example, uncontrolled HTN/DM in a subset of practices),
+                  prove out the workflows and ROI, then expand by site and program. We design the operating model to be reusable, so
+                  each new wave feels like a rollout—not a brand-new project.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  How do you handle MSO and multi-practice complexity?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  MSOs and multi-site groups are exactly where a shared CCM/RPM engine shines. We standardize eligibility lists,
+                  scripts, documentation, and QA across practices, then report results by site, region, and payer so you can see which
+                  parts of the network are driving revenue and quality lift. That gives you one model instead of ten local
+                  experiments.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  What about rural clinics, RHCs, and FQHCs?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Rural clinics, RHCs, and FQHCs face thin staffing, connectivity issues, and specific billing rules. We tune
+                  workflows around G0511, low-bandwidth device strategies, and phone-first outreach, and we design documentation so
+                  your teams can support UDS reporting and cost-report requirements while still generating predictable care-management
+                  revenue.
+                </p>
+              </details>
+
+              <details className="group rounded-lg border border-neutral-200 bg-white p-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                  How do you measure success and report back to us?
+                </summary>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Before launch, we align with your leadership on revenue, cost/utilization, quality, operational, and compliance KPIs.
+                  We then provide recurring reports that tie CCM/RPM activity to incremental revenue per enrolled patient, ED visits
+                  and admissions, care gaps closed, and documentation quality—broken out by site and payer so your CFO and board see
+                  the full picture.
+                </p>
+              </details>
+            </div>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 }
