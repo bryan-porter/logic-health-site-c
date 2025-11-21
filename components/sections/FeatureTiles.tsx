@@ -56,7 +56,7 @@ export default function FeatureTiles({
           <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
             {title}
           </h2>
-          <p className="mt-3 text-neutral-700">{caption}</p>
+          <p className="mt-3 text-neutral-700 max-w-2xl mx-auto">{caption}</p>
         </div>
 
         <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

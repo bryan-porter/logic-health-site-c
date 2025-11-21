@@ -62,7 +62,7 @@ export default function Home() {
       {/* NEW: CFO Metrics Disclaimer */}
       <section className="bg-white py-4">
         <Container>
-          <p className="text-center text-xs text-neutral-500 max-w-4xl mx-auto">
+          <p className="text-center text-xs text-neutral-500 max-w-2xl mx-auto">
             These ranges are illustrative and not a guarantee of reimbursement or financial performance. Always validate assumptions and coverage with your billing team and your payers.
           </p>
         </Container>
