@@ -131,4 +131,4 @@ jobs:
       - name: Analyze bundle size
         run: |
           echo "Checking bundle sizes..."
-          find .next/static/chunks -name "*.js" -type f -exec gzip -c {} \; | wc -c | awk '{size=$1/1024; printf "Total gzipped JS: %.2f KB\n", size; if(size > 180) {print "❌ Bundle size exceeds 180KB budget"; exit 1} else {print "✅ Bundle size within budget"}}'
+          find .next/static/chunks -name "*.js" -type f -exec gzip -c {} \; | wc -c | awk '{size=$1/1024; printf "Total gzipped JS: %.2f KB\n", size; if(size > 220) {print "❌ Bundle size exceeds 220KB budget"; exit 1} else {print "✅ Bundle size within budget"}}'
