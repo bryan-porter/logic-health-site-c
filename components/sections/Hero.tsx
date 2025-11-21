@@ -27,7 +27,7 @@ export function Hero({ headline, subheadline, bullets, primaryCTA, secondaryCTA 
             {subheadline}
           </p>
           {bullets && bullets.length > 0 && (
-            <ul className="mt-8 mx-auto max-w-3xl space-y-3 text-left text-base text-neutral-700 md:text-lg">
+            <ul className="mt-8 mx-auto max-w-4xl space-y-3 text-left text-base text-neutral-700 md:text-lg">
               {bullets.map((bullet, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <svg className="h-6 w-6 flex-shrink-0 text-primary-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
