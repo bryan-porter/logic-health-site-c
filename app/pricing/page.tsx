@@ -145,7 +145,7 @@ export default function PricingPage() {
               constraints, and value-based risk.
             </p>
             <p className="mx-auto mt-2 max-w-2xl text-xs text-neutral-600 sm:text-sm">
-              Instead of big fixed costs or per-seat software licenses, we give you a low-friction way to turn CCM/RPM and related
+              Instead of large fixed costs or per-seat software licenses, we give you a low-friction way to turn CCM/RPM and related
               programs into a revenue + quality engine—with fees tied to actual enrolled panels and clearly documented work.
             </p>
           </div>
@@ -160,9 +160,9 @@ export default function PricingPage() {
               How our pricing works
             </h2>
             <p className="mt-2 max-w-3xl text-sm text-neutral-700">
-              We price like an MSO and rural operator would design it: minimal fixed cost, economics that scale with enrollment and
+              We price like an operator would design it: minimal fixed cost, economics that scale with enrollment and
               program mix, and clear expectations about what you get in return. The goal is a low-risk, high-return path into
-              value-based care, not a long-term bet on internal FTEs and custom build-outs.
+              improved care, not a long-term bet on internal FTEs and custom build-outs.
             </p>
           </div>
 
@@ -176,7 +176,7 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <p className="mt-6 max-w-3xl text-[11px] leading-5 text-neutral-500">
+          <p className="mx-auto mt-6 max-w-3xl text-[11px] leading-5 text-neutral-500">
             Ranges are illustrative and not a guarantee of reimbursement or financial performance. Actual results depend on your
             baseline performance, payer mix, engagement, coding, and evolving payer policies. We document assumptions explicitly
             in any pro forma we share and track actuals against them over time.
