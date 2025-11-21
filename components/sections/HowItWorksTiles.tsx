@@ -16,39 +16,39 @@ type Step = {
 
 const STEPS: Step[] = [
   {
-    title: "Identify & Enroll",
+    title: "Align on goals, governance, and CPOM boundaries",
     description:
-      "Eligibility logic (diagnoses, utilization, SDoH) flags candidates. Outreach scripts enroll with consent and set expectations.",
+      "We start with your executive and clinical leaders to decide which programs to run (CCM, RPM, and others), define supervision rules, and document CPOM-safe role boundaries so physicians stay in control of clinical decisions.",
     Icon: Users,
   },
   {
-    title: "Device & Onboarding",
+    title: "Design one operating model in your EHR",
     description:
-      "Kits ship pre‑configured. Zero‑touch pairing, literacy‑aware instructions, and bilingual support reduce friction.",
+      "LOGIC configures templates, note types, time-tracking, and task flows inside your existing EHR—so every practice follows the same playbook without adding a new platform for staff to learn.",
     Icon: Package,
   },
   {
-    title: "Monitor & Engage",
+    title: "Identify and enroll eligible patients across sites",
     description:
-      "Vitals and check‑ins flow to dashboards. Care navigators reinforce plans, triage alerts, and close care gaps.",
+      "We build eligibility lists from your EHR, standardize consent scripts, and enroll patients through centralized outreach, prioritizing high-risk cohorts that drive revenue and value-based performance.",
     Icon: HeartPulse,
   },
   {
-    title: "Escalate & Coordinate",
+    title: "Run daily outreach, monitoring, and coordination",
     description:
-      "Clinically significant signals route to the right clinician. Warm handoffs and EHR‑inbox notes keep teams in sync.",
+      "Our care team handles outreach, RPM triage, and care-management tasks under your supervision, documenting every touchpoint in your EHR so your staff aren't stuck tracking minutes and phone calls.",
     Icon: PhoneCall,
   },
   {
-    title: "Document & Bill",
+    title: "Escalate only what matters to providers",
     description:
-      "Time tracking and supervision logic capture every eligible CPT/HCPCS code. Audit trails are built as you work.",
+      "Clinically meaningful issues are summarized and routed back to the supervising provider through your EHR, so physicians spend time on decisions—not chasing data or administrivia.",
     Icon: FileCheck2,
   },
   {
-    title: "Close Loop & Improve",
+    title: "Report revenue, outcomes, and quality across sites",
     description:
-      "Outcomes, equity overlays, and ROI trends inform panel management and continuous model tuning.",
+      "We deliver recurring reports on revenue per enrolled patient, ED visits and readmissions, quality measures, and documentation audits, broken out by practice, payer, and program so MSO and rural leaders can see the impact.",
     Icon: BarChart3,
   },
 ];
