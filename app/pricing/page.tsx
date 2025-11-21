@@ -138,13 +138,13 @@ export default function PricingPage() {
             <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
               Pricing built for thin margins and real risk
             </h1>
-            <p className="mt-3 max-w-2xl text-sm text-neutral-700 sm:text-base">
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-neutral-700 sm:text-base">
               LOGIC packages CCM, RPM, and related care-management as a centralized service inside your EHR—designed for MSOs, IPAs,
               small hospitals, and rural RHCs/FQHCs that can&apos;t afford to hire a full care-management department or gamble on
               unproven pilots. Our economics are built around the same reality you live in: reimbursement pressure, staffing
               constraints, and value-based risk.
             </p>
-            <p className="mt-2 max-w-2xl text-xs text-neutral-600 sm:text-sm">
+            <p className="mx-auto mt-2 max-w-2xl text-xs text-neutral-600 sm:text-sm">
               Instead of big fixed costs or per-seat software licenses, we give you a low-friction way to turn CCM/RPM and related
               programs into a revenue + quality engine—with fees tied to actual enrolled panels and clearly documented work.
             </p>
