@@ -1,7 +1,8 @@
 // components/sections/SolutionsHero.tsx
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Hospital } from "lucide-react";
+
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 
 export default function SolutionsHero() {
   return (

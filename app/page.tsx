@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
-import { Hero } from "@/components/sections/Hero";
-import { Stats } from "@/components/sections/Stats";
+import Link from "next/link";
+
 import { CTA } from "@/components/sections/CTA";
 import FeatureTiles from "@/components/sections/FeatureTiles";
+import { Hero } from "@/components/sections/Hero";
+import { Stats } from "@/components/sections/Stats";
 import { Container } from "@/components/ui/Container";
-import Link from "next/link";
+
+import type { Metadata } from "next";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'),
@@ -250,7 +253,7 @@ export default function Home() {
 
       <CTA
         headline="Ready to launch CCM & RPM in the next 30 days?"
-        description="Whether you're starting fresh or replacing an underperforming vendor, LogicHM stands up a compliant, sustainable program with minimal staff burden."
+        description="Whether you&apos;re starting fresh or replacing an underperforming vendor, LogicHM stands up a compliant, sustainable program with minimal staff burden."
         buttonText="Schedule a 15-Minute Strategy Call"
         buttonHref="/contact"
         variant="primary"

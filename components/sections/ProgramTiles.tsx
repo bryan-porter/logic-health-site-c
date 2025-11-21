@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Container } from "@/components/ui/Container";
 import {
   ClipboardCheck,
   HeartPulse,
@@ -11,6 +9,9 @@ import {
   Users,
   ShieldCheck,
 } from "lucide-react";
+import Link from "next/link";
+
+import { Container } from "@/components/ui/Container";
 
 type Program = {
   title: string;

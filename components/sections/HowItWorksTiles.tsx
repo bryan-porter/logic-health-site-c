@@ -1,4 +1,3 @@
-import { Container } from "@/components/ui/Container";
 import {
   Users,
   Package,
@@ -7,6 +6,8 @@ import {
   FileCheck2,
   BarChart3,
 } from "lucide-react";
+
+import { Container } from "@/components/ui/Container";
 
 type Step = {
   title: string;

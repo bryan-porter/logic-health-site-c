@@ -1,5 +1,5 @@
-import { Container } from "@/components/ui/Container";
 import ContactForm from "@/components/sections/ContactForm";
+import { Container } from "@/components/ui/Container";
 
 export const metadata = {
   title: "Contact | LogicHM",
@@ -14,7 +14,7 @@ export default function ContactPage() {
         {/* Hero */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 id="contact-title" className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-            Let's operationalize patient‑impact at your organization
+            Let&apos;s operationalize patient‑impact at your organization
           </h1>
           <p className="mt-4 text-lg text-neutral-700">
             Share a bit about your environment—practice or small hospital—and our team will propose an audit‑ready,

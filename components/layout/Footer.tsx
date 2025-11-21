@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { FOOTER_LINKS } from "@/lib/constants";
 
 export function Footer() {

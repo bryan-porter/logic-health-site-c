@@ -1,6 +1,4 @@
 // components/sections/ProgramsGrid.tsx
-import Link from "next/link";
-import { Container } from "@/components/ui/Container";
 import {
   ClipboardCheck,   // AWV
   ShieldCheck,      // Prevention & Wellness
@@ -13,6 +11,9 @@ import {
   MapPin,           // CHI & PIN
   Users,            // TEAMs
 } from "lucide-react";
+import Link from "next/link";
+
+import { Container } from "@/components/ui/Container";
 
 type Program = {
   title: string;

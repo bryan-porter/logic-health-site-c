@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -248,7 +249,7 @@ export default function ContactForm() {
           className="mt-1 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
         />
         <span className="text-sm text-neutral-700">
-          I agree to be contacted about LogicHM services. We don't sell personal information.
+          I agree to be contacted about LogicHM services. We don&apos;t sell personal information.
         </span>
       </label>
 
@@ -275,7 +276,7 @@ export default function ContactForm() {
       </div>
 
       <p className="text-xs text-neutral-500">
-        We will review your inquiry and respond soon. If you experience issues, use "Download inquiry" and email it to us.
+        We will review your inquiry and respond soon. If you experience issues, use &ldquo;Download inquiry&rdquo; and email it to us.
       </p>
       <p role="status" aria-live="polite" className="sr-only">{error ? `Error: ${error}` : success ? "Submitted" : ""}</p>
       {error && <p className="text-sm text-red-600">{error}</p>}

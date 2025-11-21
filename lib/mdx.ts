@@ -1,4 +1,4 @@
-// lib/blog.ts
+// lib/mdx.ts
 import fs from "fs";
 import path from "path";
 
@@ -22,7 +22,7 @@ function listPostFiles(): string[] {
     .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
 }
 
-export function getAllPosts(): BlogPost[] {
+export async function getAllPosts(): Promise<BlogPost[]> {
   const files = listPostFiles();
   const posts: BlogPost[] = files.map((file) => {
     const slug = file.replace(/\.(md|mdx)$/, "");
@@ -51,7 +51,7 @@ export function getAllPosts(): BlogPost[] {
   });
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export async function getPostBySlug(slug: string) {
   const candidates = [".mdx", ".md"].map((ext) =>
     path.join(POSTS_DIR, `${slug}${ext}`)
   );
@@ -64,22 +64,24 @@ export function getPostBySlug(slug: string): BlogPost | null {
 
   return {
     slug,
-    title: data.title ?? slug,
-    description: data.description ?? "",
-    publishedAt: (data.publishedAt || data.date || stat.mtime.toISOString()) as string,
-    author: data.author ?? "LogicHM",
-    category: data.category ?? "General",
-    image: data.image ?? undefined,
-    content,
+    frontmatter: {
+      title: data.title ?? slug,
+      description: data.description ?? "",
+      publishedAt: (data.publishedAt || data.date || stat.mtime.toISOString()) as string,
+      author: data.author ?? "LogicHM",
+      category: data.category ?? "General",
+      image: data.image ?? undefined,
+    },
+    content, // Return raw MDX content for RSC
     readingTime: readingTime(content || "").text,
   };
 }
 
-export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
-  const all = getAllPosts();
-  const current = getPostBySlug(slug);
+export async function getRelatedPosts(slug: string, limit = 3): Promise<BlogPost[]> {
+  const all = await getAllPosts();
+  const current = await getPostBySlug(slug);
   const pool = current
-    ? all.filter((p) => p.slug !== slug && p.category === current.category)
+    ? all.filter((p) => p.slug !== slug && p.category === current.frontmatter.category)
     : all.filter((p) => p.slug !== slug);
 
   const source = (pool.length >= limit ? pool : all.filter((p) => p.slug !== slug));

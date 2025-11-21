@@ -1,5 +1,5 @@
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import { NextResponse } from 'next/server';
+import { PDFDocument, PDFFont, PDFPage, RGB, rgb, StandardFonts } from 'pdf-lib';
 
 export const runtime = 'nodejs';
 
@@ -126,7 +126,7 @@ export async function GET() {
   });
 }
 
-function wrapText(text: string, maxWidth: number, fontSize: number, font: any): string[] {
+function wrapText(text: string, maxWidth: number, fontSize: number, font: PDFFont): string[] {
   const words = text.split(' ');
   const lines: string[] = [];
   let currentLine = '';
@@ -150,7 +150,7 @@ function wrapText(text: string, maxWidth: number, fontSize: number, font: any): 
   return lines;
 }
 
-function drawBullet(page: any, text: string, x: number, y: number, font: any): number {
+function drawBullet(page: PDFPage, text: string, x: number, y: number, font: PDFFont): number {
   // Draw bullet point
   page.drawCircle({
     x: x + 5,
@@ -175,7 +175,7 @@ function drawBullet(page: any, text: string, x: number, y: number, font: any): n
   return y - 8;
 }
 
-function drawFooter(page: any, siteName: string, siteUrl: string, font: any, color: any) {
+function drawFooter(page: PDFPage, siteName: string, siteUrl: string, font: PDFFont, color: RGB) {
   const y = 40;
   page.drawText(`${siteName} · ${siteUrl}`, {
     x: 50,

@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
+
 import { FAQJsonLd } from "@/components/seo/FAQJsonLd";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Quick Answers · Logic Health Management',

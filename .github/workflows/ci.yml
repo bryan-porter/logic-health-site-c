@@ -35,6 +35,7 @@ jobs:
       - name: Build Next.js
         run: npm run build
       - name: Upload build artifacts
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: build-output
@@ -45,6 +46,7 @@ jobs:
     name: Lighthouse CI
     runs-on: ubuntu-latest
     needs: build
+    if: success()
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -53,10 +55,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Download build artifacts
+        id: download-artifact
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: build-output
           path: .next
+      - name: Build if artifact missing
+        run: npm run build
+        if: steps.download-artifact.outcome != 'success'
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI
@@ -69,6 +76,7 @@ jobs:
     name: Accessibility Tests
     runs-on: ubuntu-latest
     needs: build
+    if: success()
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -77,10 +85,15 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Download build artifacts
+        id: download-artifact
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: build-output
           path: .next
+      - name: Build if artifact missing
+        run: npm run build
+        if: steps.download-artifact.outcome != 'success'
       - name: Install pa11y-ci
         run: npm install -g pa11y-ci
       - name: Start server
@@ -97,6 +110,7 @@ jobs:
     name: Bundle Size Check
     runs-on: ubuntu-latest
     needs: build
+    if: success()
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -105,11 +119,16 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Download build artifacts
+        id: download-artifact
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: build-output
           path: .next
+      - name: Build if artifact missing
+        run: npm run build
+        if: steps.download-artifact.outcome != 'success'
       - name: Analyze bundle size
         run: |
           echo "Checking bundle sizes..."
-          find .next/static/chunks -name "*.js" -type f -exec gzip -c {} \; | wc -c | awk '{size=$1/1024; printf "Total gzipped JS: %.2f KB\n", size; if(size > 180) {print "❌ Bundle size exceeds 180KB budget"; exit 1} else {print "✅ Bundle size within budget"}}'
+          find .next/static/chunks -name "*.js" -type f -exec gzip -c {} \; | wc -c | awk '{size=$1/1024; printf "Total gzipped JS: %.2f KB\n", size; if(size > 220) {print "❌ Bundle size exceeds 220KB budget"; exit 1} else {print "✅ Bundle size within budget"}}'

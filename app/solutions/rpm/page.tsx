@@ -1,12 +1,4 @@
 // app/solutions/rpm/page.tsx
-import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Stats } from "@/components/sections/Stats";
-import { CTA } from "@/components/sections/CTA";
-import Link from "next/link";
-import ChecklistCTA from "@/components/ChecklistCTA";
-import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
 import {
   Package,
   PlugZap,
@@ -20,6 +12,19 @@ import {
   Smartphone,
   LogOut,
 } from "lucide-react";
+import Link from "next/link";
+
+import ChecklistCTA from "@/components/ChecklistCTA";
+import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
+import { CTA } from "@/components/sections/CTA";
+import { Stats } from "@/components/sections/Stats";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
+
+
+
 
 export const metadata: Metadata = {
   title: 'Remote Patient Monitoring (RPM)',
@@ -302,7 +307,7 @@ export default function RPMPage() {
                 <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">3</span>
                 <div>
                   <h3 className="font-semibold text-neutral-900">Monitor daily data, symptoms, and concerns</h3>
-                  <p className="mt-1 text-neutral-700">Through LOGIC's centralized team, with clear clinical protocols by condition.</p>
+                  <p className="mt-1 text-neutral-700">Through LOGIC&apos;s centralized team, with clear clinical protocols by condition.</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -440,7 +445,7 @@ export default function RPMPage() {
               For RHCs, FQHCs, and rural providers: RPM that works with low bandwidth and thin staffing
             </h2>
             <p className="mb-8 text-lg text-neutral-700">
-              Rural clinics don't have spare staff to stare at dashboards or chase every out-of-range reading. LOGIC designs RPM workflows around your bandwidth and connectivity—simple device workflows, phone-first outreach, and escalation paths that respect limited local resources while still meeting clinical and documentation expectations.
+              Rural clinics don&apos;t have spare staff to stare at dashboards or chase every out-of-range reading. LOGIC designs RPM workflows around your bandwidth and connectivity—simple device workflows, phone-first outreach, and escalation paths that respect limited local resources while still meeting clinical and documentation expectations.
             </p>
             <ul className="space-y-4 text-base text-neutral-700 md:text-lg">
               <li className="flex items-start gap-3">

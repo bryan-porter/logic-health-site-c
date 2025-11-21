@@ -25,7 +25,7 @@ export default function CcmRpmReadinessChecklistPage() {
             services.
           </p>
           <p className="mt-3 text-xs text-neutral-500">
-            Tip: Use your browser&apos;s "Print to PDF" to generate a 2-page PDF suitable for
+            Tip: Use your browser&apos;s &ldquo;Print to PDF&rdquo; to generate a 2-page PDF suitable for
             sharing and internal reviews.
           </p>
         </header>
@@ -146,7 +146,7 @@ export default function CcmRpmReadinessChecklistPage() {
             <p className="mt-2 text-xs text-neutral-600">
               Bracketed numbers in earlier versions of this checklist (e.g., [7]) map to a full
               source list published on LogicHM&apos;s companion blog/resource page. For detailed
-              citations, refer to "CCM/RPM Readiness Checklist" in the LogicHM blog or resources
+              citations, refer to &ldquo;CCM/RPM Readiness Checklist&rdquo; in the LogicHM blog or resources
               library.
             </p>
           </section>

@@ -1,5 +1,6 @@
 // components/blog/PostList.tsx
 import { BlogPost } from "@/lib/types";
+
 import { PostCard } from "./PostCard";
 
 export function PostList({ posts }: { posts: BlogPost[] }) {

@@ -1,9 +1,10 @@
 // app/solutions/page.tsx
-import type { Metadata } from "next";
-import SolutionsHero from "@/components/sections/SolutionsHero";
+import { CTA } from "@/components/sections/CTA";
 import KPIStrip from "@/components/sections/KPIStrip";
 import ProgramsGrid from "@/components/sections/ProgramsGrid";
-import { CTA } from "@/components/sections/CTA";
+import SolutionsHero from "@/components/sections/SolutionsHero";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Solutions',
@@ -22,7 +23,7 @@ export default function SolutionsIndexPage() {
       <ProgramsGrid />
       <CTA
         headline="Design a small‑hospital program that works on day one"
-        description="We'll map staffing, supervision, and escalation logic to your environment and EHR."
+        description="We&apos;ll map staffing, supervision, and escalation logic to your environment and EHR."
         buttonText="Schedule a 15‑minute strategy call"
         buttonHref="/contact"
         variant="secondary"

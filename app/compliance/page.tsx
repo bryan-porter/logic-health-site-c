@@ -1,11 +1,3 @@
-import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { AssuranceCard } from "@/components/sections/AssuranceCard";
-import { ControlCard, type ControlItem } from "@/components/sections/ControlCard";
-import { ProgramChecklist } from "@/components/sections/ProgramChecklist";
-import { SectionHeader } from "@/components/sections/SectionHeader";
-
-// Icons from your local icons barrel:
 import {
   Shield,
   Lock,
@@ -18,6 +10,15 @@ import {
   AlertTriangle,
   Check,
 } from "@/components/icons";
+import { AssuranceCard } from "@/components/sections/AssuranceCard";
+import { ControlCard, type ControlItem } from "@/components/sections/ControlCard";
+import { ProgramChecklist } from "@/components/sections/ProgramChecklist";
+import { SectionHeader } from "@/components/sections/SectionHeader";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
+
+// Icons from your local icons barrel:
 
 export const metadata: Metadata = {
   title: 'Compliance & Security',
@@ -205,7 +206,7 @@ export default function CompliancePage() {
 
       {/* Small note to keep claims accurate */}
       <p className="mt-6 text-xs text-neutral-500">
-        Status labels (e.g., "Certified", "Aligned", "In‑Progress") are illustrative and should be updated to match your
+        Status labels (e.g., &ldquo;Certified&rdquo;, &ldquo;Aligned&rdquo;, &ldquo;In‑Progress&rdquo;) are illustrative and should be updated to match your
         current attestations and control maturity. Nothing on this page is legal advice; customers remain responsible for
         their own regulatory, coding, and billing decisions in consultation with their legal, compliance, and billing teams.
       </p>

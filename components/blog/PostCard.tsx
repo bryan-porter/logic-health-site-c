@@ -1,5 +1,6 @@
 // components/blog/PostCard.tsx
 import Link from "next/link";
+
 import type { BlogPost } from "@/lib/types";
 
 interface PostCardProps {
