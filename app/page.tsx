@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 export default function Home() {
   // CFO Metrics Band
   const cfoMetrics = [
-    { value: "$40–$150", label: "Illustrative net monthly revenue per enrolled patient (varies by payer mix & engagement)." },
-    { value: "< 2 hours/week", label: "Approximate provider time for review and sign-off per program." },
-    { value: "1 workflow", label: "Shared operating model across all participating sites." },
+    { value: "$40–$150", label: "Illustrative net monthly revenue per enrolled patient; varies by payer mix and engagement." },
+    { value: "< 2 hours/week", label: "Approximate weekly provider time for review and sign-off per program." },
+    { value: "1 workflow", label: "Shared operating model used across all participating sites." },
   ];
 
   return (
@@ -41,10 +41,10 @@ export default function Home() {
         }
         subheadline="LOGIC designs and runs Chronic Care Management (CCM), Remote Patient Monitoring (RPM), and related programs inside your EHR with audit-ready workflows—built for MSOs, IPAs, small hospitals, and rural providers (including RHCs/FQHCs using G0511)."
         bullets={[
-          "Turnkey CCM/RPM and related programs that generate recurring, defensible revenue per enrolled patient.",
-          "One standardized operating model across sites—consistent workflows, documentation, and QA.",
-          "Value-based care ready: care-gap closure, measurable outcomes, and executive-level reporting.",
-          "Compliance built in: HIPAA, SOC 2-aligned controls, and CPOM-sensitive role design.",
+          "Turnkey programs that generate recurring, defensible revenue per enrolled patient.",
+          "One standard operating model across sites with consistent workflows, documentation, and QA.",
+          "Value-based ready: closes care gaps, delivers measurable outcomes, and supports exec-level reporting.",
+          "Compliance built in with HIPAA- and SOC 2-aligned controls and CPOM-sensitive role design.",
         ]}
         primaryCTA={{
           text: "Schedule a 15-Minute Strategy Call",
@@ -63,7 +63,7 @@ export default function Home() {
       <section className="bg-white py-4">
         <Container>
           <p className="text-center text-xs text-neutral-500 max-w-4xl mx-auto">
-            These ranges are illustrative and not a guarantee of reimbursement or financial performance. Always validate assumptions and coverage with your billing team and payers.
+            These ranges are illustrative and not a guarantee of reimbursement or financial performance. Always validate assumptions and coverage with your billing team and your payers.
           </p>
         </Container>
       </section>
@@ -105,7 +105,7 @@ export default function Home() {
       {/* Why It Matters */}
       <FeatureTiles
         title="Why It Matters"
-        caption="We redesign care so it's compliant, equitable, and financially durable—without adding burden to your clinicians."
+        caption="We redesign care to be compliant, equitable, and financially durable—without adding burden to your clinicians."
       />
 
       {/* Why Practices Choose LogicHM */}

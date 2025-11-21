@@ -15,7 +15,7 @@ export function Stats({ stats }: StatsProps) {
               <div className="text-3xl font-semibold text-primary-600 md:text-4xl">
                 {stat.value}
               </div>
-              <p className="mt-3 text-sm text-neutral-600">
+              <p className="mt-3 text-sm text-neutral-600 max-w-xs mx-auto">
                 {stat.label}
               </p>
             </div>
