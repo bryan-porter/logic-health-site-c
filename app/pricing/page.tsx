@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pricing & Commercial Models | Logic Health Management",
   description:
-    "Simple commercial options for practices and small hospitals—full‑service, co‑managed, or build‑operate‑transfer—covering CCM, RPM, RTM, TCM, BHI, CHI/PIN, TEAMs, and AWV/wellness.",
+    "Pricing built for thin margins and real risk—designed for MSOs, IPAs, small hospitals, and rural RHCs/FQHCs. Low fixed costs, fees that scale with enrollment, and a turnkey path into value-based care.",
 };
 
 // Minimal inline icons (no external deps)
@@ -62,63 +62,69 @@ function ChartIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function PricingPage() {
-  const models = [
+  const pricingPrinciples = [
     {
-      title: "Full‑service programs",
-      subtitle: "We operate end‑to‑end delivery",
+      title: "Start small, expand by cohort and site",
       Icon: LayersIcon,
-      bullets: [
-        "CCM, RPM, RTM, TCM, BHI, CHI/PIN, AWV/wellness, TEAMs (hospital).",
-        "RN/MA navigators, device logistics, alerts, outreach, documentation, and QA.",
-        "Time and supervision notes aligned to program criteria; production views each month.",
-      ],
-      idealFor: "Busy practices and small hospitals wanting turnkey delivery with clear governance.",
+      description:
+        "We usually launch with a focused cohort (for example, uncontrolled HTN/DM or high-risk Medicare lives in a subset of practices), then expand by site and contract once the workflows and ROI are visible. You don't have to light up every clinic and every payer on day one to access enterprise-grade care-management.",
     },
     {
-      title: "Co‑managed (your staff + our operating model)",
-      subtitle: "You staff; we provide model, training, QA",
+      title: "Low fixed cost, mostly variable with enrollment",
       Icon: UsersIcon,
-      bullets: [
-        "Standardized protocols, routing matrices, templates, and reporting.",
-        "Training, supervision logic, coding/billing checks, and monthly quality review.",
-        "Flexible coverage: we can absorb after‑hours/overflow or specialty cohorts.",
-      ],
-      idealFor: "Groups with care teams in place who want structure, oversight, and scale.",
+      description:
+        "Pricing is structured so the bulk of your spend scales with enrolled panels and program complexity—not with ambitious but unused seat counts. There is typically a one-time implementation layer (EHR build, playbook design, training), then ongoing service fees that track with active CCM/RPM and related program enrollment.",
     },
     {
-      title: "Build‑Operate‑Transfer",
-      subtitle: "Stand‑up, stabilize, then hand off",
+      title: "A revenue + quality engine, not just an expense line",
       Icon: WrenchIcon,
-      bullets: [
-        "Blueprint → pilot → scale; we operate to steady state before transition.",
-        "Policy bundle, documentation library, reporting pack, and handover plan.",
-        "Option to keep LogicHM for QA, analytics, and escalation protocols.",
-      ],
-      idealFor: "Systems targeting long‑term internal ownership with a lower‑risk path to launch.",
+      description:
+        "LOGIC is designed to be a revenue + quality engine: recurring, defensible care-management revenue per enrolled patient, plus measurable improvements in quality measures and avoidable utilization. We use conservative CCM/RPM ROI ranges (for example, illustrative net revenue of roughly $40–$150 per enrolled patient per month depending on payer mix, program mix, and engagement) when modeling with your finance team—not best-case scenarios.",
     },
   ];
 
   const includes = [
-    { label: "Compliance‑first design (HIPAA, SOC 2 practices, audit‑ready docs)", Icon: ShieldIcon },
-    { label: "EHR connection patterns and documentation templates", Icon: LinkIcon },
-    { label: "Monthly production & outcomes views (board‑ready)", Icon: ChartIcon },
+    {
+      label: "Centralized care-management team across your sites",
+      description:
+        "Shared RNs, MAs, and navigators who handle outreach, monitoring, and documentation for CCM, RPM, and related programs across your practices—under your supervision, in your EHR. No need to build a care-management department location by location.",
+      Icon: UsersIcon,
+    },
+    {
+      label: "EHR workflows, templates, and time tracking",
+      description:
+        "We design and implement EHR-native note types, care-plan templates, time-tracking, and supervision workflows for CCM, RPM, G0511, BHI, and related programs. The goal: documentation that supports billing, quality reporting, and audits without forcing clinicians into a new portal.",
+      Icon: LinkIcon,
+    },
+    {
+      label: "Compliance-conscious operating model",
+      description:
+        "Our workflows are designed around CMS care-management frameworks and your CPOM, Stark/AKS, and FCA posture. Documentation patterns are built to support audit-ready 'evidence packs' for care-management claims, not just revenue cycle convenience.",
+      Icon: ShieldIcon,
+    },
+    {
+      label: "VBC and ACO scorecards built from your EHR",
+      description:
+        "We turn CCM/RPM and related program data into scorecards your VBC and finance teams can actually use—connecting enrollment and engagement to quality metrics, ED/admissions trends, and contract performance. No separate data wrangling required.",
+      Icon: ChartIcon,
+    },
   ];
 
   const segments = [
     {
-      heading: "For practices",
+      heading: "For MSOs and multi-site groups",
       points: [
-        "Primary care, cardiology, endocrinology, pulmonology, nephrology, and multi‑specialty.",
-        "Simple per‑enrolled‑patient commercial structures with volume tiering.",
-        "Programs commonly paired: CCM + RPM; AWV + wellness; BHI where indicated.",
+        "Standardized operating model across 5–50+ practices without building care-management departments site by site.",
+        "Shared-service economics that scale with enrolled panels, not fixed headcount per location.",
+        "VBC and ACO scorecards that tie care-management activity to quality, utilization, and contract performance.",
       ],
     },
     {
-      heading: "For small hospitals",
+      heading: "For small hospitals and rural RHCs/FQHCs",
       points: [
-        "Hospital‑based clinics and service lines (e.g., cardiometabolic, pulmonary, post‑discharge).",
-        "Central monitoring and navigator coverage with clear handoffs to inpatient/outpatient teams.",
-        "Governance model + QA + reporting pack suitable for leadership and compliance review.",
+        "Low fixed-cost path into CCM, RPM, G0511, and related programs without hiring full-time care coordinators.",
+        "EHR-native workflows that fit into existing clinical and billing patterns—no separate portal or reporting system.",
+        "Conservative ROI modeling and phased rollout designed for thin margins and capital constraints.",
       ],
     },
   ];
@@ -129,48 +135,72 @@ export default function PricingPage() {
       <section className="bg-gradient-to-b from-primary-50 to-white py-14 md:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
-              Pricing & Commercial Models
+            <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+              Pricing built for thin margins and real risk
             </h1>
-            <p className="mt-4 text-lg text-neutral-700">
-              Choose how you want to run your programs—full‑service, co‑managed, or build‑operate‑transfer.
-              We&apos;ll map your panel, payer mix, and goals to the right structure.
+            <p className="mt-3 max-w-2xl text-sm text-neutral-700 sm:text-base">
+              LOGIC packages CCM, RPM, and related care-management as a centralized service inside your EHR—designed for MSOs, IPAs,
+              small hospitals, and rural RHCs/FQHCs that can&apos;t afford to hire a full care-management department or gamble on
+              unproven pilots. Our economics are built around the same reality you live in: reimbursement pressure, staffing
+              constraints, and value-based risk.
+            </p>
+            <p className="mt-2 max-w-2xl text-xs text-neutral-600 sm:text-sm">
+              Instead of big fixed costs or per-seat software licenses, we give you a low-friction way to turn CCM/RPM and related
+              programs into a revenue + quality engine—with fees tied to actual enrolled panels and clearly documented work.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Models */}
+      {/* How our pricing works */}
       <section className="bg-white py-12 md:py-16">
         <Container>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
-            {models.map((m) => (
-              <article key={m.title} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
-                <m.Icon className="h-6 w-6 text-primary-600" aria-hidden />
-                <h2 className="mt-3 text-lg font-semibold text-neutral-900">{m.title}</h2>
-                <p className="text-sm text-neutral-600">{m.subtitle}</p>
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-800">
-                  {m.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-xs text-neutral-500">{m.idealFor}</p>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
+              How our pricing works
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm text-neutral-700">
+              We price like an MSO and rural operator would design it: minimal fixed cost, economics that scale with enrollment and
+              program mix, and clear expectations about what you get in return. The goal is a low-risk, high-return path into
+              value-based care, not a long-term bet on internal FTEs and custom build-outs.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+            {pricingPrinciples.map((p) => (
+              <article key={p.title} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+                <p.Icon className="h-6 w-6 text-primary-600" aria-hidden />
+                <h3 className="mt-3 text-sm font-semibold text-neutral-900">{p.title}</h3>
+                <p className="mt-1 text-xs text-neutral-700">{p.description}</p>
               </article>
             ))}
           </div>
 
-          {/* What's included */}
-          <div className="mx-auto mt-10 max-w-3xl text-center">
-            <h3 className="text-2xl font-semibold text-neutral-900 md:text-3xl">What&apos;s included</h3>
-            <p className="mt-3 text-sm text-neutral-700">
-              Regardless of model, programs are built to be compliant, measurable, and reviewable.
+          <p className="mt-6 max-w-3xl text-[11px] leading-5 text-neutral-500">
+            Ranges are illustrative and not a guarantee of reimbursement or financial performance. Actual results depend on your
+            baseline performance, payer mix, engagement, coding, and evolving payer policies. We document assumptions explicitly
+            in any pro forma we share and track actuals against them over time.
+          </p>
+        </Container>
+      </section>
+
+      {/* What you're paying for */}
+      <section className="bg-neutral-50 py-12 md:py-16">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">What you&apos;re paying for</h2>
+            <p className="mt-2 max-w-3xl text-sm text-neutral-700">
+              You&apos;re not just buying staff hours. You&apos;re buying a standardized operating model that runs CCM, RPM, and related
+              programs inside your EHR with audit-ready documentation and VBC reporting baked in.
             </p>
           </div>
-          <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+
+          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {includes.map((i) => (
               <div key={i.label} className="rounded-xl border border-neutral-200 bg-white p-6">
                 <i.Icon className="h-6 w-6 text-primary-600" aria-hidden />
-                <p className="mt-2 text-sm text-neutral-800">{i.label}</p>
+                <h3 className="mt-2 text-sm font-semibold text-neutral-900">{i.label}</h3>
+                <p className="mt-1 text-xs text-neutral-700">{i.description}</p>
               </div>
             ))}
           </div>
@@ -178,11 +208,11 @@ export default function PricingPage() {
       </section>
 
       {/* Segments */}
-      <section className="bg-neutral-50 py-12 md:py-16">
+      <section className="bg-white py-12 md:py-16">
         <Container>
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
             {segments.map((s) => (
-              <article key={s.heading} className="rounded-xl border border-neutral-200 bg-white p-6">
+              <article key={s.heading} className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
                 <h3 className="text-base font-semibold text-neutral-900">{s.heading}</h3>
                 <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-neutral-800">
                   {s.points.map((p) => (
@@ -196,9 +226,9 @@ export default function PricingPage() {
       </section>
 
       <CTA
-        headline="Want a tailored quote and ROI view?"
-        description="Share your panel size, payer mix, and program priorities. We&apos;ll map a commercial model and an outcomes/production view."
-        buttonText="Request pricing"
+        headline="See your pro forma before you commit"
+        description="Share your panel size, payer mix, and a sense of your current CCM/RPM activity, and we'll build a conservative model of what a LOGIC-run program could look like—month-by-month revenue, staffing avoided, and directional impact on quality and utilization. No obligation, no aggressive assumptions."
+        buttonText="See your ROI with LOGIC"
         buttonHref="/contact?topic=pricing"
         variant="primary"
       />
