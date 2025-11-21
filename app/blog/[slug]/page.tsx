@@ -7,47 +7,56 @@ import { PostCard } from "@/components/blog/PostCard";
 import { PostHeader } from "@/components/blog/PostHeader";
 import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
 import { Container } from "@/components/ui/Container";
-import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/mdx";
 
 export async function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+  const posts = await getAllPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return { title: "Post not found | Blog | LogicHM" };
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com';
 
   return {
-    title: `${post.title} | Blog | LogicHM`,
-    description: post.description || undefined,
+    title: `${post.frontmatter.title} | Blog | LogicHM`,
+    description: post.frontmatter.description || undefined,
     alternates: {
       canonical: `${baseUrl}/blog/${slug}`,
     },
     openGraph: {
-      images: [post.image || '/og.png'],
+      images: [post.frontmatter.image || '/og.png'],
     },
   };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return notFound();
 
-  const related = getRelatedPosts(slug, 3);
+  const related = await getRelatedPosts(slug, 3);
+
+  // Create a BlogPost-compatible object for PostHeader
+  const postForHeader = {
+    slug,
+    ...post.frontmatter,
+    content: "",
+    readingTime: post.readingTime,
+  };
 
   return (
     <div className="bg-white">
       <ArticleJsonLd
-        url={`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'}/blog/${post.slug}`}
-        title={post.title}
-        description={post.description}
-        image={post.image}
-        datePublished={post.publishedAt}
-        authorName={post.author}
+        url={`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://logichm.com'}/blog/${slug}`}
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        image={post.frontmatter.image}
+        datePublished={post.frontmatter.publishedAt}
+        authorName={post.frontmatter.author}
       />
       <Container className="py-12 md:py-16 lg:py-20">
         <Link href="/blog" className="text-sm font-medium text-primary-700 hover:underline">
@@ -55,8 +64,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </Link>
 
         <article className="mx-auto mt-6 max-w-3xl">
-          <PostHeader post={post} />
-          <PostBody content={post.content} />
+          <PostHeader post={postForHeader} />
+          <PostBody source={post.content} />
         </article>
 
         {related.length > 0 && (

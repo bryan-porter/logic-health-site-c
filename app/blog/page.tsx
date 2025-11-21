@@ -1,7 +1,7 @@
 // app/blog/page.tsx
-import { PostList } from "@/components/blog/PostList";
 import { Container } from "@/components/ui/Container";
-import { getAllPosts } from "@/lib/blog";
+import { PostList } from "@/components/blog/PostList";
+import { getAllPosts } from "@/lib/mdx";
 
 export const metadata = {
   title: "Blog | LogicHM",
@@ -9,8 +9,8 @@ export const metadata = {
     "Insights on CCM, RPM, AWV, BHI, PCM, TCM, CHI/PIN, RTM and TEAMs—covering workflows, billing, compliance, and equity-by-design.",
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="bg-white">
