@@ -4,6 +4,12 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { CTA } from "@/components/sections/CTA";
 import ChecklistCTA from "@/components/ChecklistCTA";
 import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
+import Link from "next/link";
+import {
+  HeartPulse,
+  Smartphone,
+  LogOut,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: 'Chronic Care Management (CCM)',
@@ -37,6 +43,27 @@ function ServiceJsonLd() {
 }
 
 export default function CCMPage() {
+  const related = [
+    {
+      title: "Remote Patient Monitoring (RPM)",
+      description: "Connected devices + nurse-led monitoring for early risk detection.",
+      href: "/solutions/rpm",
+      icon: HeartPulse,
+    },
+    {
+      title: "Remote Therapeutic Monitoring (RTM)",
+      description: "Behavioral & therapy adherence signals beyond vitals.",
+      href: "/contact?program=rtm",
+      icon: Smartphone,
+    },
+    {
+      title: "Transitional Care Management (TCM)",
+      description: "Post‑discharge coordination to prevent readmissions.",
+      href: "/contact?program=tcm",
+      icon: LogOut,
+    },
+  ];
+
   return (
     <>
       <PageHeader
@@ -266,6 +293,43 @@ export default function CCMPage() {
         <Container>
           <ChecklistCTA variant="banner" utm="solutions" />
           <ReimbursementDisclaimer />
+        </Container>
+      </section>
+
+      {/* Related programs */}
+      <section className="bg-neutral-50 py-16 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-semibold text-neutral-900 md:text-3xl">
+              Related programs
+            </h2>
+            <p className="mt-3 text-neutral-700">
+              CCM works best when it is part of a broader care-management engine. LOGIC connects CCM with RPM, RTM, TCM, PCM, BHI, and care-gap analytics so high-risk patients move smoothly between programs instead of falling into silos.
+            </p>
+          </div>
+          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((program) => {
+              const Icon = program.icon;
+              return (
+                <Link
+                  key={program.title}
+                  href={program.href}
+                  className="block h-full rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <h3 className="text-base font-semibold text-neutral-900">{program.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-neutral-600">{program.description}</p>
+                  <div className="mt-4 text-sm font-medium text-primary-600">
+                    Learn more →
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </Container>
       </section>
 
