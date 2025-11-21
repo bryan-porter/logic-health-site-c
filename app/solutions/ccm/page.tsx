@@ -45,7 +45,7 @@ export default function CCMPage() {
       />
 
       {/* Pays and stands up to audit */}
-      <section className="bg-neutral-50 py-16 md:py-24">
+      <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <Container>
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
