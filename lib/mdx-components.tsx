@@ -2,12 +2,14 @@
 import type { MDXComponents } from "mdx/types";
 
 import ChecklistCTA from "@/components/ChecklistCTA";
+import { CTA } from "@/components/sections/CTA";
 
 // Define which components are available in MDX files
 export function getMDXComponents(): MDXComponents {
   return {
     // Custom components - these can be used in MDX without importing
     ChecklistCTA,
+    CTA,
 
     // Override default HTML elements with styled versions
     h1: ({ children, ...props }) => (
