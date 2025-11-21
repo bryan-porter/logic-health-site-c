@@ -126,11 +126,11 @@ export default function CCMPage() {
                 </li>
               </ul>
             </div>
-          </div>
 
-          <p className="mt-8 text-sm text-neutral-600 max-w-4xl">
-            Medicare policy and payment rates vary by locality and change over time. Examples on this site are illustrative only and do not guarantee coverage or payment. Confirm payer rules and clinical eligibility before billing.
-          </p>
+            <p className="mt-8 text-sm text-neutral-600 md:col-span-2">
+              Medicare policy and payment rates vary by locality and change over time. Examples on this site are illustrative only and do not guarantee coverage or payment. Confirm payer rules and clinical eligibility before billing.
+            </p>
+          </div>
         </Container>
       </section>
 
