@@ -34,10 +34,6 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Checklist (PDF)",
-    href: "/api/checklist/pdf?utm_source=nav&utm_medium=link&utm_campaign=ccm_rpm_checklist",
-  },
-  {
     label: "About",
     href: "/about",
   },
