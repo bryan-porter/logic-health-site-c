@@ -1,12 +1,13 @@
 // app/blog/[slug]/page.tsx
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+import { PostBody } from "@/components/blog/PostBody";
+import { PostCard } from "@/components/blog/PostCard";
+import { PostHeader } from "@/components/blog/PostHeader";
 import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
-import { PostHeader } from "@/components/blog/PostHeader";
-import { PostBody } from "@/components/blog/PostBody";
-import { PostCard } from "@/components/blog/PostCard";
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));

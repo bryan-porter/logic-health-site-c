@@ -1,13 +1,14 @@
 // components/sections/FeatureTiles.tsx
 "use client";
 
-import { Container } from "@/components/ui/Container";
 import {
   ShieldCheck, // Compliance
   LineChart,   // Outcomes/ROI
   Users,       // Team-based care
   HeartPulse,  // Clinical programs
 } from "lucide-react";
+
+import { Container } from "@/components/ui/Container";
 
 type Feature = {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;

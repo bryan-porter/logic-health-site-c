@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
 import { CTA } from "@/components/sections/CTA";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pricing & Commercial Models | Logic Health Management",
@@ -133,7 +134,7 @@ export default function PricingPage() {
             </h1>
             <p className="mt-4 text-lg text-neutral-700">
               Choose how you want to run your programs—full‑service, co‑managed, or build‑operate‑transfer.
-              We'll map your panel, payer mix, and goals to the right structure.
+              We&apos;ll map your panel, payer mix, and goals to the right structure.
             </p>
           </div>
         </Container>
@@ -160,7 +161,7 @@ export default function PricingPage() {
 
           {/* What's included */}
           <div className="mx-auto mt-10 max-w-3xl text-center">
-            <h3 className="text-2xl font-semibold text-neutral-900 md:text-3xl">What's included</h3>
+            <h3 className="text-2xl font-semibold text-neutral-900 md:text-3xl">What&apos;s included</h3>
             <p className="mt-3 text-sm text-neutral-700">
               Regardless of model, programs are built to be compliant, measurable, and reviewable.
             </p>
@@ -196,7 +197,7 @@ export default function PricingPage() {
 
       <CTA
         headline="Want a tailored quote and ROI view?"
-        description="Share your panel size, payer mix, and program priorities. We'll map a commercial model and an outcomes/production view."
+        description="Share your panel size, payer mix, and program priorities. We&apos;ll map a commercial model and an outcomes/production view."
         buttonText="Request pricing"
         buttonHref="/contact?topic=pricing"
         variant="primary"

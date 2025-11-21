@@ -1,8 +1,3 @@
-import * as React from "react";
-import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { Hero } from "@/components/sections/Hero";
-import { Button } from "@/components/ui/Button";
 import {
   Activity,
   Stethoscope,
@@ -13,6 +8,13 @@ import {
   BarChart3,
   HeartPulse,
 } from "lucide-react";
+import * as React from "react";
+
+import { Hero } from "@/components/sections/Hero";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Why Outsource CCM/RPM',

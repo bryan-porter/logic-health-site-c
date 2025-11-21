@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
+
 import { CTA } from "@/components/sections/CTA";
+import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Results & Outcomes | Logic Health Management",
@@ -314,7 +316,7 @@ export default function ResultsPage() {
 
       <CTA
         headline="Want your own outcome model?"
-        description="We'll map your population and payer mix, then share a transparent, CFO‑ready projection with milestones."
+        description="We&apos;ll map your population and payer mix, then share a transparent, CFO‑ready projection with milestones."
         buttonText="Request a custom ROI analysis"
         buttonHref="/contact?topic=roi-model"
         variant="primary"

@@ -1,8 +1,10 @@
 // lib/blog.ts
 import fs from "fs";
 import path from "path";
+
 import matter from "gray-matter";
 import readingTime from "reading-time";
+
 import { BlogPost } from "./types";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");

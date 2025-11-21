@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { Check } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 export interface ChecklistItem {
   text: string;

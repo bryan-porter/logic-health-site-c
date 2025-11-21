@@ -1,15 +1,18 @@
-import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { CTA } from "@/components/sections/CTA";
-import ChecklistCTA from "@/components/ChecklistCTA";
-import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
-import Link from "next/link";
 import {
   HeartPulse,
   Smartphone,
   LogOut,
 } from "lucide-react";
+import Link from "next/link";
+
+import ChecklistCTA from "@/components/ChecklistCTA";
+import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
+import { CTA } from "@/components/sections/CTA";
+import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+
+import type { Metadata } from "next";
+
 
 export const metadata: Metadata = {
   title: 'Chronic Care Management (CCM)',

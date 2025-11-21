@@ -1,5 +1,6 @@
 // app/about/page.tsx
 import Link from "next/link";
+
 import { Container } from "@/components/ui/Container";
 
 export const metadata = {
@@ -168,7 +169,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="text-lg font-semibold">Ready to co‑design your program?</h3>
                 <p className="mt-1 text-sm opacity-90">
-                  We'll tailor playbooks to your panel, staffing, and reimbursement model.
+                  We&apos;ll tailor playbooks to your panel, staffing, and reimbursement model.
                 </p>
               </div>
               <Link

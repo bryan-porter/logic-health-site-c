@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import { ProgramTiles } from "@/components/sections/ProgramTiles";
 import { HowItWorksTiles } from "@/components/sections/HowItWorksTiles";
+import { ProgramTiles } from "@/components/sections/ProgramTiles";
 import { Container } from "@/components/ui/Container";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'How It Works',
@@ -59,7 +60,7 @@ export default function HowItWorksPage() {
                 Rural blueprint for RHCs and FQHCs
               </h3>
               <p className="mt-2 text-sm text-neutral-700">
-                Rural clinics run on thin staff and tight budgets. We design workflows around G0511-driven revenue, low bandwidth, and transportation barriers—shared care teams, phone-first outreach, and simple device strategies that don't require a big capital spend.
+                Rural clinics run on thin staff and tight budgets. We design workflows around G0511-driven revenue, low bandwidth, and transportation barriers—shared care teams, phone-first outreach, and simple device strategies that don&apos;t require a big capital spend.
               </p>
             </div>
 

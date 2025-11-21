@@ -1,8 +1,8 @@
-import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceCard";
-import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
-import { getAllPosts } from "@/lib/blog";
 import { PostCard } from "@/components/blog/PostCard";
 import ChecklistCTA from "@/components/ChecklistCTA";
+import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
+import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceCard";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata = {
   title: "Resources | Logic Health Management",
@@ -117,7 +117,7 @@ export default function ResourcesPage() {
         <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
           <h2 className="text-lg font-semibold text-neutral-900">Want a tailored pack?</h2>
           <p className="mt-2 text-sm text-neutral-700">
-            We'll assemble a specialty‑specific starter bundle (guides, templates, and calculators) for your clinic or
+            We&apos;ll assemble a specialty‑specific starter bundle (guides, templates, and calculators) for your clinic or
             small hospital.
           </p>
           <div className="mt-4">

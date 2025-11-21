@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV_ITEMS } from "@/lib/constants";
 import { useState } from "react";
+
+import { NAV_ITEMS } from "@/lib/constants";
 
 export function Header() {
   const pathname = usePathname();

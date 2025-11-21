@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
+
 // NOTE: Google Fonts blocked in build environment (403) - using system fonts
 // import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import OrganizationSchema from "@/components/OrganizationSchema";
 
 export const metadata: Metadata = {

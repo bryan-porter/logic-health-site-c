@@ -1,12 +1,12 @@
 declare global {
   interface Window {
-    dataLayer?: any[];
-    gtag?: (...args: any[]) => void;
-    plausible?: (event: string, opts?: any) => void;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    plausible?: (event: string, opts?: Record<string, unknown>) => void;
   }
 }
 
-export function trackEvent(name: string, params: Record<string, any> = {}) {
+export function trackEvent(name: string, params: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
   try {
     if (typeof window.gtag === 'function') {

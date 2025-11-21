@@ -1,7 +1,7 @@
 // app/blog/page.tsx
+import { PostList } from "@/components/blog/PostList";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts } from "@/lib/blog";
-import { PostList } from "@/components/blog/PostList";
 
 export const metadata = {
   title: "Blog | LogicHM",
