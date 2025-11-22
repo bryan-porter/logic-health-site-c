@@ -50,12 +50,12 @@ export default function Home() {
           "Compliance built in with HIPAA- and SOC 2-aligned controls and CPOM-sensitive role design.",
         ]}
         primaryCTA={{
-          text: "Schedule a 15-Minute Strategy Call",
-          href: "/contact",
+          text: "See MSO/IPA ROI",
+          href: "/contact?topic=mso-roi",
         }}
         secondaryCTA={{
-          text: "Request Your Personalized ROI Analysis",
-          href: "/contact",
+          text: "RHC/FQHC G0511 game plan",
+          href: "/contact?topic=rhc-g0511",
         }}
       />
 
@@ -254,8 +254,8 @@ export default function Home() {
       <CTA
         headline="Ready to launch CCM & RPM in the next 30 days?"
         description="Whether you&apos;re starting fresh or replacing an underperforming vendor, LogicHM stands up a compliant, sustainable program with minimal staff burden."
-        buttonText="Schedule a 15-Minute Strategy Call"
-        buttonHref="/contact"
+        buttonText="See MSO/IPA ROI"
+        buttonHref="/contact?topic=mso-roi"
         variant="primary"
       />
     </>

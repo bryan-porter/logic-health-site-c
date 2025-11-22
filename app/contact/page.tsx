@@ -7,24 +7,45 @@ export const metadata = {
     "Talk to Logic Health Management about CCM, RPM, and team-based care programs for practices and small hospitals.",
 };
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams?: Promise<{ topic?: string }>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const params = await searchParams;
+  const topicKey = (params?.topic ?? "").toLowerCase();
+
+  // Derive hero copy based on topic
+  let heroHeadline = "Let's operationalize patient‑impact at your organization";
+  let heroSubcopy = "Share a bit about your environment—practice or small hospital—and our team will propose an audit‑ready, outcomes‑aligned path to launch.";
+
+  if (topicKey === "mso-roi") {
+    heroHeadline = "See what CCM/RPM ROI looks like for your MSO or IPA";
+    heroSubcopy = "Share a bit about your MSO or IPA—panel size, payer mix, sites—and we'll build a conservative, month-by-month pro forma showing illustrative revenue, staffing avoided, and quality impact.";
+  } else if (topicKey === "rhc-g0511") {
+    heroHeadline = "Build your RHC/FQHC G0511 game plan";
+    heroSubcopy = "Tell us about your RHC/FQHC sites, visit volume, and panel demographics, and we'll design a compliant, audit-ready care-management workflow around G0511 and your existing EHR.";
+  } else if (topicKey === "pricing") {
+    heroHeadline = "Get transparent pricing for your organization";
+    heroSubcopy = "Share your panel size, payer mix, and care-management goals, and we'll provide a conservative pricing model with no hidden costs or aggressive assumptions.";
+  }
+
   return (
     <section className="bg-white py-16 md:py-24">
       <Container>
         {/* Hero */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 id="contact-title" className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-            Let&apos;s operationalize patient‑impact at your organization
+            {heroHeadline}
           </h1>
           <p className="mt-4 text-lg text-neutral-700">
-            Share a bit about your environment—practice or small hospital—and our team will propose an audit‑ready,
-            outcomes‑aligned path to launch.
+            {heroSubcopy}
           </p>
         </div>
 
         {/* Form */}
         <div className="mx-auto mt-10 max-w-3xl">
-          <ContactForm />
+          <ContactForm defaultTopic={topicKey} />
         </div>
 
         {/* Assurances */}
