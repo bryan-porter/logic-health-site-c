@@ -58,6 +58,8 @@ export const FOOTER_LINKS = {
     { label: "Blog", href: "/blog" },
     { label: "Quick Answers", href: "/quick-answers" },
     { label: "CCM/RPM Readiness Checklist (PDF)", href: "/api/checklist/pdf?utm_source=footer&utm_medium=link&utm_campaign=ccm_rpm_checklist" },
+    { label: "Medicare Billing Codes: CCM & RPM", href: "/blog/medicare-billing-codes-ccm-rpm" },
+    { label: "Remote Patient Monitoring Best Practices", href: "/blog/remote-patient-monitoring-best-practices" },
   ],
 };
 
