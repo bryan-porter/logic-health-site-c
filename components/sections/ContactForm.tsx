@@ -28,7 +28,11 @@ const ALL_PROGRAMS: Program[] = [
   "TEAMs",
 ];
 
-export default function ContactForm() {
+type ContactFormProps = {
+  defaultTopic?: string;
+};
+
+export default function ContactForm({ defaultTopic }: ContactFormProps) {
   const [programs, setPrograms] = React.useState<Program[]>([]);
   const [downloading, setDownloading] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
@@ -91,6 +95,7 @@ export default function ContactForm() {
       role: data.get("role"),
       orgType: data.get("orgType"),
       ehr: data.get("ehr"),
+      topic: data.get("topic"),
       programs,
       message: data.get("message"),
       consent: data.get("consent") === "on",
@@ -210,6 +215,25 @@ export default function ContactForm() {
             className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="topic" className="text-sm font-medium text-neutral-900">
+          Reason for contact
+        </label>
+        <select
+          id="topic"
+          name="topic"
+          className="mt-2 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
+          defaultValue={defaultTopic ?? ""}
+        >
+          <option value="">General inquiry</option>
+          <option value="mso-roi">MSO / IPA ROI model</option>
+          <option value="rhc-g0511">RHC / FQHC G0511 game plan</option>
+          <option value="pricing">Pricing inquiry</option>
+          <option value="demo">Request demo</option>
+          <option value="partnership">Partnership opportunity</option>
+        </select>
       </div>
 
       <div>

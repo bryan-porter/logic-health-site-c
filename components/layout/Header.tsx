@@ -36,13 +36,21 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop CTA Button */}
-          <Link
-            href="/contact"
-            className="hidden lg:block rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
-          >
-            Get Started
-          </Link>
+          {/* Desktop CTA Buttons - Segmented */}
+          <div className="hidden lg:flex lg:items-center lg:gap-2">
+            <Link
+              href="/contact?topic=mso-roi"
+              className="rounded-md border border-primary-600 bg-white px-3 py-1.5 text-sm font-medium text-primary-600 transition-colors hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            >
+              See MSO/IPA ROI
+            </Link>
+            <Link
+              href="/contact?topic=rhc-g0511"
+              className="rounded-md bg-primary-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            >
+              RHC/FQHC G0511 game plan
+            </Link>
+          </div>
 
           {/* Mobile menu button */}
           <button
@@ -86,13 +94,22 @@ export function Header() {
                   </Link>
                 );
               })}
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 mx-3 rounded-md bg-primary-600 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary-700"
-              >
-                Get Started
-              </Link>
+              <div className="mt-4 mx-3 space-y-2">
+                <Link
+                  href="/contact?topic=mso-roi"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-md border border-primary-600 bg-white px-4 py-2 text-center text-sm font-medium text-primary-600 transition-colors hover:bg-primary-50"
+                >
+                  See MSO/IPA ROI
+                </Link>
+                <Link
+                  href="/contact?topic=rhc-g0511"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block rounded-md bg-primary-600 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary-700"
+                >
+                  RHC/FQHC G0511 game plan
+                </Link>
+              </div>
             </nav>
           </div>
         )}

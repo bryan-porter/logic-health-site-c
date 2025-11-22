@@ -228,8 +228,8 @@ export default function PricingPage() {
       <CTA
         headline="See your pro forma before you commit"
         description="Share your panel size, payer mix, and a sense of your current CCM/RPM activity, and we'll build a conservative model of what a LOGIC-run program could look like—month-by-month revenue, staffing avoided, and directional impact on quality and utilization. No obligation, no aggressive assumptions."
-        buttonText="See your ROI with LOGIC"
-        buttonHref="/contact?topic=pricing"
+        buttonText="See MSO/IPA ROI"
+        buttonHref="/contact?topic=mso-roi"
         variant="primary"
       />
 
