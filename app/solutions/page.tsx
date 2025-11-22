@@ -22,7 +22,7 @@ export default function SolutionsIndexPage() {
       <KPIStrip />
       <ProgramsGrid />
       <CTA
-        headline="Design a small‑hospital program that works on day one"
+        headline="Design a program that works on day one"
         description="We&apos;ll map staffing, supervision, and escalation logic to your environment and EHR."
         buttonText="Schedule a 15‑minute strategy call"
         buttonHref="/contact"
