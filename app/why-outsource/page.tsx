@@ -132,8 +132,8 @@ export default function WhyOutsourcePage() {
       <Hero
         headline="Why outsource care management & remote monitoring?"
         subheadline="Independent groups, MSOs, small hospitals, and rural RHCs/FQHCs are already stretched. LogicHM gives you a centralized care-management team that runs CCM, RPM, and related programs inside your EHR—growing recurring revenue, supporting value-based contracts, and easing the load on clinicians without adding headcount."
-        primaryCTA={{ text: "Talk to a program architect", href: "/contact" }}
-        secondaryCTA={{ text: "See the operating model", href: "/how-it-works" }}
+        primaryCTA={{ text: "Talk to a Program Architect", href: "/contact" }}
+        secondaryCTA={{ text: "See the Operating Model", href: "/how-it-works" }}
       />
 
       {/* Reasons grid */}
@@ -204,8 +204,8 @@ export default function WhyOutsourcePage() {
           ))}
         </div>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button href="/how-it-works">See how it runs</Button>
-          <Button href="/pricing" variant="secondary">Estimate revenue</Button>
+          <Button href="/how-it-works">See How it Runs</Button>
+          <Button href="/pricing" variant="secondary">Estimate Revenue</Button>
         </div>
       </Container>
 

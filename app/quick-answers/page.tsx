@@ -92,29 +92,31 @@ export default function QuickAnswersPage() {
   return (
     <>
       <FAQJsonLd faqs={faqs} />
-      <section className="bg-white py-16 md:py-24">
+      <section className="border-t border-neutral-200 bg-neutral-50 py-12 md:py-16">
         <Container>
-          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-            Quick Answers
-          </h1>
-          <p className="mt-4 max-w-3xl text-neutral-700">
-            Short answers to common questions about CCM, RPM, care-management enrollment, supervision and CPOM, RHC/FQHC billing,
-            time separation, EHR access, and how LOGIC runs programs inside your environment.
-          </p>
-          <div className="mt-4 flex gap-4 text-sm font-medium text-primary-700 underline underline-offset-4">
-            <Link href="/solutions/ccm">Learn about CCM</Link>
-            <Link href="/solutions/rpm">Learn about RPM</Link>
-          </div>
+          <div className="mx-auto max-w-3xl">
+            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+              Quick Answers
+            </h1>
+            <p className="mt-2 text-sm text-neutral-700">
+              Short answers to common questions about CCM, RPM, care-management enrollment, supervision and CPOM, RHC/FQHC billing,
+              time separation, EHR access, and how LOGIC runs programs inside your environment.
+            </p>
+            <div className="mt-4 flex gap-4 text-sm font-medium text-primary-700 underline underline-offset-4">
+              <Link href="/solutions/ccm">Learn about CCM</Link>
+              <Link href="/solutions/rpm">Learn about RPM</Link>
+            </div>
 
-          <div className="mt-10 divide-y divide-neutral-200 rounded-lg border border-neutral-200">
-            {faqs.map((item, idx) => (
-              <div key={item.q} className="p-5 md:p-6">
-                <h2 className="text-lg font-semibold text-neutral-900">
-                  {idx + 1}. {item.q}
-                </h2>
-                <p className="mt-2 text-neutral-700">{item.a}</p>
-              </div>
-            ))}
+            <div className="mt-8 space-y-4">
+              {faqs.map((item) => (
+                <details key={item.q} className="group rounded-lg border border-neutral-200 bg-white p-4">
+                  <summary className="flex cursor-pointer items-center justify-between text-sm font-medium text-neutral-900">
+                    {item.q}
+                  </summary>
+                  <p className="mt-2 text-sm text-neutral-700">{item.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
