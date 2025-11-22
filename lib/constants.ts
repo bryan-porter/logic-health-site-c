@@ -43,18 +43,20 @@ export const FOOTER_LINKS = {
   solutions: [
     { label: "Chronic Care Management", href: "/solutions/ccm" },
     { label: "Remote Patient Monitoring", href: "/solutions/rpm" },
-    { label: "Why Outsource", href: "/why-outsource" },
+    { label: "Why Outsource Care-Management", href: "/why-outsource" },
+    { label: "How It Works", href: "/how-it-works" },
   ],
   company: [
     { label: "About", href: "/about" },
     { label: "Results", href: "/results" },
     { label: "Pricing", href: "/pricing" },
+    { label: "Careers", href: "/careers" },
+    { label: "Compliance", href: "/compliance" },
     { label: "Contact", href: "/contact" },
   ],
   resources: [
     { label: "Blog", href: "/blog" },
-    { label: "How It Works", href: "/how-it-works" },
-    { label: "Compliance", href: "/compliance" },
+    { label: "Quick Answers", href: "/quick-answers" },
     { label: "CCM/RPM Readiness Checklist (PDF)", href: "/api/checklist/pdf?utm_source=footer&utm_medium=link&utm_campaign=ccm_rpm_checklist" },
   ],
 };

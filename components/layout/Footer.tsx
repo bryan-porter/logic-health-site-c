@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold text-primary-600">LogicHM</h3>
             <p className="mt-2 text-sm text-neutral-600">
-              Turnkey CCM & RPM for physician practices
+              Turnkey CCM &amp; RPM inside your EHR
             </p>
           </div>
           <div>
