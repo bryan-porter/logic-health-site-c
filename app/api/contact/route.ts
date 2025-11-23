@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from 'nodemailer';
 
 // In-memory rate limit: 20 requests per 10 minutes per IP
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -66,18 +67,20 @@ export async function POST(req: Request) {
     );
   }
 
-  // Email delivery
-  const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
-  const toEmail = process.env.CONTACT_TO_EMAIL || "hello@logichm.com";
+  // Environment variable guards
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 
-  if (!apiKey) {
-    // Fail-open in dev: accept but don't send
+  if (!gmailUser || !gmailAppPassword) {
+    console.error('[Contact API] Missing required environment variables: GMAIL_USER or GMAIL_APP_PASSWORD');
     return NextResponse.json(
-      { ok: true, note: "Email provider not configured" },
-      { status: 202 }
+      { ok: false, error: 'Email service is not configured. Please contact support.' },
+      { status: 500 }
     );
   }
+
+  // After validation, we know gmailUser is defined
+  const contactToEmail = process.env.CONTACT_TO_EMAIL || gmailUser;
 
   try {
     const emailBody = `
@@ -90,34 +93,38 @@ Topic: ${form.topic || "N/A"}
 
 Message:
 ${form.message || "N/A"}
+
+---
+Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}
     `.trim();
 
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
+    // Create nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailUser,
+        pass: gmailAppPassword,
       },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: toEmail,
-        subject: `Contact Form: ${form.topic || "New inquiry"}`,
-        text: emailBody,
-      }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Email delivery failed:", response.status);
-      return NextResponse.json(
-        { ok: false, error: "Failed to send message" },
-        { status: 500 }
-      );
-    }
+    // Send email
+    await transporter.sendMail({
+      from: gmailUser,
+      to: contactToEmail,
+      subject: `Contact Form: ${form.topic || "New inquiry"}`,
+      text: emailBody,
+      replyTo: String(form.email),
+    });
+
+    console.log('[Contact API] Message sent successfully:', {
+      name: form.name,
+      email: form.email,
+      topic: form.topic,
+    });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Email delivery error:", error instanceof Error ? error.message : "Unknown error");
+    console.error("[Contact API] Email delivery error:", error instanceof Error ? error.message : "Unknown error");
     return NextResponse.json(
       { ok: false, error: "Failed to send message" },
       { status: 500 }

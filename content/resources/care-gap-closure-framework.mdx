@@ -1,0 +1,225 @@
+---
+title: "Care-Gap Closure Framework"
+description: "A practical template for embedding SDOH screening, care-gap detection, and referral loops into your CCM/RPM workflows so they show up in VBC and ACO metrics."
+publishedAt: "2025-11-21"
+author: "Logic Health Management"
+category: "Templates & Frameworks"
+image: "/images/resources/care-gap-closure-framework.jpg"
+---
+
+import ChecklistCTA from "@/components/ChecklistCTA";
+
+**Care-Gap Closure Framework**
+*A template for MSO, group, and rural leaders who want their care‑management work to actually move value‑based scores.*
+
+If you're running CCM, RPM, BHI, or TCM across multiple practices, you already know you have care gaps and SDOH issues sitting in the panel. Work is happening between visits, but it's hard to show how that work moves your value‑based contracts, ACO performance, or quality scores. And because each site tends to invent its own way of defining and closing gaps, you end up with ten different versions of "good" and no clean, network‑level story.
+
+This framework gives you a way to standardize three things that sit underneath almost every care‑management program:
+
+- how you **map SDOH to Z‑codes**,
+- how you **define and detect care gaps**, and
+- how you **run and track community referrals**.
+
+The goal is simple: every CCM/RPM touch should have a clear line to revenue, quality, and equity—and be easy to defend in an audit.
+
+<ChecklistCTA variant="banner" />
+
+---
+
+## 1. Design principles
+
+Before you adjust templates or build reports, it's worth aligning on how you actually want a cross‑site care‑gap program to work.
+
+**EHR‑first, not spreadsheet‑first.**
+The source of truth for gaps and SDOH needs to be your EHR or the data layer feeding it—not ad‑hoc Excel lists or vendor portals that clinicians never see. Care‑managers can absolutely use supporting tools, but the story a regulator, payer, or board hears should be consistent with what's visible in the chart.
+
+**Care‑management‑led, provider‑aware.**
+Your centralized care‑management teams (internal, LOGIC, or a blend) should own the day‑to‑day work: screening, outreach, education, scheduling, and referral follow‑through. Providers set protocols, make decisions that require clinical judgment, and see a clear summary of what happened between visits. They shouldn't be asked to chase every open gap personally.
+
+**Standard definitions across sites.**
+An "open gap" or "positive SDOH screen" must mean the same thing in every practice, even if local community resources differ. The spec for "hypertension gap" or "AWV gap" should not change just because a patient is seen in Clinic A vs Clinic B.
+
+**Contract‑aligned, not vanity metrics.**
+Finally, the framework has to line up with where dollars and risk actually live. Focus on SDOH and care‑gaps that feed directly into your value‑based contracts, ACO agreements, MA stars, or internal quality incentives. Interesting but low‑impact metrics should be deprioritized until the basics are solid.
+
+---
+
+## 2. Z‑codes & SDOH mapping
+
+Most organizations agree SDOH matters; far fewer give care‑managers a simple way to capture it and turn it into codes and actions that show up in data.
+
+### 2.1 Choosing and standardizing SDOH domains
+
+A practical starting point is to anchor your SDOH work on a small set of domains that show up repeatedly in your population and research: food insecurity; housing and utilities; transportation barriers; ability to afford medications and basics; and the presence or absence of social support or caregivers. Almost every chronic‑disease or high‑utilization story contains some combination of these.
+
+Within your EHR, the goal is to:
+
+- pick one screening tool (or a very small set) that covers these domains,
+- ensure responses land in discrete fields or flowsheets rather than free text, and
+- maintain a short mapping document that tells staff which responses correspond to which ICD‑10 Z‑codes.
+
+That mapping doesn't need to be fancy; it just needs to be consistent and easy to grab during a call.
+
+### 2.2 Domain‑level examples care‑managers can use
+
+Below is one way to explain SDOH → Z‑code mapping to a care‑management team. You can adapt the exact phrasing and code choices to your contracts and coding guidance.
+
+**Food insecurity**
+You might frame the screen as: *"In the last 12 months, did you worry that food would run out before you had money to buy more?"* A "yes" answer points to a food insecurity problem, which is often captured with a code like `Z59.41 – Food insecurity`.
+
+**Housing**
+A simple question such as: *"Are you worried about losing your housing in the next 60 days?"* can surface both homelessness and housing instability. Depending on the specifics, this could map to codes like `Z59.0 – Homelessness` or `Z59.819 – Housing instability`.
+
+**Transportation**
+To uncover transportation barriers, care‑managers can ask: *"Has lack of reliable transportation kept you from medical appointments or daily needs?"* Affirmative responses suggest something like `Z59.82 – Transportation insecurity`.
+
+**Financial strain**
+When patients say it is hard to pay for medications or basic needs, they're signaling financial strain that can be coded with options such as `Z59.6 – Low income` or `Z59.7 – Insufficient social insurance and welfare support`, depending on your internal conventions.
+
+**Social support**
+Finally, a question like: *"Do you have someone you can count on if you become ill or need help with daily activities?"* helps identify social isolation and lack of support. Many organizations use codes like `Z60.2 – Problems related to living alone` along with other context‑specific social codes.
+
+The point is not to turn every call into a coding lecture. It's to give care‑managers a short, consistent "SDOH → Z‑code cheat sheet" and to embed that into your training, intranet, and, where possible, smart‑phrases or links inside the EHR.
+
+### 2.3 When care‑management should touch SDOH
+
+It usually doesn't make sense to screen at every contact. A practical pattern is to cover SDOH:
+
+- at enrollment into CCM/RPM/BHI,
+- at least once a year for actively managed patients, and
+- any time a care‑manager hears about a major life change such as job loss, a move, a new caregiver burden, or worsening financial stress.
+
+Your CCM/RPM/BHI note templates can then carry a compact SDOH summary: when the patient was last screened, which domains are currently issues, and whether Z‑codes were reviewed or updated during that interaction. Over time, this turns SDOH from a one‑time social work project into a piece of infrastructure that shows up every time you touch a high‑risk patient.
+
+---
+
+## 3. Care‑gap identification logic
+
+Once SDOH is on rails, the next step is to make "care gap" a precise concept instead of a loose label.
+
+### 3.1 Tie the framework to real contracts
+
+The starting point for most MSOs and health systems is a conversation between population health, quality, and finance: Which contracts—MA, ACO, commercial value‑based, Medicaid value‑based—represent meaningful upside or downside? And within those, which specific measures can realistically be moved by care‑management teams versus in‑clinic changes?
+
+Hypertension control, diabetes control, statin use in diabetes or ASCVD, major cancer screenings, AWVs, and depression screening are the usual suspects. You don't need to tackle everything at once; three to seven carefully chosen measures is enough to make a difference and keep the program focused.
+
+### 3.2 Turn "open gap" into a spec, not a feeling
+
+For each measure you decide to own, you'll want a one‑pager that spells out:
+
+- who is included (age range, required diagnoses, visit history),
+- who is excluded (hospice, pregnancy, ESRD, specific contract carve‑outs),
+- what makes the gap "open" (for example, no BP on file in the last year or last reading above a threshold), and
+- what counts as "closing" it and for how long.
+
+A hypertension example might say: adults 18–85 with hypertension and at least two qualifying visits in the last two years are included; patients in hospice or with ESRD are excluded; the gap is open if there's no blood pressure documented in the prior 12 months or if the most recent reading is 140/90 or higher; and the gap closes when a reading below that threshold is documented within the last year, with no more recent elevated reading.
+
+These definitions feed directly into your EHR registries and analytics, and they are what LOGIC's care‑management team uses when working lists.
+
+### 3.3 How care‑managers actually work those gaps
+
+With definitions in place and worklists generated, care‑management staff can open a patient's record and see at a glance which gaps are open—hypertension control, A1c, statin use, AWV, screenings, and so on—along with basic SDOH context.
+
+From there, their role is to use scripts and protocols to:
+
+- confirm medications, adherence, and barriers;
+- schedule appropriate labs, telehealth, or in‑person visits;
+- provide education and self‑management support; and
+- escalate to the PCP or specialist when orders or changes in therapy are needed.
+
+Your note templates should give them a clear place to record which gap they addressed, what actions were taken or planned, and whether they expect that gap to close soon or remain open due to patient preference or clinical nuance. That narrative—backed by structured fields—is what drives both your VBC scorecards and the CCM/RPM/TCM/BHI billing that sits under the program.
+
+---
+
+## 4. Community referral loops
+
+Many gaps and SDOH issues are not about clinical intent; they're about access and logistics. To deal with that, you need a simple, repeatable way to connect patients to community resources and then confirm whether anything actually happened.
+
+### 4.1 Make the resource landscape visible
+
+In most markets, there is no shortage of community organizations; what's missing is a way for frontline staff to see them in one place. A "good enough" directory might be a living document or lightweight tool that lists, by region, the main food resources, housing and utility assistance programs, transportation options, behavioral health and substance use services, and senior or caregiver support organizations.
+
+As long as it's current and easy to open during a call, it will do more work than any complex tool that no one can find.
+
+### 4.2 Bake referral fields into your notes
+
+Your CCM/BHI templates should make it natural to record referrals without a lot of extra typing. A basic pattern is to include a small block for community referrals that captures the resource name, why the referral was made, how the care‑manager or patient will contact the organization, and when a follow‑up check‑in is planned.
+
+Adding a few discrete fields—whether a referral was placed, whether it was accepted or declined, and whether services actually started—turns those referrals into something you can report on by site or cohort: not just "we gave them a phone number," but "we placed a housing referral, it was accepted, and services started last week."
+
+### 4.3 Close the loop as part of routine cadence
+
+Referral follow‑up doesn't need to be its own program; it can be folded into the normal CCM/RPM cadence. Two to four weeks after a referral, care‑managers can simply ask whether the patient was able to reach the resource, whether they were accepted, and whether the service helped or if a different option is needed.
+
+On the organizational side, occasional check‑ins with your highest‑volume partners—food banks, transportation agencies, social service agencies—can uncover patterns: Are you sending the right patients? Are there documentation issues making it hard to serve them? What would make the relationship easier on both sides?
+
+Over time, this is how referrals become measurable interventions rather than good intentions.
+
+---
+
+## 5. A framework you can copy into internal docs
+
+Many teams find it helpful to summarize the entire approach in a single implementation checklist. You can adapt something like the outline below for internal use:
+
+```text
+Care-Gap Closure Framework – Implementation Outline
+
+1. Governance & scope
+   - Confirm which VBC/ACO measures to prioritize first.
+   - Approve the SDOH domains and Z-code mapping.
+   - Clarify roles for clinical leadership, operations, RCM, and LOGIC.
+
+2. Data & definitions
+   - Write a short spec for each care gap (inclusion, exclusion, open/closed rules).
+   - Configure EHR/analytics to generate care-gap worklists by site and provider.
+   - Standardize SDOH screening tools and discrete documentation fields.
+
+3. Templates & workflows
+   - Update CCM/RPM/BHI note templates with SDOH and care-gap sections.
+   - Add a simple community referral block and follow-up fields.
+   - Embed quick-reference links for key measures and Z-codes.
+
+4. Execution & iteration
+   - Train LOGIC and/or internal teams on scripts, escalation rules, and documentation.
+   - Pilot with a limited set of practices or service lines.
+   - Review documentation and early VBC movement monthly; adjust as needed.
+
+5. Scale & optimize
+   - Expand to additional practices once patterns are stable.
+   - Tune gap logic and SDOH/referral workflows based on outcomes.
+   - Surface care-gap metrics on MSO/hospital executive dashboards.
+```
+
+The point is not to create bureaucracy; it's to give your teams a shared mental model for how care‑gap work should look and how LOGIC fits into it.
+
+---
+
+## 6. How LOGIC operationalizes this framework inside your EHR
+
+You can absolutely take this framework and run it yourself. LOGIC's role is to supply the centralized care‑management capacity and operating discipline to make it work across messy EHRs, staffing constraints, and multiple practices.
+
+### 6.1 One operating model, many sites
+
+We start by working with your clinical, VBC, and compliance leaders to prioritize which gaps and SDOH domains matter most given your payer mix and risk profile. Together, we configure or refine your EHR templates, time‑logging fields, and care‑gap lists. From there, LOGIC operates a single, shared playbook that every site plugs into: the same SDOH script structure, the same definitions for open and closed gaps, the same documentation patterns, and the same escalation rules. Local practices may differ in nuance, but the backbone is the same everywhere, which is what allows you to compare performance across locations and expand into new acquisitions without reinventing the wheel.
+
+### 6.2 A staffed care‑management engine under your supervision
+
+Instead of asking each practice to hire and train its own CCM/RPM staff, LOGIC brings a team of nurses, MAs, and navigators who operate under your physicians' general supervision. They work directly in your EHR, follow your protocols, and take responsibility for the day‑to‑day work of screening, outreach, education, scheduling, and referral follow‑through. You retain clinical governance, coding and billing authority, and control over which cohorts and measures we target. LOGIC supplies the hands and the operating discipline.
+
+### 6.3 Documentation and reporting that withstand scrutiny
+
+Because everything is documented inside your EHR using standardized templates, you can see exactly what work was done on any patient‑month: SDOH findings, Z‑codes, gaps addressed, referrals made, minutes logged, and escalations to providers. That's what enables you to build "evidence packs" for internal review or external audits without chasing down vendor exports. On the reporting side, LOGIC feeds your analytics with consistent care‑gap and SDOH data, making it possible to show, by site and cohort, how care‑management is influencing both revenue and value‑based outcomes.
+
+---
+
+## 7. Where to start
+
+You don't have to launch a full, enterprise‑wide care‑gap program on day one. Many leaders start with something as simple as:
+
+- hypertension and diabetes in a handful of practices,
+- a small SDOH domain set that matches what clinicians already see every day, and
+- one or two community referral partners per region that they trust.
+
+From there, you layer in additional conditions, measures, and sites as the pattern proves itself.
+
+<ChecklistCTA variant="inline" title="Want to turn this framework into a live cross-site care-gap program?" body="We can tune this template to your contracts and EHRs, then staff the care-management workflows so your clinicians stay focused on in-person care and strategy." />

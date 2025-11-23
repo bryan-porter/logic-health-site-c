@@ -46,7 +46,7 @@ export default async function ResourcesPage() {
       kind: "Template",
       title: "Care-Gap Closure Framework",
       blurb: "Embed SDoH screening, care-gap detection, and referral loops in your CCM/RPM pathways to feed VBC and ACO metrics.",
-      href: "/contact?topic=care-gap-framework",
+      href: "/resources/care-gap-closure-framework",
       points: ["Z-codes & SDOH mapping", "Care-gap identification logic", "Community referral loops"],
     },
     {
