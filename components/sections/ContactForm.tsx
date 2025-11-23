@@ -34,7 +34,6 @@ type ContactFormProps = {
 
 export default function ContactForm({ defaultTopic }: ContactFormProps) {
   const [programs, setPrograms] = React.useState<Program[]>([]);
-  const [downloading, setDownloading] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState(false);
@@ -79,39 +78,6 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
     } finally {
       setSubmitting(false);
     }
-  }
-
-  function handleDownloadSummary(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    setDownloading(true);
-    const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    if (!form) return;
-
-    const data = new FormData(form);
-    const payload = {
-      name: data.get("name"),
-      email: data.get("email"),
-      organization: data.get("organization"),
-      role: data.get("role"),
-      orgType: data.get("orgType"),
-      ehr: data.get("ehr"),
-      topic: data.get("topic"),
-      programs,
-      message: data.get("message"),
-      consent: data.get("consent") === "on",
-      generatedAt: new Date().toISOString(),
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.download = "logic-hm-inquiry.json";
-    a.href = url;
-    a.click();
-    URL.revokeObjectURL(url);
-    setDownloading(false);
   }
 
   return (
@@ -281,27 +247,8 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
         <Button variant="primary" className="gap-2" type="submit" disabled={submitting}>
           {submitting ? "Submitting…" : "Submit"}
         </Button>
-        <button
-          type="button"
-          onClick={handleDownloadSummary}
-          className={cn(
-            "inline-flex items-center justify-center rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-50"
-          )}
-          disabled={downloading}
-        >
-          {downloading ? "Preparing…" : "Download inquiry (JSON)"}
-        </button>
-        <a
-          href="#schedule"
-          className="text-sm font-medium text-primary-700 underline underline-offset-4"
-        >
-          Prefer to schedule a 15‑minute call?
-        </a>
       </div>
 
-      <p className="text-xs text-neutral-500">
-        We will review your inquiry and respond soon. If you experience issues, use &ldquo;Download inquiry&rdquo; and email it to us.
-      </p>
       <p role="status" aria-live="polite" className="sr-only">{error ? `Error: ${error}` : success ? "Submitted" : ""}</p>
       {error && <p className="text-sm text-red-600">{error}</p>}
     </form>
