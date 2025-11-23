@@ -117,6 +117,19 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
           />
         </div>
         <div>
+          <label htmlFor="phone" className="text-sm font-medium text-neutral-900">
+            Phone number
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="(555) 123-4567"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
+          />
+        </div>
+        <div>
           <label htmlFor="organization" className="text-sm font-medium text-neutral-900">
             Organization *
           </label>
@@ -162,10 +175,9 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
             <option value="" disabled>
               Select type
             </option>
-            <option>Outpatient practice</option>
-            <option>FQHC / RHC</option>
-            <option>Small hospital</option>
-            <option>Health system</option>
+            <option>Physician practice</option>
+            <option>Hospital</option>
+            <option>RHC / FQHC</option>
             <option>Other</option>
           </select>
         </div>
@@ -232,21 +244,13 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
         />
       </div>
 
-      <label className="inline-flex items-start gap-2">
-        <input
-          type="checkbox"
-          name="consent"
-          className="mt-1 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
-        />
-        <span className="text-sm text-neutral-700">
-          I agree to be contacted about LogicHM services. We don&apos;t sell personal information.
-        </span>
-      </label>
-
-      <div className="flex flex-col items-start gap-3 sm:flex-row">
+      <div className="space-y-3">
         <Button variant="primary" className="gap-2" type="submit" disabled={submitting}>
           {submitting ? "Submitting…" : "Submit"}
         </Button>
+        <p className="text-xs text-neutral-600">
+          By submitting you agree to being contacted about LogicHM services. We don&apos;t sell personal information.
+        </p>
       </div>
 
       <p role="status" aria-live="polite" className="sr-only">{error ? `Error: ${error}` : success ? "Submitted" : ""}</p>
