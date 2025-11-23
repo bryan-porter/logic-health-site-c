@@ -5,7 +5,6 @@ export async function POST(request: Request) {
   // Environment variable guards
   const gmailUser = process.env.GMAIL_USER;
   const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
-  const careersToEmail = process.env.CAREERS_TO_EMAIL || gmailUser;
 
   if (!gmailUser || !gmailAppPassword) {
     console.error('[Careers API] Missing required environment variables: GMAIL_USER or GMAIL_APP_PASSWORD');
@@ -14,6 +13,9 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+
+  // After validation, we know gmailUser is defined
+  const careersToEmail = process.env.CAREERS_TO_EMAIL || gmailUser;
 
   try {
     // Parse multipart/form-data
