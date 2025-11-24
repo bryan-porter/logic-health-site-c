@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { CTA } from "@/components/sections/CTA";
 import FeatureTiles from "@/components/sections/FeatureTiles";
@@ -173,6 +174,18 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-neutral-900 md:text-4xl">
               How It Works
             </h2>
+          </div>
+
+          {/* Visual steps diagram */}
+          <div className="mx-auto max-w-5xl mb-16">
+            <Image
+              src="/home/how-it-works-steps.png"
+              alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
+              width={1284}
+              height={400}
+              className="w-full h-auto"
+              priority
+            />
           </div>
 
           <div className="mx-auto max-w-3xl">
