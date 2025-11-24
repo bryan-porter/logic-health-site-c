@@ -183,9 +183,9 @@ export default function Home() {
                 <Image
                   src="/images/how-it-works-steps.png"
                   alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
-                  width={1284}
-                  height={400}
-                  className="w-full h-auto"
+                  width={257}
+                  height={80}
+                  className="w-full h-auto max-w-xs"
                   priority
                 />
               </div>
