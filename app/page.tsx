@@ -176,61 +176,66 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Visual steps diagram */}
-          <div className="mx-auto max-w-5xl mb-16">
-            <Image
-              src="/home/how-it-works-steps.png"
-              alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
-              width={1284}
-              height={400}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
+              {/* Visual steps diagram */}
+              <div className="order-2 md:order-1">
+                <Image
+                  src="/images/how-it-works-steps.png"
+                  alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
+                  width={1284}
+                  height={400}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
 
-          <div className="mx-auto max-w-3xl">
-            <ol className="space-y-6">
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">1</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Connect your EHR</h3>
-                  <p className="mt-1 text-neutral-700">Secure, bidirectional workflows; no duplicate data entry.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">2</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Identify & consent</h3>
-                  <p className="mt-1 text-neutral-700">Patient eligibility review; documented consent obtained.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">3</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Deploy devices (RPM)</h3>
-                  <p className="mt-1 text-neutral-700">Cellular kits shipped directly; thresholds configured.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">4</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Deliver services</h3>
-                  <p className="mt-1 text-neutral-700">Our team runs monthly CCM + daily RPM triage with notes in your EHR.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">5</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Review & bill</h3>
-                  <p className="mt-1 text-neutral-700">Provider reviews/signs; billing submits clean claims.</p>
-                </div>
-              </li>
-            </ol>
+              {/* Text steps list */}
+              <div className="order-1 md:order-2">
+                <ol className="space-y-6">
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">1</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Connect your EHR</h3>
+                      <p className="mt-1 text-neutral-700">Secure, bidirectional workflows; no duplicate data entry.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">2</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Identify & consent</h3>
+                      <p className="mt-1 text-neutral-700">Patient eligibility review; documented consent obtained.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">3</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Deploy devices (RPM)</h3>
+                      <p className="mt-1 text-neutral-700">Cellular kits shipped directly; thresholds configured.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">4</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Deliver services</h3>
+                      <p className="mt-1 text-neutral-700">Our team runs monthly CCM + daily RPM triage with notes in your EHR.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">5</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Review & bill</h3>
+                      <p className="mt-1 text-neutral-700">Provider reviews/signs; billing submits clean claims.</p>
+                    </div>
+                  </li>
+                </ol>
 
-            <div className="mt-8 text-center">
-              <Link href="/how-it-works" className="text-primary-600 font-medium hover:text-primary-700">
-                See details →
-              </Link>
+                <div className="mt-8">
+                  <Link href="/how-it-works" className="text-primary-600 font-medium hover:text-primary-700">
+                    See details →
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
