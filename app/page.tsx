@@ -39,11 +39,11 @@ export default function Home() {
       <Hero
         headline={
           <>
-            <span className="block text-center">Scale care-management</span>
-            <span className="block text-center">Improve outcomes without hiring</span>
+            <span className="block text-center lg:text-left">Scale chronic care without hiring</span>
+            <span className="block text-center lg:text-left">Keep workflows compliant and audit-ready</span>
           </>
         }
-        subheadline="LOGIC designs and runs Chronic Care Management (CCM), Remote Patient Monitoring (RPM), and related programs inside your EHR with audit-ready workflows—built for MSOs, IPAs, small hospitals, and rural providers (including RHCs/FQHCs using G0511)."
+        subheadline="LOGIC becomes your centralized care-management team for Chronic Care Management and Remote Patient Monitoring, running inside your EHR for practices, MSOs, small hospitals, and rural providers."
         bullets={[
           "Turnkey programs that generate recurring, defensible revenue per enrolled patient.",
           "One standard operating model across sites with consistent workflows, documentation, and QA.",
@@ -58,6 +58,8 @@ export default function Home() {
           text: "Request Your Personalized ROI Analysis",
           href: "/contact",
         }}
+        heroImageSrc="/images/hero-home.jpg"
+        heroImageAlt="Physician and practice administrator reviewing remote patient monitoring and chronic care metrics on a large screen with a remote care team in the background"
       />
 
       {/* UPDATED: CFO Metrics Band */}

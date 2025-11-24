@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -13,9 +14,21 @@ interface HeroProps {
     text: string;
     href: string;
   };
+  heroImageSrc?: string;
+  heroImageAlt?: string;
 }
 
-export function Hero({ headline, subheadline, bullets, primaryCTA, secondaryCTA }: HeroProps) {
+export function Hero({
+  headline,
+  subheadline,
+  bullets,
+  primaryCTA,
+  secondaryCTA,
+  heroImageSrc,
+  heroImageAlt,
+}: HeroProps) {
+  const hasImage = Boolean(heroImageSrc);
+
   return (
     <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24 lg:py-32">
       <Container>
@@ -46,6 +59,23 @@ export function Hero({ headline, subheadline, bullets, primaryCTA, secondaryCTA 
               {secondaryCTA.text}
             </Button>
           </div>
+          {hasImage && (
+            <div className="mt-10 flex justify-center">
+              <div className="relative w-full max-w-3xl">
+                <Image
+                  src={heroImageSrc!}
+                  alt={
+                    heroImageAlt ??
+                    "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
+                  }
+                  width={1600}
+                  height={900}
+                  priority
+                  className="h-auto w-full rounded-2xl shadow-xl object-cover"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </section>
