@@ -96,8 +96,8 @@ export default function CCMPage() {
           <div className="mt-16 flex justify-center animate-float-slow">
             <div className="relative w-full max-w-3xl">
               <Image
-                src="/images/hero-ccm.png"
-                alt="Executive team reviewing CCM KPIs"
+                src="/images/ccm.png"
+                alt="Remote patient monitoring (CCM) nurse giving care to patient"
                 width={1600}
                 height={900}
                 priority

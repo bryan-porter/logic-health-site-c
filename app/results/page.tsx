@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { CTA } from "@/components/sections/CTA";
@@ -187,7 +188,7 @@ export default function ResultsPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-primary-50 to-white py-14 md:py-20">
+      <section className="bg-gradient-to-b from-primary-50 to-white pt-16 md:pt-24 pb-8 md:pb-12">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
@@ -205,8 +206,26 @@ export default function ResultsPage() {
         </Container>
       </section>
 
+      {/* Hero Image */}
+      <section className="bg-white pb-6 md:pb-8">
+        <Container>
+          <div className="mt-10 md:mt-12 flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/health-progress.png"
+                alt="Health progress dashboard showing patient outcomes and clinical metrics"
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Outcome metrics */}
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-white pt-12 md:pt-16 pb-12 md:pb-16">
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

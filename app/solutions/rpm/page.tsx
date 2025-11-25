@@ -12,6 +12,7 @@ import {
   Smartphone,
   LogOut,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import ChecklistCTA from "@/components/ChecklistCTA";
@@ -189,7 +190,7 @@ export default function RPMPage() {
   return (
     <div className="bg-white">
       {/* Page header */}
-      <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
+      <section className="bg-gradient-to-b from-primary-50 to-white pt-16 md:pt-24 pb-8 md:pb-12">
         <Container>
           <div className="mx-auto max-w-3xl">
             <h1 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">
@@ -202,8 +203,26 @@ export default function RPMPage() {
         </Container>
       </section>
 
+      {/* Hero Image */}
+      <section className="bg-white pb-6 md:pb-8">
+        <Container>
+          <div className="mt-10 md:mt-12 flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/rpm.png"
+                alt="Remote patient monitoring dashboard showing vital signs and patient data"
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Remote Patient Monitoring that surfaces risk early */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="bg-white pt-12 md:pt-16 pb-16 md:pb-24">
         <Container>
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl">

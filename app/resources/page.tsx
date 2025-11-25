@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PostCard } from "@/components/blog/PostCard";
 import ChecklistCTA from "@/components/ChecklistCTA";
 import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
@@ -101,6 +102,24 @@ export default async function ResourcesPage() {
           designed to drop straight into your EHR, workflows, and board decks, and to survive an audit.
         </p>
       </header>
+
+      {/* Hero Image */}
+      <section className="bg-white pb-6 md:pb-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mt-10 md:mt-12 flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/resources.png"
+                alt="Healthcare resources and documentation guides"
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ChecklistCTA variant="banner" />
