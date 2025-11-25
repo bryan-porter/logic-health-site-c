@@ -27,7 +27,7 @@ export interface Feature {
 
 export interface Stat {
   label: string;
-  value: string;
+  value: string | React.ReactNode;
 }
 
 export interface Testimonial {

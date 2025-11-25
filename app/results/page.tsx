@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { CTA } from "@/components/sections/CTA";
 import { Container } from "@/components/ui/Container";
+import { CountUp } from "@/components/ui/CountUp";
 
 import type { Metadata } from "next";
 
@@ -61,7 +62,7 @@ function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
 // ---------- Types ----------
 type Metric = {
   label: string;
-  value: string;
+  value: string | React.ReactNode;
   sublabel?: string;
   Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
   tone?: "good" | "neutral";
@@ -74,7 +75,7 @@ type CaseSnap = {
   programMix: string[];
   timeline: string;
   highlights: string[];
-  outcomes: { label: string; value: string }[];
+  outcomes: { label: string; value: string | React.ReactNode }[];
 };
 
 // ---------- Page ----------
@@ -82,49 +83,77 @@ export default function ResultsPage() {
   const metrics: Metric[] = [
     {
       label: "Net new program revenue (1,000 enrolled patients)",
-      value: "$80k–$200k/mo",
+      value: (
+        <>
+          $<CountUp end={80} duration={1200} />k–$<CountUp end={200} duration={1200} />k/mo
+        </>
+      ),
       sublabel: "≈$40–$150 per enrolled patient; payer mix and engagement drive actuals",
       Icon: ChartUpIcon,
       tone: "good",
     },
     {
       label: "Avoidable ED visits & admissions",
-      value: "−10–25%",
+      value: (
+        <>
+          −<CountUp end={10} duration={1000} />–<CountUp end={25} duration={1000} />%
+        </>
+      ),
       sublabel: "monitored CCM/RPM cohorts vs baseline",
       Icon: ArrowDownIcon,
       tone: "good",
     },
     {
       label: "BP/A1c at goal (uncontrolled cohorts)",
-      value: "+15–30%",
+      value: (
+        <>
+          +<CountUp end={15} duration={1000} />–<CountUp end={30} duration={1000} />%
+        </>
+      ),
       sublabel: "within ~3–6 months of program start",
       Icon: HeartPulseIcon,
       tone: "good",
     },
     {
       label: "Care gaps closed",
-      value: "+15–35%",
+      value: (
+        <>
+          +<CountUp end={15} duration={1000} />–<CountUp end={35} duration={1000} />%
+        </>
+      ),
       sublabel: "AWVs, key preventive measures, and adherence",
       Icon: ChartUpIcon,
       tone: "good",
     },
     {
       label: "Monthly engagement",
-      value: "70–85%",
+      value: (
+        <>
+          <CountUp end={70} duration={1200} />–<CountUp end={85} duration={1200} />%
+        </>
+      ),
       sublabel: "2+ meaningful touches per month for enrolled patients",
       Icon: ClockIcon,
       tone: "neutral",
     },
     {
       label: "CCM/RPM time capture",
-      value: "95–100%",
+      value: (
+        <>
+          <CountUp end={95} duration={1200} />–<CountUp end={100} duration={1200} />%
+        </>
+      ),
       sublabel: "audit-ready logs and one-provider-per-month checks",
       Icon: ShieldIcon,
       tone: "neutral",
     },
     {
       label: "Time-to-launch",
-      value: "< 30 days",
+      value: (
+        <>
+          &lt; <CountUp end={30} duration={1000} /> days
+        </>
+      ),
       sublabel: "from signed BAA to first live patients",
       Icon: ClockIcon,
       tone: "neutral",
@@ -144,9 +173,9 @@ export default function ResultsPage() {
         "Dashboard for CFO + QI: revenue, readmits, BP at goal",
       ],
       outcomes: [
-        { label: "30-day readmit", value: "−12%" },
-        { label: "BP at goal", value: "+22%" },
-        { label: "Net margin", value: "+$85k/mo" },
+        { label: "30-day readmit", value: <>−<CountUp end={12} duration={1000} />%</> },
+        { label: "BP at goal", value: <>+<CountUp end={22} duration={1000} />%</> },
+        { label: "Net margin", value: <>+$<CountUp end={85} duration={1200} />k/mo</> },
       ],
     },
     {
@@ -161,9 +190,9 @@ export default function ResultsPage() {
         "Closed-loop escalation routed back to site care teams",
       ],
       outcomes: [
-        { label: "A1c at goal", value: "+17%" },
-        { label: "ED visits", value: "−9%" },
-        { label: "EBITDA lift", value: "+$120k/qtr" },
+        { label: "A1c at goal", value: <>+<CountUp end={17} duration={1000} />%</> },
+        { label: "ED visits", value: <>−<CountUp end={9} duration={1000} />%</> },
+        { label: "EBITDA lift", value: <>+$<CountUp end={120} duration={1200} />k/qtr</> },
       ],
     },
     {
@@ -178,9 +207,9 @@ export default function ResultsPage() {
         "Billing conformance checks pre-claim submission",
       ],
       outcomes: [
-        { label: "Admissions", value: "−8%" },
-        { label: "Time-to-action", value: "−36 hrs" },
-        { label: "Program ROI", value: "2.6×" },
+        { label: "Admissions", value: <>−<CountUp end={8} duration={1000} />%</> },
+        { label: "Time-to-action", value: <>−<CountUp end={36} duration={1000} /> hrs</> },
+        { label: "Program ROI", value: <><CountUp end={3} duration={1200} />×</> },
       ],
     },
   ];

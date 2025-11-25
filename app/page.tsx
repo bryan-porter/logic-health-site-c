@@ -7,6 +7,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { Container } from "@/components/ui/Container";
 import { FadeInSection } from "@/components/ui/FadeInSection";
+import { CountUp } from "@/components/ui/CountUp";
 
 import type { Metadata } from "next";
 
@@ -29,9 +30,30 @@ export const metadata: Metadata = {
 export default function Home() {
   // CFO Metrics Band
   const cfoMetrics = [
-    { value: "$40–$150", label: "Illustrative net monthly revenue per enrolled patient; varies by payer mix and engagement." },
-    { value: "< 2 hours/week", label: "Approximate weekly provider time for review and sign-off per program." },
-    { value: "1 workflow", label: "Shared operating model used across all participating sites." },
+    {
+      value: (
+        <>
+          $<CountUp end={40} duration={1200} />–$<CountUp end={150} duration={1200} />
+        </>
+      ),
+      label: "Illustrative net monthly revenue per enrolled patient; varies by payer mix and engagement."
+    },
+    {
+      value: (
+        <>
+          &lt; <CountUp end={2} duration={1000} /> hours/week
+        </>
+      ),
+      label: "Approximate weekly provider time for review and sign-off per program."
+    },
+    {
+      value: (
+        <>
+          <CountUp end={1} duration={800} /> workflow
+        </>
+      ),
+      label: "Shared operating model used across all participating sites."
+    },
   ];
 
   return (

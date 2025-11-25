@@ -1,93 +1,84 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface CountUpProps {
   start?: number;
   end: number;
-  duration?: number; // in milliseconds
-  suffix?: string;
+  duration?: number;      // ms, default ~1.2s
   prefix?: string;
+  suffix?: string;
   className?: string;
 }
 
 export function CountUp({
   start = 0,
   end,
-  duration = 1500,
-  suffix = '',
-  prefix = '',
-  className = '',
+  duration = 1200,
+  prefix = "",
+  suffix = "",
+  className = "",
 }: CountUpProps) {
-  const [count, setCount] = useState(start);
+  const [value, setValue] = useState(start);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
-    // Check for prefers-reduced-motion
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const reduce = mediaQuery.matches;
-    setPrefersReducedMotion(reduce);
+    const el = ref.current;
+    if (!el) return;
 
-    // If reduced motion, skip animation and show final value
-    if (reduce) {
-      setCount(end);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reduceMotion = mediaQuery.matches;
+
+    // If reduced motion, just jump to end and bail
+    if (reduceMotion) {
+      setValue(end);
       setHasAnimated(true);
       return;
     }
-
-    const element = ref.current;
-    if (!element) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
+            const startTime = performance.now();
+            const diff = end - start;
 
-            // Start the count-up animation
-            const startTime = Date.now();
-            const difference = end - start;
-
-            const animate = () => {
-              const currentTime = Date.now();
-              const elapsed = currentTime - startTime;
+            const animate = (now: number) => {
+              const elapsed = now - startTime;
               const progress = Math.min(elapsed / duration, 1);
-
-              // Easing function (ease-out)
-              const easeOut = 1 - Math.pow(1 - progress, 3);
-              const currentCount = start + difference * easeOut;
-
-              setCount(Math.round(currentCount * 100) / 100); // Round to 2 decimal places
+              const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+              const current = start + diff * eased;
+              setValue(current);
 
               if (progress < 1) {
                 requestAnimationFrame(animate);
-              } else {
-                setCount(end); // Ensure we end at exactly the target value
               }
             };
 
             requestAnimationFrame(animate);
-            observer.unobserve(element);
           }
         });
       },
-      {
-        threshold: 0.3, // Trigger when 30% visible
-      }
+      { threshold: 0.3 }
     );
 
-    observer.observe(element);
+    observer.observe(el);
 
     return () => {
       observer.disconnect();
     };
   }, [start, end, duration, hasAnimated]);
 
+  // Always show an integer: no decimals, ever
+  const display = Math.round(value).toString();
+
   return (
     <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
+      {prefix}
+      {display}
+      {suffix}
     </span>
   );
 }
