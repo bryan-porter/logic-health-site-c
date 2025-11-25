@@ -24,7 +24,7 @@ export default function CareersPage() {
             Logic Health Management (LogicHM) runs care‑management programs{" "}
             <span className="font-semibold">inside our partners&apos; EHRs</span> for MSOs, practices, and small
             hospitals. Our remote nurses and care‑team members build long‑term relationships with high‑need patients,
-            not just "check the box" calls.
+            not just &quot;check the box&quot; calls.
           </p>
         </header>
 
@@ -91,7 +91,7 @@ export default function CareersPage() {
             <div className="rounded-lg border border-neutral-200 bg-white p-5">
               <h3 className="text-sm font-semibold text-neutral-900">Clinical integrity over shortcuts</h3>
               <p className="mt-2 text-sm leading-6 text-neutral-700">
-                We don&apos;t "game" minutes or copy‑paste notes. Every interaction has to make clinical sense and be
+                We don&apos;t &quot;game&quot; minutes or copy‑paste notes. Every interaction has to make clinical sense and be
                 defensible to patients, providers, and auditors.
               </p>
             </div>

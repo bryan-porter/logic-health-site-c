@@ -144,7 +144,7 @@ export default function ChecklistCTA({
                   {isSubmitting ? 'Sending...' : 'Email me the checklist link'}
                 </button>
                 <p className="mt-2 text-[11px] leading-4 text-neutral-500">
-                  We'll send you the checklist and may follow up about CCM/RPM programs.
+                  We&apos;ll send you the checklist and may follow up about CCM/RPM programs.
                   You can unsubscribe at any time.
                 </p>
               </form>
