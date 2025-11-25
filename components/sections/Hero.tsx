@@ -30,7 +30,7 @@ export function Hero({
   const hasImage = Boolean(heroImageSrc);
 
   return (
-    <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24 lg:py-32">
+    <section className={`bg-gradient-to-b from-primary-50 to-white pt-16 md:pt-24 lg:pt-32 ${hasImage ? 'pb-8 md:pb-12 lg:pb-16' : 'pb-16 md:pb-24 lg:pb-32'}`}>
       <Container>
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl lg:text-6xl">
@@ -60,7 +60,7 @@ export function Hero({
             </Button>
           </div>
           {hasImage && (
-            <div className="mt-10 flex justify-center">
+            <div className="mt-16 flex justify-center animate-float-slow">
               <div className="relative w-full max-w-3xl">
                 <Image
                   src={heroImageSrc!}
@@ -71,7 +71,7 @@ export function Hero({
                   width={1600}
                   height={900}
                   priority
-                  className="h-auto w-full rounded-2xl shadow-xl object-cover"
+                  className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
                 />
               </div>
             </div>

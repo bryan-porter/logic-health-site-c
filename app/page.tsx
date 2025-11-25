@@ -39,8 +39,8 @@ export default function Home() {
       <Hero
         headline={
           <>
-            <span className="block text-center lg:text-left">Scale chronic care without hiring</span>
-            <span className="block text-center lg:text-left">Keep workflows compliant and audit-ready</span>
+            <span className="block text-center">Scale chronic care without hiring</span>
+            <span className="block text-center">Keep workflows compliant and audit-ready</span>
           </>
         }
         subheadline="LOGIC becomes your centralized care-management team for Chronic Care Management and Remote Patient Monitoring, running inside your EHR for practices, MSOs, small hospitals, and rural providers."
@@ -58,8 +58,8 @@ export default function Home() {
           text: "Request Your Personalized ROI Analysis",
           href: "/contact",
         }}
-        heroImageSrc="/images/hero-home.jpg"
-        heroImageAlt="Physician and practice administrator reviewing remote patient monitoring and chronic care metrics on a large screen with a remote care team in the background"
+        heroImageSrc="/images/hero-home.png"
+        heroImageAlt="Diagram showing LogicHM EHR integration, audit-ready workflows, revenue impact, and care-management services."
       />
 
       {/* UPDATED: CFO Metrics Band */}
@@ -181,13 +181,13 @@ export default function Home() {
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
               {/* Visual steps diagram */}
-              <div className="order-2 md:order-1">
+              <div className="order-2 md:order-1 flex items-start justify-center md:justify-start md:pl-[103px]">
                 <Image
                   src="/images/how-it-works-steps.png"
                   alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
-                  width={257}
-                  height={80}
-                  className="w-full h-auto max-w-xs"
+                  width={134}
+                  height={334}
+                  className="w-auto h-auto max-h-[356px]"
                   priority
                 />
               </div>
