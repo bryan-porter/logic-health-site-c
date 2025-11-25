@@ -209,22 +209,8 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mx-auto max-w-6xl">
-              <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
-                {/* Visual steps diagram */}
-                <div className="order-2 md:order-1 flex items-start justify-center md:justify-start md:pl-[103px]">
-                  <Image
-                    src="/images/how-it-works-steps.png"
-                    alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
-                    width={134}
-                    height={334}
-                    className="w-auto h-auto max-h-[356px]"
-                    priority
-                  />
-                </div>
-
-                {/* Text steps list */}
-                <div className="order-1 md:order-2">
+            <div className="mx-auto max-w-3xl">
+              <div>
                   <ol className="space-y-6">
                     <li className="flex gap-4">
                       <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">1</span>
@@ -268,7 +254,6 @@ export default function Home() {
                       See details →
                     </Link>
                   </div>
-                </div>
               </div>
             </div>
           </Container>

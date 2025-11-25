@@ -173,9 +173,9 @@ export default function ResultsPage() {
         "Dashboard for CFO + QI: revenue, readmits, BP at goal",
       ],
       outcomes: [
-        { label: "30-day readmit", value: <>−<CountUp end={12} duration={1000} />%</> },
-        { label: "BP at goal", value: <>+<CountUp end={22} duration={1000} />%</> },
-        { label: "Net margin", value: <>+$<CountUp end={85} duration={1200} />k/mo</> },
+        { label: "30-day readmit", value: "−12%" },
+        { label: "BP at goal", value: "+22%" },
+        { label: "Net margin", value: "+$85k/mo" },
       ],
     },
     {
@@ -190,9 +190,9 @@ export default function ResultsPage() {
         "Closed-loop escalation routed back to site care teams",
       ],
       outcomes: [
-        { label: "A1c at goal", value: <>+<CountUp end={17} duration={1000} />%</> },
-        { label: "ED visits", value: <>−<CountUp end={9} duration={1000} />%</> },
-        { label: "EBITDA lift", value: <>+$<CountUp end={120} duration={1200} />k/qtr</> },
+        { label: "A1c at goal", value: "+17%" },
+        { label: "ED visits", value: "−9%" },
+        { label: "EBITDA lift", value: "+$120k/qtr" },
       ],
     },
     {
@@ -207,9 +207,9 @@ export default function ResultsPage() {
         "Billing conformance checks pre-claim submission",
       ],
       outcomes: [
-        { label: "Admissions", value: <>−<CountUp end={8} duration={1000} />%</> },
-        { label: "Time-to-action", value: <>−<CountUp end={36} duration={1000} /> hrs</> },
-        { label: "Program ROI", value: <><CountUp end={3} duration={1200} />×</> },
+        { label: "Admissions", value: "−8%" },
+        { label: "Time-to-action", value: "−36 hrs" },
+        { label: "Program ROI", value: "3×" },
       ],
     },
   ];
