@@ -8,6 +8,7 @@ import {
   BarChart3,
   HeartPulse,
 } from "lucide-react";
+import Image from "next/image";
 import * as React from "react";
 
 import { Hero } from "@/components/sections/Hero";
@@ -135,6 +136,24 @@ export default function WhyOutsourcePage() {
         primaryCTA={{ text: "Talk to a Program Architect", href: "/contact" }}
         secondaryCTA={{ text: "See the Operating Model", href: "/how-it-works" }}
       />
+
+      {/* Hero Image */}
+      <section className="bg-white pt-6 md:pt-8 pb-12 md:pb-16">
+        <Container>
+          <div className="flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/why-outsource.png"
+                alt="Healthcare administrator monitors remote care nodes"
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Reasons grid */}
       <Container className="py-10">

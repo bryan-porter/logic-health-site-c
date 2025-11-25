@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { HowItWorksTiles } from "@/components/sections/HowItWorksTiles";
 import { ProgramTiles } from "@/components/sections/ProgramTiles";
 import { Container } from "@/components/ui/Container";
@@ -28,6 +30,24 @@ export default function HowItWorksPage() {
             You get one operating model that works for MSOs, IPAs, small hospitals, and rural RHCs/FQHCs—without hiring a new team or standing up yet another platform.
           </p>
         </div>
+      </section>
+
+      {/* Hero Image */}
+      <section className="bg-white pt-6 md:pt-8 pb-12 md:pb-16">
+        <Container>
+          <div className="flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/how-it-works.png"
+                alt="Healthcare provider overseeing centralized care-management team."
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </Container>
       </section>
 
       <ProgramTiles />

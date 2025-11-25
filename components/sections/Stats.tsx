@@ -3,11 +3,12 @@ import { Stat } from "@/lib/types";
 
 interface StatsProps {
   stats: Stat[];
+  id?: string;
 }
 
-export function Stats({ stats }: StatsProps) {
+export function Stats({ stats, id }: StatsProps) {
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section id={id} className="bg-white py-16 md:py-24">
       <Container>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {stats.map((stat, index) => (

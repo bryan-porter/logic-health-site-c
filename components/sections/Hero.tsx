@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ParallaxHeroImage } from "@/components/ui/ParallaxHeroImage";
+import { StickyHeroWrapper } from "@/components/ui/StickyHeroWrapper";
 
 interface HeroProps {
   headline: string | React.ReactNode;
@@ -16,6 +18,9 @@ interface HeroProps {
   };
   heroImageSrc?: string;
   heroImageAlt?: string;
+  enableParallax?: boolean;
+  enableStickyImage?: boolean;
+  stickyTargetId?: string;
 }
 
 export function Hero({
@@ -26,6 +31,9 @@ export function Hero({
   secondaryCTA,
   heroImageSrc,
   heroImageAlt,
+  enableParallax = false,
+  enableStickyImage = false,
+  stickyTargetId = 'stats-section',
 }: HeroProps) {
   const hasImage = Boolean(heroImageSrc);
 
@@ -60,21 +68,72 @@ export function Hero({
             </Button>
           </div>
           {hasImage && (
-            <div className="mt-16 flex justify-center animate-float-slow">
-              <div className="relative w-full max-w-3xl">
-                <Image
-                  src={heroImageSrc!}
-                  alt={
-                    heroImageAlt ??
-                    "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
-                  }
-                  width={1600}
-                  height={900}
-                  priority
-                  className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
-                />
-              </div>
-            </div>
+            <>
+              {enableStickyImage ? (
+                <StickyHeroWrapper
+                  targetSectionId={stickyTargetId}
+                  className="mt-16 flex justify-center animate-float-slow"
+                >
+                  {enableParallax ? (
+                    <ParallaxHeroImage
+                      src={heroImageSrc!}
+                      alt={
+                        heroImageAlt ??
+                        "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
+                      }
+                      width={1600}
+                      height={900}
+                      priority
+                      className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+                    />
+                  ) : (
+                    <div className="relative w-full max-w-3xl">
+                      <Image
+                        src={heroImageSrc!}
+                        alt={
+                          heroImageAlt ??
+                          "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
+                        }
+                        width={1600}
+                        height={900}
+                        priority
+                        className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+                      />
+                    </div>
+                  )}
+                </StickyHeroWrapper>
+              ) : (
+                <div className="mt-16 flex justify-center animate-float-slow">
+                  {enableParallax ? (
+                    <ParallaxHeroImage
+                      src={heroImageSrc!}
+                      alt={
+                        heroImageAlt ??
+                        "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
+                      }
+                      width={1600}
+                      height={900}
+                      priority
+                      className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+                    />
+                  ) : (
+                    <div className="relative w-full max-w-3xl">
+                      <Image
+                        src={heroImageSrc!}
+                        alt={
+                          heroImageAlt ??
+                          "Physician and practice administrator reviewing remote patient monitoring and chronic care metrics"
+                        }
+                        width={1600}
+                        height={900}
+                        priority
+                        className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+            </>
           )}
         </div>
       </Container>
