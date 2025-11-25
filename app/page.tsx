@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { CTA } from "@/components/sections/CTA";
 import FeatureTiles from "@/components/sections/FeatureTiles";
@@ -38,11 +39,11 @@ export default function Home() {
       <Hero
         headline={
           <>
-            <span className="block text-center">Scale care-management</span>
-            <span className="block text-center">Improve outcomes without hiring</span>
+            <span className="block text-center">Scale chronic care without hiring</span>
+            <span className="block text-center">Keep workflows compliant and audit-ready</span>
           </>
         }
-        subheadline="LOGIC designs and runs Chronic Care Management (CCM), Remote Patient Monitoring (RPM), and related programs inside your EHR with audit-ready workflows—built for MSOs, IPAs, small hospitals, and rural providers (including RHCs/FQHCs using G0511)."
+        subheadline="LOGIC becomes your centralized care-management team for Chronic Care Management and Remote Patient Monitoring, running inside your EHR for practices, MSOs, small hospitals, and rural providers."
         bullets={[
           "Turnkey programs that generate recurring, defensible revenue per enrolled patient.",
           "One standard operating model across sites with consistent workflows, documentation, and QA.",
@@ -57,6 +58,8 @@ export default function Home() {
           text: "Request Your Personalized ROI Analysis",
           href: "/contact",
         }}
+        heroImageSrc="/images/hero-home.png"
+        heroImageAlt="Diagram showing LogicHM EHR integration, audit-ready workflows, revenue impact, and care-management services."
       />
 
       {/* UPDATED: CFO Metrics Band */}
@@ -175,49 +178,66 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="mx-auto max-w-3xl">
-            <ol className="space-y-6">
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">1</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Connect your EHR</h3>
-                  <p className="mt-1 text-neutral-700">Secure, bidirectional workflows; no duplicate data entry.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">2</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Identify & consent</h3>
-                  <p className="mt-1 text-neutral-700">Patient eligibility review; documented consent obtained.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">3</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Deploy devices (RPM)</h3>
-                  <p className="mt-1 text-neutral-700">Cellular kits shipped directly; thresholds configured.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">4</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Deliver services</h3>
-                  <p className="mt-1 text-neutral-700">Our team runs monthly CCM + daily RPM triage with notes in your EHR.</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">5</span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900">Review & bill</h3>
-                  <p className="mt-1 text-neutral-700">Provider reviews/signs; billing submits clean claims.</p>
-                </div>
-              </li>
-            </ol>
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
+              {/* Visual steps diagram */}
+              <div className="order-2 md:order-1 flex items-start justify-center md:justify-start md:pl-[103px]">
+                <Image
+                  src="/images/how-it-works-steps.png"
+                  alt="Five steps of how LogicHM works: Connect EHR, Identify & consent, Deploy devices, Deliver services, Review & bill"
+                  width={134}
+                  height={334}
+                  className="w-auto h-auto max-h-[356px]"
+                  priority
+                />
+              </div>
 
-            <div className="mt-8 text-center">
-              <Link href="/how-it-works" className="text-primary-600 font-medium hover:text-primary-700">
-                See details →
-              </Link>
+              {/* Text steps list */}
+              <div className="order-1 md:order-2">
+                <ol className="space-y-6">
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">1</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Connect your EHR</h3>
+                      <p className="mt-1 text-neutral-700">Secure, bidirectional workflows; no duplicate data entry.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">2</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Identify & consent</h3>
+                      <p className="mt-1 text-neutral-700">Patient eligibility review; documented consent obtained.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">3</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Deploy devices (RPM)</h3>
+                      <p className="mt-1 text-neutral-700">Cellular kits shipped directly; thresholds configured.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">4</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Deliver services</h3>
+                      <p className="mt-1 text-neutral-700">Our team runs monthly CCM + daily RPM triage with notes in your EHR.</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-semibold text-white">5</span>
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">Review & bill</h3>
+                      <p className="mt-1 text-neutral-700">Provider reviews/signs; billing submits clean claims.</p>
+                    </div>
+                  </li>
+                </ol>
+
+                <div className="mt-8">
+                  <Link href="/how-it-works" className="text-primary-600 font-medium hover:text-primary-700">
+                    See details →
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </Container>

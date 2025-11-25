@@ -3,11 +3,13 @@ import {
   Smartphone,
   LogOut,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import ChecklistCTA from "@/components/ChecklistCTA";
 import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
 import { CTA } from "@/components/sections/CTA";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 
@@ -73,6 +75,38 @@ export default function CCMPage() {
         title="Chronic Care Management (CCM)"
         description="Proactive, monthly management for patients with multiple chronic conditions — improving continuity of care while generating predictable revenue for physician practices, small hospitals, and RHCs/FQHCs."
       />
+
+      {/* CTA Buttons */}
+      <section className="bg-white py-8">
+        <Container>
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button href="/contact" variant="primary" className="px-8 py-4 text-lg">
+              Schedule a 15-Minute Strategy Call
+            </Button>
+            <Button href="/contact" variant="secondary" className="px-8 py-4 text-lg">
+              Request Your Personalized ROI Analysis
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      {/* Hero Image */}
+      <section className="bg-white pb-8 md:pb-12 lg:pb-16">
+        <Container>
+          <div className="mt-16 flex justify-center animate-float-slow">
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src="/images/hero-ccm.png"
+                alt="Executive team reviewing CCM KPIs"
+                width={1600}
+                height={900}
+                priority
+                className="h-auto w-full rounded-2xl shadow-xl object-cover transition-transform duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Pays and stands up to audit */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
