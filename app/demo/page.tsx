@@ -33,12 +33,6 @@ export default function DemoPage() {
         </div>
 
         <section className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-          <h2 className="mb-2 text-lg font-semibold text-gray-900">
-            Tell us about your clinic
-          </h2>
-          <p className="mb-4 text-sm text-gray-600">
-            Share a few details and we&apos;ll follow up with a tailored CCM/RPM walkthrough.
-          </p>
           <DemoRequestForm />
         </section>
       </div>
