@@ -49,13 +49,30 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
     setError(null);
     setSubmitting(true);
     const form = e.currentTarget;
-    const data = new FormData(form);
-    data.set("programs", programs.join(", "));
+    const formData = new FormData(form);
+
+    // Convert FormData to JSON payload
+    const payload = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string || undefined,
+      organization: formData.get("organization") as string,
+      role: formData.get("role") as string || undefined,
+      orgType: formData.get("orgType") as string || undefined,
+      ehr: formData.get("ehr") as string || undefined,
+      topic: formData.get("topic") as string || undefined,
+      programs: programs.length > 0 ? programs.join(", ") : undefined,
+      message: formData.get("message") as string || undefined,
+      website: formData.get("website") as string, // honeypot
+    };
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
