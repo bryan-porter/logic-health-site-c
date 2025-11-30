@@ -6,6 +6,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import { AnalyticsListener } from "./AnalyticsListener";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://logichm.com'),
@@ -60,6 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <AnalyticsListener />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[1000] rounded bg-white px-3 py-2 text-sm shadow">
           Skip to content
         </a>

@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ParallaxHeroImage } from "@/components/ui/ParallaxHeroImage";
 import { StickyHeroWrapper } from "@/components/ui/StickyHeroWrapper";
+import TrackedCtaButton from "@/components/TrackedCtaButton";
+import { cn } from "@/lib/utils";
 
 interface HeroProps {
   headline: string | React.ReactNode;
@@ -60,12 +63,34 @@ export function Hero({
             </ul>
           )}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button href={primaryCTA.href} variant="primary" className="px-8 py-4 text-lg">
+            <TrackedCtaButton
+              href={primaryCTA.href}
+              className={cn(
+                "inline-flex items-center justify-center rounded-md font-medium transition-colors",
+                "px-8 py-4 text-lg",
+                "bg-primary-600 text-white hover:bg-primary-700"
+              )}
+              eventProps={{
+                location: "hero",
+                cta_id: "hero-primary-cta",
+              }}
+            >
               {primaryCTA.text}
-            </Button>
-            <Button href={secondaryCTA.href} variant="secondary" className="px-8 py-4 text-lg">
+            </TrackedCtaButton>
+            <TrackedCtaButton
+              href={secondaryCTA.href}
+              className={cn(
+                "inline-flex items-center justify-center rounded-md font-medium transition-colors",
+                "px-8 py-4 text-lg",
+                "bg-white border-2 border-neutral-300 text-neutral-900 hover:border-primary-600"
+              )}
+              eventProps={{
+                location: "hero",
+                cta_id: "hero-secondary-cta",
+              }}
+            >
               {secondaryCTA.text}
-            </Button>
+            </TrackedCtaButton>
           </div>
           {hasImage && (
             <>

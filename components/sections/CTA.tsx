@@ -1,5 +1,8 @@
-import { Button } from "@/components/ui/Button";
+"use client";
+
 import { Container } from "@/components/ui/Container";
+import TrackedCtaButton from "@/components/TrackedCtaButton";
+import { cn } from "@/lib/utils";
 
 interface CTAProps {
   headline: string;
@@ -41,13 +44,22 @@ export function CTA({
             </p>
           )}
           <div className="mt-8">
-            <Button
+            <TrackedCtaButton
               href={buttonHref}
-              variant={variant === "primary" ? "secondary" : "primary"}
-              className="px-8 py-4 text-lg"
+              className={cn(
+                "inline-flex items-center justify-center rounded-md font-medium transition-colors",
+                "px-8 py-4 text-lg",
+                variant === "primary"
+                  ? "bg-white border-2 border-neutral-300 text-neutral-900 hover:border-primary-600"
+                  : "bg-primary-600 text-white hover:bg-primary-700"
+              )}
+              eventProps={{
+                location: "cta-section",
+                cta_id: "cta-main",
+              }}
             >
               {buttonText}
-            </Button>
+            </TrackedCtaButton>
           </div>
         </div>
       </Container>
