@@ -1,4 +1,4 @@
-import { Pool, QueryResult } from 'pg';
+import { Pool, QueryResult, QueryResultRow } from 'pg';
 
 // Create a single shared Pool instance
 // This connection pool is reused across all requests
@@ -41,7 +41,7 @@ function getPool(): Pool {
  * @param params - Optional array of query parameters
  * @returns QueryResult from pg
  */
-export async function query<T = any>(
+export async function query<T extends QueryResultRow = any>(
   text: string,
   params?: any[]
 ): Promise<QueryResult<T>> {
