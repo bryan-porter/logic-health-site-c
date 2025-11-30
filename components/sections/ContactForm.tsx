@@ -77,14 +77,14 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
       });
 
       if (!res.ok) {
-        const payload = await res.json().catch(() => ({}));
-        const message = payload?.error || "Something went wrong. Please try again.";
+        const errorData = await res.json().catch(() => ({}));
+        const message = errorData?.error || "Something went wrong. Please try again.";
         setError(message);
         return;
       }
 
-      const payload = await res.json();
-      if (payload?.ok) {
+      const responseData = await res.json();
+      if (responseData?.ok) {
         setSuccess(true);
         (document.getElementById("contact-title") as HTMLElement | null)?.focus();
         window.location.href = "/contact/thank-you";
