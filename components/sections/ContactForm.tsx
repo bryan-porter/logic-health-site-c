@@ -60,6 +60,7 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
       role: formData.get("role") as string || undefined,
       orgType: formData.get("orgType") as string || undefined,
       ehr: formData.get("ehr") as string || undefined,
+      provider_count: formData.get("provider_count") as string || undefined,
       topic: formData.get("topic") as string || undefined,
       programs: programs.length > 0 ? programs.join(", ") : undefined,
       message: formData.get("message") as string || undefined,
@@ -207,6 +208,19 @@ export default function ContactForm({ defaultTopic }: ContactFormProps) {
             name="ehr"
             type="text"
             placeholder="Epic, eCW, Veradigm…"
+            className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="provider_count" className="text-sm font-medium text-neutral-900">
+            Number of providers
+          </label>
+          <input
+            id="provider_count"
+            name="provider_count"
+            type="number"
+            min="1"
+            placeholder="10"
             className="mt-2 w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 outline-none focus:ring-2 focus:ring-primary-500"
           />
         </div>
