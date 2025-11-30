@@ -4,12 +4,16 @@ import React from "react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/tracking";
 
-interface TrackedCtaButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface TrackedCtaButtonProps {
   eventName?: string;
   eventProps?: Record<string, unknown>;
   href?: string;
   children: React.ReactNode;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  style?: React.CSSProperties;
 }
 
 const TrackedCtaButton: React.FC<TrackedCtaButtonProps> = ({
@@ -20,7 +24,8 @@ const TrackedCtaButton: React.FC<TrackedCtaButtonProps> = ({
   onClick,
   disabled,
   type = "button",
-  ...rest
+  className,
+  style,
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (disabled) {
@@ -36,16 +41,14 @@ const TrackedCtaButton: React.FC<TrackedCtaButtonProps> = ({
     });
 
     if (onClick) {
-      // Preserve any existing onClick behavior
-      // Cast because HTMLElement covers both button and anchor
-      (onClick as React.MouseEventHandler<HTMLElement>)(e);
+      onClick(e);
     }
   };
 
   if (href) {
-    // Link mode: do not pass "type" to Link
+    // Link mode
     return (
-      <Link href={href} onClick={handleClick} {...rest}>
+      <Link href={href} onClick={handleClick} className={className} style={style}>
         {children}
       </Link>
     );
@@ -53,7 +56,13 @@ const TrackedCtaButton: React.FC<TrackedCtaButtonProps> = ({
 
   // Button mode
   return (
-    <button type={type} onClick={handleClick} disabled={disabled} {...rest}>
+    <button
+      type={type}
+      onClick={handleClick}
+      disabled={disabled}
+      className={className}
+      style={style}
+    >
       {children}
     </button>
   );
