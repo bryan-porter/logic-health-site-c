@@ -59,23 +59,21 @@ export default function DemoRequestForm() {
     setLoading(false);
   }
 
-  if (done) {
-    return (
-      <div className="rounded-md bg-green-50 p-4 border border-green-200">
-        <p className="text-green-800">Thanks! We'll be in touch shortly.</p>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <h2 className="mb-2 text-lg font-semibold text-gray-900">
-        Tell us about your clinic
-      </h2>
-      <p className="mb-4 text-sm text-gray-600">
-        Share a few details and we&apos;ll follow up with a tailored CCM/RPM walkthrough.
-      </p>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md w-full">
+    <div>
+      {done ? (
+        <div className="rounded-md bg-green-50 p-4 border border-green-200">
+          <p className="text-green-800">Thanks! We'll be in touch shortly.</p>
+        </div>
+      ) : (
+        <>
+          <h2 className="mb-2 text-lg font-semibold text-gray-900">
+            Tell us about your clinic
+          </h2>
+          <p className="mb-4 text-sm text-gray-600">
+            Share a few details and we&apos;ll follow up with a tailored CCM/RPM walkthrough.
+          </p>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md w-full">
       <div className="flex flex-col gap-1">
         <label htmlFor="name" className="text-sm font-medium text-gray-700">
           Name *
@@ -151,6 +149,8 @@ export default function DemoRequestForm() {
         {loading ? "Submitting..." : "Request Demo"}
       </button>
     </form>
-    </>
+        </>
+      )}
+    </div>
   );
 }

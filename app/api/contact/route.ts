@@ -78,10 +78,15 @@ export async function POST(req: NextRequest) {
   if (!hubspotToken) {
     console.error("HUBSPOT_ACCESS_TOKEN is not configured");
     return NextResponse.json(
-      { error: "Server configuration error" },
+      { error: "Server configuration error", details: "HubSpot token missing" },
       { status: 500 }
     );
   }
+
+  console.log('Processing contact form submission:', {
+    email: form.email,
+    organization: form.organization,
+  });
 
   // ========================================
   // HubSpot Integration (Upsert Logic)
