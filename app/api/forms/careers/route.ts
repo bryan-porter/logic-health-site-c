@@ -144,6 +144,17 @@ export async function POST(req: NextRequest) {
   const firstname = nameParts[0] || '';
   const lastname = nameParts.slice(1).join(' ') || '';
 
+  // Combine additional fields into a summary message
+  const applicationSummary = [
+    licensure && `Licensure: ${licensure}`,
+    experience && `Experience: ${experience}`,
+    preferences && `Work Preferences: ${preferences}`,
+    ehrExperience && `EHR Experience: ${ehrExperience}`,
+    other && `Additional Notes: ${other}`,
+  ]
+    .filter(Boolean)
+    .join('\n\n');
+
   // Prepare HubSpot contact properties
   const contactProperties = {
     properties: {
@@ -153,12 +164,8 @@ export async function POST(req: NextRequest) {
       ...(phone ? { phone } : {}),
       ...(location ? { city: location } : {}),
       ...(position ? { job_applied_for: position } : {}),
-      ...(licensure ? { licensure_states: licensure } : {}),
-      ...(experience ? { clinical_experience: experience } : {}),
-      ...(preferences ? { work_preferences: preferences } : {}),
-      ...(ehrExperience ? { ehr_experience: ehrExperience } : {}),
-      ...(other ? { additional_notes: other } : {}),
       ...(resumeUrl ? { resume_link: resumeUrl } : {}),
+      ...(applicationSummary ? { message: applicationSummary } : {}),
       lifecyclestage: 'other',
       applicant_status: 'New',
       lead_source: 'Careers application',
