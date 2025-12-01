@@ -33,13 +33,11 @@ export function computeEngagementScore(events: DbEvent[]): EngagementScoreResult
 
   // High intent bonus: +20 once if any form_id starts with "demo"
   for (const event of events) {
-    if (
-      event.properties &&
-      typeof event.properties === "object" &&
-      event.properties.form_id &&
-      typeof event.properties.form_id === "string" &&
-      event.properties.form_id.startsWith("demo")
-    ) {
+    // Cast to any to allow dynamic property access
+    const props = (event.properties as any) || {};
+    const formId = typeof props.form_id === "string" ? props.form_id : null;
+
+    if (formId && formId.startsWith("demo")) {
       hasHighIntentBonus = true;
       break;
     }
