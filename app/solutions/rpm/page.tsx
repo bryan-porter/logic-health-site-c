@@ -1,4 +1,5 @@
 // app/solutions/rpm/page.tsx
+import dynamic from "next/dynamic";
 import {
   Package,
   PlugZap,
@@ -15,12 +16,15 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import ChecklistCTA from "@/components/ChecklistCTA";
 import ReimbursementDisclaimer from "@/components/ReimbursementDisclaimer";
 import { CTA } from "@/components/sections/CTA";
 import { Stats } from "@/components/sections/Stats";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+
+const ChecklistCTA = dynamic(() => import("@/components/ChecklistCTA"), {
+  loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-md" />,
+});
 
 import type { Metadata } from "next";
 

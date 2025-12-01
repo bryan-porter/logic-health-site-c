@@ -1,13 +1,17 @@
 // app/blog/[slug]/page.tsx
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { PostBody } from "@/components/blog/PostBody";
 import { PostCard } from "@/components/blog/PostCard";
 import { PostHeader } from "@/components/blog/PostHeader";
 import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/mdx";
+
+const PostBody = dynamic(() => import("@/components/blog/PostBody").then(mod => ({ default: mod.PostBody })), {
+  loading: () => <div className="mt-8 animate-pulse"><div className="h-96 bg-gray-100 rounded" /></div>,
+});
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();

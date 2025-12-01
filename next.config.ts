@@ -32,6 +32,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'next-mdx-remote'],
+  },
   async headers() {
     const isProduction = process.env.NEXT_PUBLIC_SITE_URL === "https://logichm.com";
 

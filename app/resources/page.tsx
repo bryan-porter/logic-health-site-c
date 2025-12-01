@@ -2,9 +2,12 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 
 import { PostCard } from "@/components/blog/PostCard";
-import ChecklistCTA from "@/components/ChecklistCTA";
 import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceCard";
 import { getAllPosts } from "@/lib/blog";
+
+const ChecklistCTA = dynamic(() => import("@/components/ChecklistCTA"), {
+  loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-md" />,
+});
 
 const CcmRevenueCalculator = dynamic(
   () => import("@/components/sections/Calculators").then((mod) => ({ default: mod.CcmRevenueCalculator }))

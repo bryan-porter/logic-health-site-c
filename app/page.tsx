@@ -1,15 +1,23 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 
 import { CTA } from "@/components/sections/CTA";
-import FeatureTiles from "@/components/sections/FeatureTiles";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { Container } from "@/components/ui/Container";
-import { FadeInSection } from "@/components/ui/FadeInSection";
-import { CountUp } from "@/components/ui/CountUp";
 
 import type { Metadata } from "next";
+
+const FeatureTiles = dynamic(() => import("@/components/sections/FeatureTiles"), {
+  loading: () => <div className="animate-pulse h-64 bg-gray-50" />,
+});
+
+const FadeInSection = dynamic(() => import("@/components/ui/FadeInSection").then(mod => ({ default: mod.FadeInSection })));
+
+const CountUp = dynamic(() => import("@/components/ui/CountUp").then(mod => ({ default: mod.CountUp })), {
+  loading: () => <span>0</span>,
+});
 
 
 export const metadata: Metadata = {
