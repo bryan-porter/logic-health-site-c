@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 
-import { trackEvent } from '@/lib/analytics';
+import { submitLeadForm } from '@/lib/leadFormClient';
+import { trackEvent } from '@/lib/tracking';
 
 type Variant = 'inline' | 'sidebar' | 'banner';
 
@@ -33,7 +34,7 @@ export default function ChecklistCTA({
   )}&utm_medium=${variant}&utm_campaign=ccm_rpm_checklist`;
 
   const handleButtonClick = () => {
-    trackEvent('Checklist Download Click', { location: variant });
+    trackEvent('checklist_download_click', { location: variant });
     setIsOpen(true);
   };
 
@@ -101,17 +102,12 @@ export default function ChecklistCTA({
 
                   try {
                     setIsSubmitting(true);
-                    await fetch('/api/checklist-lead', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        email,
-                        source: 'ccm-rpm-readiness-checklist',
-                        variant,
-                      }),
+                    await submitLeadForm({
+                      email,
+                      form_id: 'checklist-download-v1',
                     });
                     setCanDownload(true);
-                    trackEvent('Checklist Email Submitted', { location: variant, email });
+                    trackEvent('checklist_email_submitted', { location: variant, email });
                   } catch (err) {
                     // Fail open: allow download if tracking fails
                     setCanDownload(true);
@@ -157,7 +153,7 @@ export default function ChecklistCTA({
                   href={CHECKLIST_PDF_HREF}
                   download
                   className="inline-flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-                  onClick={() => trackEvent('Checklist PDF Downloaded', { location: variant, email })}
+                  onClick={() => trackEvent('checklist_pdf_downloaded', { location: variant, email })}
                 >
                   Download PDF
                 </a>
