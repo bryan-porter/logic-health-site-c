@@ -1,5 +1,10 @@
-import DemoRequestForm from "@/components/DemoRequestForm";
+import dynamic from "next/dynamic";
+
 import { getLandingConfig } from "@/lib/landingConfigs";
+
+const DemoRequestForm = dynamic(() => import("@/components/DemoRequestForm"), {
+  loading: () => <div className="animate-pulse h-64 bg-gray-100 rounded-xl" />,
+});
 
 export default async function LandingPage(props: { params: Promise<{ segment: string }> }) {
   const params = await props.params;

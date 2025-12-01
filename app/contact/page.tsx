@@ -1,5 +1,10 @@
-import ContactForm from "@/components/sections/ContactForm";
+import dynamic from "next/dynamic";
+
 import { Container } from "@/components/ui/Container";
+
+const ContactForm = dynamic(() => import("@/components/sections/ContactForm"), {
+  loading: () => <div className="animate-pulse h-96 bg-gray-100 rounded-xl" />,
+});
 
 export const metadata = {
   title: "Contact | LogicHM",

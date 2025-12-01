@@ -1,6 +1,11 @@
 // app/careers/page.tsx
+import dynamic from "next/dynamic";
+
 import { Container } from "@/components/ui/Container";
-import CareersForm from "@/components/sections/CareersForm";
+
+const CareersForm = dynamic(() => import("@/components/sections/CareersForm"), {
+  loading: () => <div className="animate-pulse h-96 bg-gray-100 rounded-xl" />,
+});
 
 export const metadata = {
   title: "Careers | LogicHM",

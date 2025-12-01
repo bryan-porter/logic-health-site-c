@@ -1,9 +1,18 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { PostCard } from "@/components/blog/PostCard";
 import ChecklistCTA from "@/components/ChecklistCTA";
-import { CcmRevenueCalculator, RpmRoiCalculator } from "@/components/sections/Calculators";
 import { ResourceGrid, type ResourceItem } from "@/components/sections/ResourceCard";
 import { getAllPosts } from "@/lib/blog";
+
+const CcmRevenueCalculator = dynamic(
+  () => import("@/components/sections/Calculators").then((mod) => ({ default: mod.CcmRevenueCalculator }))
+);
+
+const RpmRoiCalculator = dynamic(
+  () => import("@/components/sections/Calculators").then((mod) => ({ default: mod.RpmRoiCalculator }))
+);
 
 export const metadata = {
   title: "Resources | Logic Health Management",

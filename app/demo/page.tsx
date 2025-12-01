@@ -1,4 +1,8 @@
-import DemoRequestForm from "@/components/DemoRequestForm";
+import dynamic from "next/dynamic";
+
+const DemoRequestForm = dynamic(() => import("@/components/DemoRequestForm"), {
+  loading: () => <div className="animate-pulse h-64 bg-gray-100 rounded-xl" />,
+});
 
 export default function DemoPage() {
   return (
