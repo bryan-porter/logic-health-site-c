@@ -2,10 +2,20 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
+import { submitCareersApplication } from '@/lib/careersClient';
+import { trackEvent } from '@/lib/tracking';
 
 export default function CareersForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  const handleInteraction = () => {
+    if (!hasStarted) {
+      setHasStarted(true);
+      trackEvent('form_started', { form_id: 'careers-application-v1' });
+    }
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,30 +25,18 @@ export default function CareersForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    try {
-      const res = await fetch('/api/careers', {
-        method: 'POST',
-        body: formData,
-      });
+    trackEvent('form_submitted', { form_id: 'careers-application-v1' });
 
-      if (!res.ok) {
-        const payload = await res.json().catch(() => ({}));
-        const message = payload?.message || 'Something went wrong. Please try again.';
-        setError(message);
-        return;
-      }
+    const result = await submitCareersApplication(formData);
 
-      const payload = await res.json();
-      if (payload?.ok) {
-        window.location.href = '/careers/thank-you';
-      } else {
-        setError(payload?.message || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setError('Something went wrong. Please try again.');
-    } finally {
-      setSubmitting(false);
+    if (result.ok) {
+      trackEvent('application_submitted', { form_id: 'careers-application-v1' });
+      window.location.href = '/careers/thank-you';
+    } else {
+      setError(result.error || 'Something went wrong. Please try again.');
     }
+
+    setSubmitting(false);
   }
 
   return (
@@ -55,6 +53,7 @@ export default function CareersForm() {
             type="text"
             autoComplete="name"
             required
+            onFocus={handleInteraction}
             className="mt-1 block w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 shadow-sm focus:border-primary-600 focus:outline-none focus:ring-1 focus:ring-primary-600"
           />
         </div>
