@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
   const location = formData.get('location') as string;
-  const role = formData.get('role') as string;
+  const position = formData.get('role') as string; // role field = position/job applied for
   const licensure = formData.get('licensure') as string;
   const experience = formData.get('experience') as string;
   const preferences = formData.get('preferences') as string;
@@ -81,6 +81,7 @@ export async function POST(req: NextRequest) {
   console.log('Processing careers application:', {
     email,
     fullName,
+    position,
     hasResume: !!resumeFile,
   });
 
@@ -99,13 +100,12 @@ export async function POST(req: NextRequest) {
       const fileFormData = new FormData();
       fileFormData.append('file', fileBlob, resumeFile.name);
       fileFormData.append('options', JSON.stringify({
-        access: 'PRIVATE',
+        access: 'PUBLIC_INDEXABLE',
         ttl: 'P3M', // 3 months
-        overwrite: false,
         duplicateValidationStrategy: 'NONE',
-        duplicateValidationScope: 'EXACT_FOLDER',
+        duplicateValidationScope: 'ENTIRE_PORTAL',
       }));
-      fileFormData.append('folderPath', '/resumes');
+      fileFormData.append('folderPath', '/candidates');
 
       const uploadResponse = await fetch(
         'https://api.hubapi.com/files/v3/files',
@@ -139,23 +139,28 @@ export async function POST(req: NextRequest) {
 
   let crmContactId: string | null = null;
 
-  // Extract first name from full name
-  const firstname = fullName.split(' ')[0];
+  // Split full name into first and last
+  const nameParts = fullName.trim().split(' ');
+  const firstname = nameParts[0] || '';
+  const lastname = nameParts.slice(1).join(' ') || '';
 
   // Prepare HubSpot contact properties
   const contactProperties = {
     properties: {
       email,
       firstname,
+      lastname,
       ...(phone ? { phone } : {}),
       ...(location ? { city: location } : {}),
-      ...(role ? { jobtitle: role } : {}),
+      ...(position ? { job_applied_for: position } : {}),
       ...(licensure ? { licensure_states: licensure } : {}),
       ...(experience ? { clinical_experience: experience } : {}),
       ...(preferences ? { work_preferences: preferences } : {}),
       ...(ehrExperience ? { ehr_experience: ehrExperience } : {}),
       ...(other ? { additional_notes: other } : {}),
       ...(resumeUrl ? { resume_link: resumeUrl } : {}),
+      lifecyclestage: 'other',
+      applicant_status: 'New',
       lead_source: 'Careers application',
     },
   };
@@ -273,17 +278,17 @@ export async function POST(req: NextRequest) {
 
   try {
     const eventProperties = {
+      job: position,
+      has_resume: !!resumeUrl,
       fullName,
       email,
       phone,
       location,
-      role,
       licensure,
       experience,
       preferences,
       ehrExperience,
       other,
-      resumeUrl,
     };
 
     const eventQuery = `

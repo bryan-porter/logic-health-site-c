@@ -2,7 +2,13 @@
  * Client-side helper for submitting careers application form
  */
 
+import { getOrCreateVisitorId } from './tracking';
+
 export async function submitCareersApplication(formData: FormData): Promise<{ ok: boolean; error?: string }> {
+  // Append visitor_id to formData
+  const visitorId = getOrCreateVisitorId();
+  formData.append('visitor_id', visitorId);
+
   try {
     const res = await fetch('/api/forms/careers', {
       method: 'POST',
