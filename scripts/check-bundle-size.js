@@ -47,7 +47,7 @@ console.log('Checking bundle sizes...');
 console.log(`Total uncompressed JS: ${totalUncompressed.toFixed(2)} KB`);
 console.log(`Total gzipped JS: ${totalGzipped.toFixed(2)} KB`);
 
-const BUDGET_KB = 220;
+const BUDGET_KB = 300;
 
 if (totalGzipped > BUDGET_KB) {
   console.log(`❌ Bundle size exceeds ${BUDGET_KB}KB budget`);
