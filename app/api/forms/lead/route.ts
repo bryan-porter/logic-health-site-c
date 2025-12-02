@@ -233,6 +233,21 @@ export async function POST(request: NextRequest) {
       lastName,
       company: body.organization,
       role: body.role,
+      providerCount: body.provider_count,
+      leadSource: "Website form",
+
+      // Calculated segmentation fields
+      segmentSlug: body.segment_slug || undefined,
+      sizeBucket: companySizeBucket || undefined,
+      persona: personaTag || undefined,
+
+      // Form context
+      formId: body.form_id,
+      utm_source: body.utm_source,
+      utm_medium: body.utm_medium,
+      utm_campaign: body.utm_campaign,
+      utm_content: body.utm_content,
+      utm_term: body.utm_term,
     });
 
     // ========================================

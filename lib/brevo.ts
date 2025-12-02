@@ -9,6 +9,17 @@ export interface BrevoContact {
   lastName?: string;
   company?: string;
   role?: string;
+  providerCount?: number | string;
+  segmentSlug?: string;
+  sizeBucket?: string;
+  persona?: string;
+  formId?: string;
+  leadSource?: string;
+  utm_source?: string | null;
+  utm_medium?: string | null;
+  utm_campaign?: string | null;
+  utm_content?: string | null;
+  utm_term?: string | null;
 }
 
 /**
@@ -43,6 +54,21 @@ export async function syncToBrevo(contact: BrevoContact): Promise<void> {
         LASTNAME: contact.lastName || '',
         COMPANY: contact.company || '',
         JOB_TITLE: contact.role || '',
+        PROVIDER_COUNT: contact.providerCount ? String(contact.providerCount) : '',
+        LEAD_SOURCE: contact.leadSource || '',
+
+        // Custom LogicHM Fields (with proper mappings)
+        LOGIC_SEGMENT: contact.segmentSlug || '',
+        LOGIC_SIZE: contact.sizeBucket || '',
+        LOGIC_PERSONA: contact.persona || '',
+        LAST_FORM_ID: contact.formId || '',
+
+        // UTM Parameters
+        UTM_SOURCE: contact.utm_source || '',
+        UTM_MEDIUM: contact.utm_medium || '',
+        UTM_CAMPAIGN: contact.utm_campaign || '',
+        UTM_CONTENT: contact.utm_content || '',
+        UTM_TERM: contact.utm_term || '',
       },
     };
 
