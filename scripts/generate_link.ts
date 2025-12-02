@@ -41,14 +41,27 @@ function main() {
     process.exit(1);
   }
 
-  const [baseUrl, targetUrl, campaignName, contactId] = args;
+  const baseUrl = args[0];
+  const targetUrl = args[1];
+  const campaignName = args[2];
+  const contactId = args[3];
 
   // Validate URLs
+  if (!baseUrl || !targetUrl) {
+    console.error("Error: BASE_URL and TARGET_URL are required");
+    process.exit(1);
+  }
+
   try {
     new URL(baseUrl);
     new URL(targetUrl);
   } catch (error) {
     console.error("Error: BASE_URL and TARGET_URL must be valid URLs");
+    process.exit(1);
+  }
+
+  if (!campaignName) {
+    console.error("Error: CAMPAIGN_NAME is required");
     process.exit(1);
   }
 
