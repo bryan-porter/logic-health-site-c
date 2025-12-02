@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { syncToBrevo } from '@/lib/brevo';
+import { randomUUID } from 'crypto';
 
 // ========================================
 // Phone Sanitization Helper
@@ -94,6 +95,10 @@ export async function POST(req: NextRequest) {
 
   // Sanitize phone number to prevent API failures
   const safePhone = sanitizePhone(rawPhone);
+
+  // Ensure we always have a valid visitor ID (generate if missing)
+  const visitorId = req.cookies.get('visitor_id')?.value || null;
+  const finalVisitorId = visitorId || randomUUID();
 
   // Validate required fields
   if (!fullName || !email) {
@@ -295,9 +300,7 @@ export async function POST(req: NextRequest) {
   // Visitor Identity Link (Database)
   // ========================================
 
-  const visitorId = req.cookies.get('visitor_id')?.value || null;
-
-  if (visitorId && crmContactId) {
+  if (crmContactId) {
     try {
       const upsertQuery = `
         INSERT INTO visitor_identities (anonymous_id, crm_contact_id, email, identified_at, first_seen_at)
@@ -309,9 +312,9 @@ export async function POST(req: NextRequest) {
           identified_at = COALESCE(visitor_identities.identified_at, NOW())
       `;
 
-      await query(upsertQuery, [visitorId, crmContactId, email]);
+      await query(upsertQuery, [finalVisitorId, crmContactId, email]);
       console.log(
-        `Linked visitor ${visitorId} to CRM contact ${crmContactId}`
+        `Linked visitor ${finalVisitorId} to CRM contact ${crmContactId}`
       );
     } catch (dbError) {
       console.error('Error linking visitor identity:', dbError);
@@ -351,7 +354,7 @@ export async function POST(req: NextRequest) {
     `;
 
     await query(eventQuery, [
-      visitorId || null,
+      finalVisitorId,
       crmContactId,
       'application_submitted',
       'web',
