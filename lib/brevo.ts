@@ -9,6 +9,7 @@ export interface BrevoContact {
   lastName?: string;
   company?: string;
   role?: string;
+  phone?: string;
   providerCount?: number | string;
   segmentSlug?: string;
   sizeBucket?: string;
@@ -44,32 +45,51 @@ export async function syncToBrevo(contact: BrevoContact): Promise<void> {
   }
 
   try {
+    // Helper functions to safely convert values
+    // Returns undefined for missing values so they're excluded from payload
+    const safeString = (val?: string | null): string | undefined => val || undefined;
+    const safeNumber = (val?: string | number | null): number | undefined => {
+      if (val === undefined || val === null || val === '') return undefined;
+      const num = Number(val);
+      return isNaN(num) ? undefined : num;
+    };
+
+    // Build attributes object with proper types
+    const attributes = {
+      FIRSTNAME: safeString(contact.firstName),
+      LASTNAME: safeString(contact.lastName),
+      COMPANY: safeString(contact.company),
+      JOB_TITLE: safeString(contact.role),
+      PHONE: safeString(contact.phone),
+      // CRITICAL FIX: Send as number or undefined, never empty string
+      PROVIDER_COUNT: safeNumber(contact.providerCount),
+      LEAD_SOURCE: safeString(contact.leadSource),
+
+      // Custom LogicHM Fields (with proper mappings)
+      LOGIC_SEGMENT: safeString(contact.segmentSlug),
+      LOGIC_SIZE: safeString(contact.sizeBucket),
+      LOGIC_PERSONA: safeString(contact.persona),
+      LAST_FORM_ID: safeString(contact.formId),
+
+      // UTM Parameters
+      UTM_SOURCE: safeString(contact.utm_source),
+      UTM_MEDIUM: safeString(contact.utm_medium),
+      UTM_CAMPAIGN: safeString(contact.utm_campaign),
+      UTM_CONTENT: safeString(contact.utm_content),
+      UTM_TERM: safeString(contact.utm_term),
+    };
+
+    // Remove undefined keys to keep payload clean and prevent validation errors
+    const cleanAttributes = Object.fromEntries(
+      Object.entries(attributes).filter(([_, v]) => v !== undefined)
+    );
+
     // Prepare request body
     const requestBody = {
       email: contact.email,
       updateEnabled: true, // Update contact if already exists
       listIds: [parseInt(listId, 10)],
-      attributes: {
-        FIRSTNAME: contact.firstName || '',
-        LASTNAME: contact.lastName || '',
-        COMPANY: contact.company || '',
-        JOB_TITLE: contact.role || '',
-        PROVIDER_COUNT: contact.providerCount ? String(contact.providerCount) : '',
-        LEAD_SOURCE: contact.leadSource || '',
-
-        // Custom LogicHM Fields (with proper mappings)
-        LOGIC_SEGMENT: contact.segmentSlug || '',
-        LOGIC_SIZE: contact.sizeBucket || '',
-        LOGIC_PERSONA: contact.persona || '',
-        LAST_FORM_ID: contact.formId || '',
-
-        // UTM Parameters
-        UTM_SOURCE: contact.utm_source || '',
-        UTM_MEDIUM: contact.utm_medium || '',
-        UTM_CAMPAIGN: contact.utm_campaign || '',
-        UTM_CONTENT: contact.utm_content || '',
-        UTM_TERM: contact.utm_term || '',
-      },
+      attributes: cleanAttributes,
     };
 
     // Call Brevo API

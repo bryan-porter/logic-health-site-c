@@ -1,5 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { syncToBrevo } from '@/lib/brevo';
+
+// ========================================
+// Phone Sanitization Helper
+// ========================================
+
+/**
+ * Sanitize phone number to prevent API validation failures
+ * Returns clean numeric string or undefined if invalid
+ */
+function sanitizePhone(phone: string | undefined | null): string | undefined {
+  if (!phone) return undefined;
+  // Remove all non-numeric characters except '+'
+  const cleaned = phone.replace(/[^\d+]/g, '').trim();
+  // If it's too short to be real (e.g. "123"), return undefined to save the lead
+  if (cleaned.length < 7) return undefined;
+  return cleaned; // Returns clean string like "+15551234567" or "5551234567"
+}
+
+// ========================================
+// Rate Limiting
+// ========================================
 
 // In-memory rate limit: 10 requests per 10 minutes per IP
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -60,7 +82,7 @@ export async function POST(req: NextRequest) {
   // Extract form fields
   const fullName = formData.get('fullName') as string;
   const email = formData.get('email') as string;
-  const phone = formData.get('phone') as string;
+  const rawPhone = formData.get('phone') as string;
   const location = formData.get('location') as string;
   const position = formData.get('role') as string; // role field = position/job applied for
   const licensure = formData.get('licensure') as string;
@@ -69,6 +91,9 @@ export async function POST(req: NextRequest) {
   const ehrExperience = formData.get('ehrExperience') as string;
   const other = formData.get('other') as string;
   const resumeFile = formData.get('resume') as File | null;
+
+  // Sanitize phone number to prevent API failures
+  const safePhone = sanitizePhone(rawPhone);
 
   // Validate required fields
   if (!fullName || !email) {
@@ -161,7 +186,7 @@ export async function POST(req: NextRequest) {
       email,
       firstname,
       lastname,
-      ...(phone ? { phone } : {}),
+      ...(safePhone ? { phone: safePhone } : {}),
       ...(location ? { city: location } : {}),
       ...(position ? { job_applied_for: position } : {}),
       ...(resumeUrl ? { resume_link: resumeUrl } : {}),
@@ -252,6 +277,21 @@ export async function POST(req: NextRequest) {
   }
 
   // ========================================
+  // Brevo Integration (Email Nurturing)
+  // ========================================
+
+  // Sync career applicants to Brevo for nurturing campaigns
+  await syncToBrevo({
+    email,
+    firstName: firstname,
+    lastName: lastname,
+    phone: safePhone,
+    company: location, // Using location as a proxy for company/organization
+    role: position,
+    leadSource: 'Careers application',
+  });
+
+  // ========================================
   // Visitor Identity Link (Database)
   // ========================================
 
@@ -289,7 +329,7 @@ export async function POST(req: NextRequest) {
       has_resume: !!resumeUrl,
       fullName,
       email,
-      phone,
+      phone: safePhone,
       location,
       licensure,
       experience,

@@ -4,6 +4,23 @@ import { verifyPublicApiKey } from '@/lib/apiAuth';
 import { syncToBrevo } from '@/lib/brevo';
 
 // ========================================
+// Phone Sanitization Helper
+// ========================================
+
+/**
+ * Sanitize phone number to prevent API validation failures
+ * Returns clean numeric string or undefined if invalid
+ */
+function sanitizePhone(phone: string | undefined | null): string | undefined {
+  if (!phone) return undefined;
+  // Remove all non-numeric characters except '+'
+  const cleaned = phone.replace(/[^\d+]/g, '').trim();
+  // If it's too short to be real (e.g. "123"), return undefined to save the lead
+  if (cleaned.length < 7) return undefined;
+  return cleaned; // Returns clean string like "+15551234567" or "5551234567"
+}
+
+// ========================================
 // Segmentation Helpers
 // ========================================
 
@@ -51,6 +68,7 @@ function getPersonaTag(role: string | undefined): string | null {
 interface LeadFormPayload {
   name?: string;
   email: string;
+  phone?: string;
   role?: string;
   organization?: string;
   provider_count?: string | number;
@@ -68,6 +86,7 @@ interface HubSpotContact {
   properties: {
     email: string;
     firstname?: string;
+    phone?: string;
     jobtitle?: string;
     company?: string;
     provider_count?: string;
@@ -119,6 +138,9 @@ export async function POST(request: NextRequest) {
     // Extract first name from full name if provided
     const firstname = body.name?.split(' ')[0];
 
+    // Sanitize phone number to prevent API failures
+    const safePhone = sanitizePhone(body.phone);
+
     // Derive segmentation tags
     const companySizeBucket = getCompanySizeBucket(body.provider_count);
     const personaTag = getPersonaTag(body.role);
@@ -128,6 +150,7 @@ export async function POST(request: NextRequest) {
       properties: {
         email: body.email,
         ...(firstname && { firstname }),
+        ...(safePhone && { phone: safePhone }),
         ...(body.role && { jobtitle: body.role }),
         ...(body.organization && { company: body.organization }),
         ...(body.provider_count && { provider_count: String(body.provider_count) }),
@@ -231,6 +254,7 @@ export async function POST(request: NextRequest) {
       email: body.email,
       firstName,
       lastName,
+      phone: safePhone,
       company: body.organization,
       role: body.role,
       providerCount: body.provider_count,
@@ -285,6 +309,7 @@ export async function POST(request: NextRequest) {
       const eventProperties = {
         name: body.name,
         email: body.email,
+        phone: safePhone,
         role: body.role,
         organization: body.organization,
         provider_count: body.provider_count,
