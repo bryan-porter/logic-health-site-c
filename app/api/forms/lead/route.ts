@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { verifyPublicApiKey } from '@/lib/apiAuth';
+import { syncToBrevo } from '@/lib/brevo';
 
 // ========================================
 // Segmentation Helpers
@@ -214,6 +215,25 @@ export async function POST(request: NextRequest) {
       console.error('Error communicating with HubSpot:', hubspotError);
       // Continue execution - don't fail the entire request if HubSpot fails
     }
+
+    // ========================================
+    // Brevo Integration (Email Nurturing)
+    // ========================================
+
+    // Split name into first and last name
+    const nameParts = body.name?.trim().split(' ') || [];
+    const firstName = nameParts[0] || undefined;
+    const lastName = nameParts.slice(1).join(' ') || undefined;
+
+    // Sync to Brevo for email nurturing
+    // This is awaited to ensure it fires, but errors are caught internally
+    await syncToBrevo({
+      email: body.email,
+      firstName,
+      lastName,
+      company: body.organization,
+      role: body.role,
+    });
 
     // ========================================
     // Visitor Identity Link (Database)
