@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { verifyPublicApiKey } from '@/lib/apiAuth';
 import { syncToBrevo } from '@/lib/brevo';
+import { randomUUID } from 'crypto';
 
 // ========================================
 // Phone Sanitization Helper
@@ -62,7 +63,7 @@ function getPersonaTag(role: string | undefined): string | null {
     return "clinical";
   }
 
-  return "other";
+  return null;
 }
 
 interface LeadFormPayload {
@@ -118,6 +119,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Ensure we always have a valid visitor ID (generate if missing)
+    const finalVisitorId = body.visitor_id || randomUUID();
 
     // Check HubSpot access token
     const hubspotToken = process.env.HUBSPOT_ACCESS_TOKEN;
@@ -278,7 +282,7 @@ export async function POST(request: NextRequest) {
     // Visitor Identity Link (Database)
     // ========================================
 
-    if (body.visitor_id && crmContactId) {
+    if (crmContactId) {
       try {
         // Upsert visitor identity
         const upsertQuery = `
@@ -291,8 +295,8 @@ export async function POST(request: NextRequest) {
             identified_at = COALESCE(visitor_identities.identified_at, NOW())
         `;
 
-        await query(upsertQuery, [body.visitor_id, crmContactId, body.email]);
-        console.log(`Linked visitor ${body.visitor_id} to CRM contact ${crmContactId}`);
+        await query(upsertQuery, [finalVisitorId, crmContactId, body.email]);
+        console.log(`Linked visitor ${finalVisitorId} to CRM contact ${crmContactId}`);
       } catch (dbError) {
         console.error('Error linking visitor identity:', dbError);
         console.error('DB Error message:', dbError instanceof Error ? dbError.message : String(dbError));
@@ -337,7 +341,7 @@ export async function POST(request: NextRequest) {
       `;
 
       await query(eventQuery, [
-        body.visitor_id || null,
+        finalVisitorId,
         crmContactId,
         'form_submitted',
         'web',
