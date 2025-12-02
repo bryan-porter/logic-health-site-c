@@ -10,6 +10,7 @@ export interface BrevoContact {
   company?: string;
   role?: string;
   phone?: string;
+  message?: string;
   providerCount?: number | string;
   segmentSlug?: string;
   sizeBucket?: string;
@@ -61,6 +62,7 @@ export async function syncToBrevo(contact: BrevoContact): Promise<void> {
       COMPANY: safeString(contact.company),
       JOB_TITLE: safeString(contact.role),
       PHONE: safeString(contact.phone),
+      MESSAGE: safeString(contact.message),
       // CRITICAL FIX: Send as number or undefined, never empty string
       PROVIDER_COUNT: safeNumber(contact.providerCount),
       LEAD_SOURCE: safeString(contact.leadSource),
@@ -83,6 +85,10 @@ export async function syncToBrevo(contact: BrevoContact): Promise<void> {
     const cleanAttributes = Object.fromEntries(
       Object.entries(attributes).filter(([_, v]) => v !== undefined)
     );
+
+    // Debug logging to see what's being sent to Brevo
+    console.log('Syncing to Brevo - Contact:', contact.email);
+    console.log('Syncing to Brevo - Attributes:', JSON.stringify(cleanAttributes, null, 2));
 
     // Prepare request body
     const requestBody = {

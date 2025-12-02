@@ -293,6 +293,7 @@ export async function POST(req: NextRequest) {
     phone: safePhone,
     company: location, // Using location as a proxy for company/organization
     role: position,
+    message: applicationSummary,
     leadSource: 'Careers application',
   });
 
