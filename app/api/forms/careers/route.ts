@@ -176,6 +176,7 @@ export async function POST(req: NextRequest) {
 
   // Combine additional fields into a summary message
   const applicationSummary = [
+    location && `Location: ${location}`,
     licensure && `Licensure: ${licensure}`,
     experience && `Experience: ${experience}`,
     preferences && `Work Preferences: ${preferences}`,
@@ -291,7 +292,7 @@ export async function POST(req: NextRequest) {
     firstName: firstname,
     lastName: lastname,
     phone: safePhone,
-    company: location, // Using location as a proxy for company/organization
+    company: undefined, // No company for career applicants
     role: position,
     message: applicationSummary,
     leadSource: 'Careers application',

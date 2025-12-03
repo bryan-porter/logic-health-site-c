@@ -89,14 +89,20 @@ function main() {
     console.log("");
     console.log("This link is ready to use for contact ID:", contactId);
   } else {
-    // Campaign mode: Append HubSpot placeholder
+    // Campaign mode: Generate URLs for both Brevo and HubSpot
+    const brevoUrl = `${trackedUrl}?uid={{contact.EMAIL}}`;
     const hubspotUrl = `${trackedUrl}?uid={{contact.hs_object_id}}`;
-    console.log("✅ Campaign Tracking Link Generated (for HubSpot templates):");
+
+    console.log("✅ Campaign Tracking Links Generated:");
     console.log("");
+    console.log("👇 COPY THIS FOR BREVO:");
+    console.log(brevoUrl);
+    console.log("");
+    console.log("👇 Copy this for HubSpot:");
     console.log(hubspotUrl);
     console.log("");
-    console.log("⚠️  Use this URL in HubSpot email templates.");
-    console.log("   The {{contact.hs_object_id}} placeholder will be replaced automatically.");
+    console.log("⚠️  Use the appropriate URL in your email platform.");
+    console.log("   Brevo uses {{contact.EMAIL}} and HubSpot uses {{contact.hs_object_id}}");
   }
   console.log("");
   console.log("Campaign:", campaignName);
